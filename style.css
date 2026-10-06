@@ -1,0 +1,100 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: #f5f7fa;
+    color: #1f2937;
+    line-height: 1.6;
+}
+
+header {
+    background: #111827;
+    color: white;
+    padding: 70px 20px;
+    text-align: center;
+}
+
+header h1 {
+    font-size: 48px;
+    margin-bottom: 15px;
+}
+
+header p {
+    font-size: 20px;
+    color: #d1d5db;
+}
+
+.container {
+    max-width: 900px;
+    margin: 40px auto;
+    padding: 0 20px;
+}
+
+.card {
+    background: white;
+    padding: 30px;
+    margin-bottom: 25px;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.06);
+}
+
+.card h2 {
+    margin-bottom: 15px;
+    color: #111827;
+}
+
+.tokenisation {
+    text-align: center;
+}
+
+.property-value {
+    font-size: 28px;
+    font-weight: bold;
+    margin: 20px 0;
+}
+
+.token-number {
+    font-size: 22px;
+    margin-bottom: 10px;
+}
+
+.token-price {
+    font-size: 20px;
+    margin-bottom: 20px;
+}
+
+button {
+    background: #111827;
+    color: white;
+    border: none;
+    padding: 12px 22px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+button:hover {
+    opacity: 0.85;
+}
+
+#explanation {
+    display: none;
+    margin-top: 25px;
+    padding: 20px;
+    background: #f3f4f6;
+    border-radius: 8px;
+}
+
+ul {
+    padding-left: 25px;
+}
+
+footer {
+    text-align: center;
+    padding: 30px;
+    color: #6b7280;
+}
