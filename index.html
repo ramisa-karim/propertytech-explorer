@@ -1,73 +1,182 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+
     <meta charset="UTF-8">
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>PropertyTech Explorer</title>
+
+    <link rel="stylesheet" href="style.css">
+
 </head>
 
 <body>
 
-    <h1>PropertyTech Explorer</h1>
+    <header>
 
-    <p>
-        Exploring the intersection of real estate, technology and Web3.
-    </p>
+        <h1>PropertyTech Explorer</h1>
 
-    <hr>
+        <p>Exploring the intersection of real estate, technology and Web3.</p>
 
-    <h2>Why I'm interested</h2>
+    </header>
 
-    <p>
-        I'm studying Real Estate Management and I'm interested in how
-        emerging technologies could change the way we interact with
-        property, investment and ownership.
-    </p>
 
-    <h2>Blockchain</h2>
+    <main class="container">
 
-    <p>
-        Blockchain is a type of digital ledger that records transactions
-        across a network. I'm interested in how this technology could
-        potentially improve transparency and the way information about
-        assets is recorded and shared.
-    </p>
 
-    <h2>Tokenisation</h2>
+        <section class="card">
 
-    <p>
-        Tokenisation involves representing an asset or an interest in an
-        asset digitally. In real estate, I'm curious about whether this
-        could make certain forms of property investment more accessible
-        and create new ways of representing ownership.
-    </p>
+            <h2>Why I'm interested</h2>
 
-    <h2>Smart Contracts</h2>
+            <p>
+                I'm studying Real Estate Management and I'm interested in
+                how emerging technologies could change the way we interact
+                with property, investment and ownership.
+            </p>
 
-    <p>
-        Smart contracts are programs that can automatically execute
-        actions when predefined conditions are met. I'm interested in
-        how this could potentially reduce friction in parts of property
-        transactions.
-    </p>
+        </section>
 
-    <h2>What I'm learning</h2>
 
-    <ul>
-        <li>HTML and web development</li>
-        <li>Blockchain and Web3 concepts</li>
-        <li>PropTech and digital transformation</li>
-        <li>The potential relationship between technology and real estate</li>
-    </ul>
+        <section class="card">
 
-    <h2>My next questions</h2>
+            <h2>Blockchain</h2>
 
-    <p>
-        How could tokenisation affect commercial real estate?
-        Could blockchain improve transparency in property transactions?
-        And what role could emerging technologies play in the future
-        of real estate investment?
-    </p>
+            <p>
+                Blockchain is a type of digital ledger that records
+                transactions across a network. I'm interested in how this
+                technology could potentially improve transparency and the
+                way information about assets is recorded and shared.
+            </p>
+
+        </section>
+
+
+        <section class="card">
+
+            <h2>Tokenisation</h2>
+
+            <p>
+                Tokenisation involves representing an asset or an interest
+                in an asset digitally. In real estate, I'm curious about
+                whether this could create new ways of representing
+                ownership and accessing investment opportunities.
+            </p>
+
+        </section>
+
+
+        <section class="card tokenisation">
+
+            <h2>How could tokenisation work?</h2>
+
+            <p>
+                Here's a simplified hypothetical example.
+            </p>
+
+            <div class="property-value">
+                £1,000,000 Commercial Property
+            </div>
+
+            <div class="token-number">
+                10,000 hypothetical tokens
+            </div>
+
+            <div class="token-price">
+                £100 per token
+            </div>
+
+            <button onclick="showExplanation()">
+                Show me how it works
+            </button>
+
+            <div id="explanation">
+
+                <p>
+                    In this simplified example, a £1 million property is
+                    represented by 10,000 digital units. Each unit would
+                    represent a hypothetical £100 share of the property's
+                    total value.
+                </p>
+
+                <br>
+
+                <p>
+                    This is only an educational example. Real-world
+                    tokenisation involves legal, regulatory, ownership
+                    and valuation considerations.
+                </p>
+
+            </div>
+
+        </section>
+
+
+        <section class="card">
+
+            <h2>Smart Contracts</h2>
+
+            <p>
+                Smart contracts are programs that can automatically execute
+                actions when predefined conditions are met. I'm interested
+                in how this could potentially reduce friction in parts of
+                property transactions.
+            </p>
+
+        </section>
+
+
+        <section class="card">
+
+            <h2>What I'm learning</h2>
+
+            <ul>
+
+                <li>HTML and web development</li>
+
+                <li>CSS and website design</li>
+
+                <li>JavaScript and interactivity</li>
+
+                <li>Blockchain and Web3 concepts</li>
+
+                <li>PropTech and digital transformation</li>
+
+                <li>The potential relationship between technology and real estate</li>
+
+            </ul>
+
+        </section>
+
+
+        <section class="card">
+
+            <h2>My next questions</h2>
+
+            <p>
+                How could tokenisation affect commercial real estate?
+                Could blockchain improve transparency in property
+                transactions? And what role could emerging technologies
+                play in the future of real estate investment?
+            </p>
+
+        </section>
+
+
+    </main>
+
+
+    <footer>
+
+        PropertyTech Explorer · A beginner project exploring real estate and emerging technology
+
+    </footer>
+
+
+    <script src="script.js"></script>
 
 </body>
+
 </html>
