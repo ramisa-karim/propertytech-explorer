@@ -1,23 +1,31 @@
-
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Exploring real estate, technology, blockchain and tokenisation.">
+
     <title>PropertyTech Explorer</title>
+
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<header>
-    <h1>PropertyTech Explorer</h1>
-    <p>Exploring the intersection of real estate, technology and Web3.</p>
+<header class="site-header">
+    <div class="header-content">
+        <p class="eyebrow">REAL ESTATE × TECHNOLOGY</p>
+        <h1>PropertyTech <span>Explorer</span></h1>
+        <p class="header-description">
+            Exploring the intersection of real estate, technology and Web3.
+        </p>
+    </div>
 </header>
 
 <main class="container">
 
     <section class="card">
+        <p class="section-label">01 / INTRODUCTION</p>
         <h2>Welcome to PropertyTech Explorer</h2>
         <p>
             This is my personal learning project exploring how technology
@@ -29,6 +37,7 @@
     </section>
 
     <section class="card">
+        <p class="section-label">02 / MY INTERESTS</p>
         <h2>Why I'm interested</h2>
         <p>
             As a Real Estate Management student, I'm interested in the
@@ -39,6 +48,7 @@
     </section>
 
     <section class="card">
+        <p class="section-label">03 / THE TECHNOLOGY</p>
         <h2>What is blockchain?</h2>
         <p>
             Blockchain is a digital record system that stores information
@@ -53,6 +63,7 @@
     </section>
 
     <section class="card">
+        <p class="section-label">04 / DIGITAL PROPERTY</p>
         <h2>What is property tokenisation?</h2>
         <p>
             Tokenisation involves representing an asset or rights connected
@@ -62,7 +73,9 @@
     </section>
 
     <section class="card tokenisation">
-        <h2>Interactive Property Tokenisation Example</h2>
+        <p class="section-label">05 / INTERACTIVE EXAMPLE</p>
+        <h2>Property Tokenisation Simulator</h2>
+
         <p>
             Imagine a hypothetical commercial property valued at £1,000,000.
             For this simplified example, its notional value is divided into
@@ -71,7 +84,7 @@
 
         <div class="property-image">
             <img
-                src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1400&q=85"
+                src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=900&q=80"
                 alt="Modern commercial office buildings"
                 loading="lazy"
             >
@@ -92,10 +105,12 @@
                 <p class="detail-label">PROPERTY VALUE</p>
                 <p class="property-value">£1,000,000</p>
             </div>
+
             <div class="investment-item">
                 <p class="detail-label">HYPOTHETICAL TOKENS</p>
                 <p class="token-number">10,000</p>
             </div>
+
             <div class="investment-item">
                 <p class="detail-label">PRICE PER TOKEN</p>
                 <p class="token-price">£100</p>
@@ -103,10 +118,10 @@
         </div>
 
         <button type="button" onclick="showExplanation()">
-            Show me how it works
+            Show me how it works <span aria-hidden="true">↗</span>
         </button>
 
-        <div id="explanation">
+        <div id="explanation" hidden>
             <h3>Breaking down the example</h3>
             <p>
                 £1,000,000 divided by 10,000 equal units gives a notional
@@ -121,12 +136,13 @@
         </div>
 
         <div class="example-note">
-            <strong>Educational example only:</strong> This is not a real
-            investment opportunity. Token values do not guarantee returns,
-            liquidity or legal ownership.
+            <strong>Educational example only.</strong>
+            This is not a real investment opportunity. Token values do not
+            guarantee returns, liquidity or legal ownership.
         </div>
 
         <div class="calculator">
+            <p class="section-label">INTERACTIVE TOOL</p>
             <h3>Token Calculator</h3>
             <p>
                 Enter an amount to see how many hypothetical £100 tokens
@@ -136,6 +152,7 @@
             <label for="investmentAmount">
                 Hypothetical investment amount (£)
             </label>
+
             <input
                 type="number"
                 id="investmentAmount"
@@ -145,7 +162,7 @@
             >
 
             <button type="button" onclick="calculateTokens()">
-                Calculate tokens
+                Calculate tokens <span aria-hidden="true">→</span>
             </button>
 
             <div id="calculatorResult" aria-live="polite">
@@ -155,6 +172,7 @@
     </section>
 
     <section class="card">
+        <p class="section-label">06 / AUTOMATION</p>
         <h2>Smart contracts and real estate</h2>
         <p>
             Smart contracts are programs on a blockchain that can execute
@@ -166,6 +184,7 @@
     </section>
 
     <section class="card">
+        <p class="section-label">07 / MY LEARNING JOURNEY</p>
         <h2>What I'm learning</h2>
         <ul>
             <li>HTML and CSS to build and style websites.</li>
@@ -177,6 +196,7 @@
     </section>
 
     <section class="card">
+        <p class="section-label">08 / LOOKING AHEAD</p>
         <h2>My next questions</h2>
         <ul>
             <li>Could tokenisation make certain property investments more accessible?</li>
@@ -188,11 +208,13 @@
 
 </main>
 
-<footer>
-    <p>PropertyTech Explorer</p>
+<footer class="site-footer">
+    <p class="footer-title">PropertyTech <span>Explorer</span></p>
     <p>A personal learning project exploring real estate and technology.</p>
+    <p class="footer-note">Built while learning HTML, CSS and JavaScript.</p>
 </footer>
 
 <script src="script.js"></script>
 </body>
 </html>
+```
