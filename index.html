@@ -1,182 +1,224 @@
+
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
-
     <meta charset="UTF-8">
-
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>PropertyTech Explorer</title>
+    <meta name="description" content="PropertyTech Explorer is a beginner project exploring commercial real estate, blockchain, tokenisation and emerging technology.">
+
+    <title>PropertyTech Explorer | Real Estate x Web3</title>
 
     <link rel="stylesheet" href="style.css">
-
 </head>
 
 <body>
 
     <header>
-
         <h1>PropertyTech Explorer</h1>
-
         <p>Exploring the intersection of real estate, technology and Web3.</p>
-
     </header>
-
 
     <main class="container">
 
-
+        <!-- INTRODUCTION -->
         <section class="card">
+            <h2>Welcome to my project</h2>
 
+            <p>
+                I'm studying Real Estate Management and exploring how
+                technology could shape the future of property.
+                This project is where I document what I'm learning about
+                PropTech, blockchain and digital assets.
+            </p>
+
+            <p>
+                I'm particularly interested in commercial real estate
+                and how technology could influence investment,
+                ownership and asset management.
+            </p>
+        </section>
+
+        <!-- WHY I'M INTERESTED -->
+        <section class="card">
             <h2>Why I'm interested</h2>
 
             <p>
-                I'm studying Real Estate Management and I'm interested in
-                how emerging technologies could change the way we interact
-                with property, investment and ownership.
+                I'm interested in how emerging technologies could change
+                the way we interact with property, investment and ownership.
+                By combining my real estate studies with coding and
+                technology, I want to understand how these ideas could
+                apply to real-world industries.
             </p>
-
         </section>
 
-
+        <!-- BLOCKCHAIN -->
         <section class="card">
-
-            <h2>Blockchain</h2>
+            <h2>01 / Blockchain</h2>
 
             <p>
                 Blockchain is a type of digital ledger that records
                 transactions across a network. I'm interested in how this
-                technology could potentially improve transparency and the
-                way information about assets is recorded and shared.
+                technology could potentially improve transparency and
+                the way information about assets is recorded and shared.
             </p>
-
         </section>
 
-
+        <!-- TOKENISATION -->
         <section class="card">
-
-            <h2>Tokenisation</h2>
+            <h2>02 / Tokenisation</h2>
 
             <p>
-                Tokenisation involves representing an asset or an interest
-                in an asset digitally. In real estate, I'm curious about
-                whether this could create new ways of representing
-                ownership and accessing investment opportunities.
+                Tokenisation involves representing an asset, or an interest
+                in an asset, digitally. In real estate, I'm curious about
+                whether this could create new ways of representing ownership
+                and accessing investment opportunities.
             </p>
-
         </section>
 
-
+        <!-- VISUAL PROPERTY EXAMPLE -->
         <section class="card tokenisation">
 
-            <h2>How could tokenisation work?</h2>
+            <h2>Explore a hypothetical property</h2>
 
             <p>
-                Here's a simplified hypothetical example.
+                What might it look like if a commercial property were
+                represented by digital tokens?
             </p>
 
-            <div class="property-value">
-                £1,000,000 Commercial Property
+            <div class="property-image">
+                <img
+                    src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1200&q=80"
+                    alt="Modern commercial office buildings in a city"
+                    loading="lazy"
+                >
+
+                <span class="property-label">
+                    EDUCATIONAL EXAMPLE
+                </span>
             </div>
 
-            <div class="token-number">
-                10,000 hypothetical tokens
+            <div class="property-details">
+                <p class="detail-label">PROPERTY TYPE</p>
+
+                <h3>City Office Building</h3>
+
+                <p class="property-description">
+                    Imagine a commercial office building whose value
+                    is represented by hypothetical digital units.
+                </p>
             </div>
 
-            <div class="token-price">
-                £100 per token
+            <div class="investment-grid">
+
+                <div class="investment-item">
+                    <p class="detail-label">TOTAL PROPERTY VALUE</p>
+
+                    <div class="property-value">
+                        £1,000,000
+                    </div>
+                </div>
+
+                <div class="investment-item">
+                    <p class="detail-label">HYPOTHETICAL TOKENS</p>
+
+                    <div class="token-number">
+                        10,000
+                    </div>
+                </div>
+
+                <div class="investment-item">
+                    <p class="detail-label">VALUE PER TOKEN</p>
+
+                    <div class="token-price">
+                        £100
+                    </div>
+                </div>
+
             </div>
 
-            <button onclick="showExplanation()">
+            <button
+                type="button"
+                onclick="showExplanation()"
+                aria-controls="explanation"
+            >
                 Show me how it works
             </button>
 
             <div id="explanation">
 
                 <p>
-                    In this simplified example, a £1 million property is
-                    represented by 10,000 digital units. Each unit would
-                    represent a hypothetical £100 share of the property's
-                    total value.
+                    In this simplified example, a £1 million property
+                    is represented by 10,000 hypothetical units.
+                    Dividing £1,000,000 by 10,000 gives an illustrative
+                    value of £100 per unit.
                 </p>
 
-                <br>
-
                 <p>
-                    This is only an educational example. Real-world
-                    tokenisation involves legal, regulatory, ownership
-                    and valuation considerations.
+                    This does not mean each token automatically gives
+                    someone direct legal ownership of part of a building.
+                    The rights attached to real-world tokens depend on
+                    the legal structure and relevant regulations.
                 </p>
 
             </div>
 
-        </section>
-
-
-        <section class="card">
-
-            <h2>Smart Contracts</h2>
-
-            <p>
-                Smart contracts are programs that can automatically execute
-                actions when predefined conditions are met. I'm interested
-                in how this could potentially reduce friction in parts of
-                property transactions.
+            <p class="example-note">
+                This is an educational illustration, not an actual
+                property offering or investment opportunity.
             </p>
 
         </section>
 
-
+        <!-- SMART CONTRACTS -->
         <section class="card">
+            <h2>03 / Smart Contracts</h2>
 
+            <p>
+                Smart contracts are programs that can automatically
+                execute actions when predefined conditions are met.
+                I'm interested in how they could potentially reduce
+                friction in parts of property transactions, subject
+                to legal and practical requirements.
+            </p>
+        </section>
+
+        <!-- WHAT I'M LEARNING -->
+        <section class="card">
             <h2>What I'm learning</h2>
 
             <ul>
-
                 <li>HTML and web development</li>
-
                 <li>CSS and website design</li>
-
                 <li>JavaScript and interactivity</li>
-
                 <li>Blockchain and Web3 concepts</li>
-
                 <li>PropTech and digital transformation</li>
-
-                <li>The potential relationship between technology and real estate</li>
-
+                <li>Technology in commercial real estate</li>
             </ul>
-
         </section>
 
-
+        <!-- QUESTIONS -->
         <section class="card">
-
             <h2>My next questions</h2>
 
             <p>
                 How could tokenisation affect commercial real estate?
                 Could blockchain improve transparency in property
                 transactions? And what role could emerging technologies
-                play in the future of real estate investment?
+                play in the future of real estate investment and
+                asset management?
             </p>
-
         </section>
-
 
     </main>
 
-
     <footer>
-
-        PropertyTech Explorer · A beginner project exploring real estate and emerging technology
-
+        <p>PropertyTech Explorer</p>
+        <p>A beginner project exploring real estate and emerging technology.</p>
     </footer>
-
 
     <script src="script.js"></script>
 
 </body>
-
 </html>
