@@ -4,10 +4,8 @@ function showExplanation() {
 
     if (!explanation) return;
 
-    if (
-        explanation.style.display === "none" ||
-        explanation.style.display === ""
-    ) {
+    if (explanation.style.display === "none" ||
+        explanation.style.display === "") {
         explanation.style.display = "block";
     } else {
         explanation.style.display = "none";
@@ -24,18 +22,13 @@ function calculateTokens() {
     const amount = Number(rawAmount);
     const tokenPrice = 100;
 
-    if (
-        rawAmount === "" ||
-        !Number.isFinite(amount) ||
-        amount <= 0
-    ) {
+    if (rawAmount === "" || !Number.isFinite(amount) || amount <= 0) {
         result.textContent = "Please enter an amount greater than £0.";
         return;
     }
 
     if (amount % tokenPrice !== 0) {
-        result.textContent =
-            "Please enter an amount in multiples of £100.";
+        result.textContent = "Please enter an amount in multiples of £100.";
         return;
     }
 
@@ -43,7 +36,6 @@ function calculateTokens() {
 
     result.textContent =
         "£" + amount.toLocaleString("en-GB") +
-        " represents " +
-        tokens.toLocaleString("en-GB") +
+        " represents " + tokens.toLocaleString("en-GB") +
         " hypothetical tokens at £100 each.";
 }
