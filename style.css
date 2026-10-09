@@ -1,26 +1,29 @@
 /* =========================================
    PROPERTYTECH EXPLORER
-   Phase 1: Modern PropTech website design
+   Lavender + Futuristic Coding Aesthetic
    ========================================= */
 
-/* 1. GLOBAL STYLES */
+:root {
+    --background: #F7F4FF;
+    --surface: #FFFFFF;
+    --lavender: #E8DFFF;
+    --lavender-light: #F0EBFF;
+    --violet: #7955F5;
+    --violet-soft: #8D79D6;
+    --blue: #A9CCFF;
+    --blue-light: #EAF3FF;
+    --text: #29243A;
+    --text-light: #6F6883;
+    --border: #DDD5F3;
+    --code-bg: #272337;
+    --code-text: #E8E2FF;
+    --shadow: 0 10px 30px rgba(80, 57, 145, 0.09);
+}
+
+/* General page styling */
 
 * {
     box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-}
-
-:root {
-    --background: #080d19;
-    --surface: #101829;
-    --surface-light: #172238;
-    --border: rgba(157, 174, 208, 0.16);
-    --text: #f2f5fc;
-    --muted: #a1aec5;
-    --purple: #9b8cff;
-    --blue: #6b9dff;
-    --turquoise: #6de4d0;
 }
 
 html {
@@ -28,447 +31,368 @@ html {
 }
 
 body {
-    font-family: Inter, "Segoe UI", Arial, sans-serif;
-    background:
-        radial-gradient(
-            ellipse at 50% 0%,
-            rgba(94, 87, 190, 0.17),
-            transparent 45%
-        ),
-        var(--background);
+    margin: 0;
+    font-family: "Segoe UI", Arial, sans-serif;
+    background-color: var(--background);
+    background-image:
+        radial-gradient(circle at 10% 5%, rgba(169, 204, 255, 0.22), transparent 28%),
+        radial-gradient(circle at 90% 20%, rgba(205, 187, 255, 0.28), transparent 30%);
     color: var(--text);
-    line-height: 1.75;
-    font-size: 16px;
-    min-height: 100vh;
+    line-height: 1.7;
 }
 
-::selection {
-    background: rgba(155, 140, 255, 0.4);
-    color: white;
+/* Headings */
+
+h1,
+h2,
+h3 {
+    line-height: 1.25;
+    color: var(--text);
+}
+
+h1 {
+    font-size: clamp(2.3rem, 5vw, 3.8rem);
+    letter-spacing: -1.5px;
+}
+
+h2 {
+    font-size: clamp(1.6rem, 3vw, 2.2rem);
+    letter-spacing: -0.6px;
+}
+
+h3 {
+    font-size: 1.25rem;
 }
 
 p {
-    color: var(--muted);
-    margin-bottom: 16px;
-}
-
-p:last-child {
-    margin-bottom: 0;
+    color: var(--text-light);
 }
 
 a {
-    color: var(--turquoise);
+    color: var(--violet);
     text-decoration: none;
 }
 
+a:hover {
+    text-decoration: underline;
+}
 
-/* 2. HEADER */
+/* Header and introduction */
 
 header {
     position: relative;
     overflow: hidden;
     text-align: center;
-    padding: 88px 24px 78px;
+    padding: 85px 24px 75px;
+    background: linear-gradient(
+        135deg,
+        #E9E0FF 0%,
+        #F6F1FF 50%,
+        #E3EEFF 100%
+    );
     border-bottom: 1px solid var(--border);
-    background:
-        radial-gradient(
-            ellipse at 15% 10%,
-            rgba(109, 228, 208, 0.13),
-            transparent 40%
-        ),
-        radial-gradient(
-            ellipse at 85% 0%,
-            rgba(155, 140, 255, 0.2),
-            transparent 45%
-        );
 }
 
 header::before {
     content: "";
     position: absolute;
-    width: 280px;
-    height: 280px;
-    border: 1px solid rgba(155, 140, 255, 0.12);
+    width: 260px;
+    height: 260px;
+    border: 1px solid rgba(121, 85, 245, 0.15);
     border-radius: 50%;
-    top: -180px;
-    left: calc(50% - 140px);
-    pointer-events: none;
+    top: -130px;
+    right: -50px;
+}
+
+header::after {
+    content: "";
+    position: absolute;
+    width: 190px;
+    height: 190px;
+    border: 1px solid rgba(121, 85, 245, 0.15);
+    border-radius: 50%;
+    bottom: -100px;
+    left: -40px;
 }
 
 header h1 {
+    max-width: 850px;
+    margin: 0 auto 18px;
     position: relative;
-    font-size: clamp(2.3rem, 6vw, 4.2rem);
-    font-weight: 750;
-    letter-spacing: -2px;
-    line-height: 1.15;
-    margin-bottom: 20px;
-    background: linear-gradient(
-        100deg,
-        #ffffff 15%,
-        #c9c1ff 55%,
-        #8eeadd 100%
-    );
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
+    z-index: 1;
 }
 
 header p {
-    position: relative;
-    max-width: 600px;
+    max-width: 680px;
     margin: 0 auto;
-    font-size: 1.08rem;
-    color: #b6c2d9;
+    font-size: 1.1rem;
+    position: relative;
+    z-index: 1;
 }
 
-
-/* 3. MAIN LAYOUT */
+/* Main content */
 
 .container {
-    width: min(100% - 40px, 900px);
-    margin: 0 auto;
-    padding: 46px 0 72px;
+    width: min(1100px, 90%);
+    margin: 45px auto;
 }
 
+section {
+    margin-bottom: 35px;
+}
+
+/* Cards and content sections */
+
 .card {
-    background: linear-gradient(
-        145deg,
-        rgba(20, 31, 51, 0.96),
-        rgba(13, 22, 38, 0.96)
-    );
+    background: rgba(255, 255, 255, 0.9);
     border: 1px solid var(--border);
-    border-radius: 20px;
-    padding: 34px;
-    margin-bottom: 24px;
-    box-shadow: 0 12px 35px rgba(0, 0, 0, 0.12);
-    transition:
-        border-color 0.25s ease,
-        transform 0.25s ease,
-        box-shadow 0.25s ease;
+    border-radius: 22px;
+    padding: 30px;
+    margin-bottom: 25px;
+    box-shadow: var(--shadow);
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
 }
 
 .card:hover {
-    border-color: rgba(155, 140, 255, 0.34);
-    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.18);
+    transform: translateY(-3px);
+    box-shadow: 0 15px 35px rgba(80, 57, 145, 0.13);
 }
 
-.card h2 {
-    font-size: clamp(1.35rem, 3vw, 1.75rem);
-    font-weight: 680;
-    letter-spacing: -0.6px;
-    line-height: 1.35;
-    margin-bottom: 18px;
-    color: var(--text);
-}
-
-.card h2::after {
-    content: "";
-    display: block;
-    width: 42px;
-    height: 3px;
-    margin-top: 15px;
-    border-radius: 5px;
-    background: linear-gradient(
-        90deg,
-        var(--purple),
-        var(--turquoise)
-    );
-}
-
+.card h2,
 .card h3 {
-    color: var(--text);
-    font-size: 1.35rem;
-    line-height: 1.4;
-    margin-bottom: 10px;
+    margin-top: 0;
 }
 
-.card ul {
-    padding-left: 22px;
-    color: var(--muted);
+.card h2::before {
+    content: "// ";
+    color: var(--violet);
+    font-family: monospace;
+    font-weight: 700;
 }
 
-.card li {
-    padding: 5px 0 5px 4px;
-}
-
-.card li::marker {
-    color: var(--turquoise);
-}
-
-
-/* 4. PROPERTY EXAMPLE */
+/* Highlighted technology sections */
 
 .tokenisation {
-    overflow: hidden;
-    background:
-        radial-gradient(
-            ellipse at 100% 0%,
-            rgba(107, 157, 255, 0.09),
-            transparent 42%
-        ),
-        linear-gradient(145deg, #131d32, #0d1627);
+    background: linear-gradient(135deg, #EEE7FF, #F8F5FF);
+    border-color: #D9CCFF;
 }
+
+.tokenisation h2::before {
+    color: var(--violet);
+}
+
+.calculator {
+    background: linear-gradient(135deg, #EAF3FF, #F8FAFF);
+    border-color: #C8DEFF;
+}
+
+.calculator h2::before {
+    color: #537FC9;
+}
+
+/* Images */
 
 .property-image {
-    position: relative;
-    overflow: hidden;
-    border-radius: 15px;
-    border: 1px solid var(--border);
-    margin: 26px 0 28px;
-    background: var(--surface-light);
-}
-
-.property-image img {
     display: block;
     width: 100%;
-    height: 320px;
-    object-fit: cover;
-    transition: transform 0.5s ease;
-}
-
-.property-image:hover img {
-    transform: scale(1.035);
-}
-
-.property-label {
-    position: absolute;
-    left: 18px;
-    top: 18px;
-    padding: 7px 12px;
-    border-radius: 7px;
-    background: rgba(8, 13, 25, 0.85);
-    border: 1px solid rgba(255, 255, 255, 0.18);
-    color: var(--turquoise);
-    font-size: 0.7rem;
-    font-weight: 750;
-    letter-spacing: 1px;
-}
-
-.property-details {
-    margin-bottom: 26px;
-}
-
-.detail-label {
-    font-size: 0.72rem;
-    font-weight: 750;
-    letter-spacing: 1.15px;
-    color: #91a4c5;
-    margin-bottom: 8px;
-}
-
-.property-description {
-    max-width: 620px;
-}
-
-
-/* 5. PROPERTY METRICS */
-
-.investment-grid {
-    display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 14px;
-    margin: 28px 0;
-}
-
-.investment-item {
-    min-width: 0;
-    padding: 20px 17px;
-    border-radius: 13px;
-    background: rgba(7, 14, 27, 0.65);
+    max-width: 650px;
+    height: auto;
+    margin: 25px auto;
+    border-radius: 16px;
     border: 1px solid var(--border);
+    box-shadow: 0 8px 25px rgba(48, 38, 83, 0.12);
 }
 
-.investment-item .detail-label {
-    line-height: 1.5;
-    min-height: 34px;
-    margin-bottom: 10px;
-}
-
-.property-value,
-.token-number,
-.token-price {
-    font-size: clamp(1.15rem, 2.6vw, 1.65rem);
-    font-weight: 750;
-    letter-spacing: -0.7px;
-    line-height: 1.35;
-    overflow-wrap: anywhere;
-}
-
-.property-value {
-    color: var(--turquoise);
-}
-
-.token-number {
-    color: #b9aaff;
-}
-
-.token-price {
-    color: #91b8ff;
-}
-
-
-/* 6. BUTTONS */
+/* Buttons */
 
 button {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    min-height: 46px;
-    padding: 12px 20px;
-    border: 1px solid transparent;
-    border-radius: 10px;
-    background: linear-gradient(
-        110deg,
-        #8876f5,
-        #648df5
-    );
-    color: #ffffff;
-    font: inherit;
-    font-size: 0.94rem;
-    font-weight: 700;
+    display: inline-block;
+    padding: 12px 22px;
+    border: none;
+    border-radius: 11px;
+    background: var(--violet);
+    color: #FFFFFF;
+    font-size: 1rem;
+    font-weight: 600;
+    font-family: inherit;
     cursor: pointer;
-    box-shadow: 0 5px 18px rgba(107, 127, 245, 0.18);
-    transition:
-        transform 0.2s ease,
-        filter 0.2s ease,
-        box-shadow 0.2s ease;
+    box-shadow: 0 5px 14px rgba(121, 85, 245, 0.2);
+    transition: background 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 button:hover {
-    filter: brightness(1.12);
+    background: #6240D9;
     transform: translateY(-2px);
-    box-shadow: 0 8px 22px rgba(107, 127, 245, 0.27);
-}
-
-button:active {
-    transform: translateY(0);
+    box-shadow: 0 8px 18px rgba(121, 85, 245, 0.28);
 }
 
 button:focus-visible,
 input:focus-visible {
-    outline: 2px solid var(--turquoise);
-    outline-offset: 4px;
+    outline: 3px solid var(--blue);
+    outline-offset: 3px;
 }
 
-
-/* 7. EXPLANATION */
+/* Explanation panel */
 
 #explanation {
     display: none;
-    margin-top: 22px;
-    padding: 23px;
-    border: 1px solid rgba(155, 140, 255, 0.25);
-    border-left: 3px solid var(--purple);
-    border-radius: 12px;
-    background: rgba(155, 140, 255, 0.07);
+    margin-top: 20px;
+    padding: 22px;
+    border-radius: 14px;
+    background: var(--lavender-light);
+    border: 1px solid #D8CBFF;
+    border-left: 5px solid var(--violet);
 }
 
-#explanation p {
-    font-size: 0.95rem;
+#explanation p:last-child {
+    margin-bottom: 0;
 }
 
-
-/* 8. EDUCATIONAL NOTE */
+/* Example notes */
 
 .example-note {
-    margin-top: 23px;
-    padding: 15px 17px;
-    border: 1px solid rgba(109, 228, 208, 0.17);
-    border-radius: 10px;
-    background: rgba(109, 228, 208, 0.045);
-    color: #a7c9c8;
-    font-size: 0.87rem;
+    margin-top: 20px;
+    padding: 16px 20px;
+    background: var(--blue-light);
+    border: 1px solid #C9DEFF;
+    border-radius: 12px;
 }
 
+/* Investment calculator */
 
-/* 9. TOKEN CALCULATOR */
-
-.calculator {
-    margin-top: 30px;
-    padding: 26px;
-    border-radius: 15px;
-    border: 1px solid rgba(107, 157, 255, 0.25);
-    background: rgba(6, 13, 25, 0.65);
-}
-
-.calculator h3 {
-    margin-bottom: 10px;
-    font-size: 1.3rem;
-}
-
-.calculator > p {
-    font-size: 0.94rem;
+.investment-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 22px;
+    align-items: start;
 }
 
 .calculator label {
     display: block;
-    margin: 20px 0 8px;
-    color: #dce5f6;
-    font-size: 0.9rem;
-    font-weight: 650;
+    margin-bottom: 8px;
+    font-weight: 600;
+    color: var(--text);
 }
 
 .calculator input {
-    display: block;
     width: 100%;
-    min-height: 48px;
-    margin-bottom: 16px;
-    padding: 12px 14px;
-    border: 1px solid #34435f;
-    border-radius: 9px;
-    background: #0b1425;
+    padding: 13px 15px;
+    margin-bottom: 15px;
+    border: 1px solid #C9C0E6;
+    border-radius: 10px;
+    background: #FFFFFF;
     color: var(--text);
     font: inherit;
-    transition: border-color 0.2s ease;
 }
 
 .calculator input:focus {
-    border-color: var(--purple);
-    outline: 2px solid rgba(155, 140, 255, 0.15);
-}
-
-.calculator input::placeholder {
-    color: #71819e;
+    border-color: var(--violet);
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(121, 85, 245, 0.12);
 }
 
 #calculatorResult {
-    min-height: 52px;
-    display: flex;
-    align-items: center;
     margin-top: 18px;
-    padding: 13px 15px;
-    border: 1px solid var(--border);
-    border-radius: 9px;
-    background: rgba(23, 34, 56, 0.75);
-    color: #c8d6ed;
-    font-size: 0.94rem;
+    padding: 15px;
+    min-height: 50px;
+    border-radius: 12px;
+    background: #FFFFFF;
+    border: 1px solid #D5E4FF;
+    color: var(--text);
     overflow-wrap: anywhere;
 }
 
+/* Developer-style code snippets */
 
-/* 10. FOOTER */
+code {
+    padding: 3px 7px;
+    border-radius: 6px;
+    background: #EAE4FF;
+    color: #6342CC;
+    font-family: Consolas, "Courier New", monospace;
+    font-size: 0.92em;
+}
+
+pre {
+    padding: 22px;
+    overflow-x: auto;
+    border: 1px solid #403751;
+    border-radius: 14px;
+    background: var(--code-bg);
+    color: var(--code-text);
+    font-family: Consolas, "Courier New", monospace;
+    font-size: 0.9rem;
+    line-height: 1.7;
+    box-shadow: 0 8px 20px rgba(39, 35, 55, 0.12);
+}
+
+/* Lists */
+
+ul {
+    padding-left: 24px;
+}
+
+li {
+    margin-bottom: 9px;
+    color: var(--text-light);
+}
+
+li::marker {
+    color: var(--violet);
+}
+
+/* Small labels and highlighted text */
+
+strong {
+    color: var(--text);
+}
+
+::selection {
+    background: #D9CCFF;
+    color: #29243A;
+}
+
+/* Footer */
 
 footer {
-    padding: 32px 20px;
+    margin-top: 60px;
+    padding: 30px 20px;
     text-align: center;
+    background: #EAE4FA;
     border-top: 1px solid var(--border);
-    background: rgba(5, 9, 17, 0.7);
 }
 
-footer p:first-child {
-    margin-bottom: 5px;
-    color: var(--text);
-    font-weight: 750;
-    letter-spacing: 0.2px;
+footer p {
+    margin: 5px 0;
+    font-size: 0.9rem;
 }
 
-footer p:last-child {
-    font-size: 0.85rem;
-    color: #8392ad;
+/* Mobile layout */
+
+@media (max-width: 600px) {
+    header {
+        padding: 60px 20px;
+    }
+
+    .container {
+        width: 92%;
+        margin: 28px auto;
+    }
+
+    .card {
+        padding: 22px;
+        border-radius: 17px;
+    }
+
+    button {
+        width: 100%;
+    }
+
+    pre {
+        padding: 16px;
+        font-size: 0.82rem;
+    }
 }
-
-
-/* 11. ACCESSIBILITY */
 
 @media (prefers-reduced-motion: reduce) {
     html {
@@ -478,65 +402,6 @@ footer p:last-child {
     *,
     *::before,
     *::after {
-        transition-duration: 0.01ms !important;
-        animation-duration: 0.01ms !important;
-    }
-}
-
-
-/* 12. TABLETS AND MOBILE */
-
-@media (max-width: 650px) {
-    header {
-        padding: 64px 20px 56px;
-    }
-
-    header h1 {
-        letter-spacing: -1.2px;
-    }
-
-    header p {
-        font-size: 0.98rem;
-    }
-
-    .container {
-        width: min(100% - 28px, 900px);
-        padding: 28px 0 46px;
-    }
-
-    .card {
-        padding: 23px 20px;
-        margin-bottom: 17px;
-        border-radius: 16px;
-    }
-
-    .investment-grid {
-        grid-template-columns: 1fr;
-        gap: 11px;
-    }
-
-    .investment-item {
-        padding: 17px;
-    }
-
-    .investment-item .detail-label {
-        min-height: 0;
-    }
-
-    .property-image img {
-        height: 230px;
-    }
-
-    .calculator {
-        padding: 20px 16px;
-    }
-
-    .calculator button,
-    .tokenisation > button {
-        width: 100%;
-    }
-
-    footer {
-        padding: 27px 18px;
+        transition: none !important;
     }
 }
