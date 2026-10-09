@@ -1,3 +1,4 @@
+```css
 /* =========================================
    PROPERTYTECH EXPLORER
    DARK CYBER-TECH THEME
@@ -8,20 +9,21 @@
     --surface: #1B182B;
     --surface-light: #242039;
     --surface-blue: #19283A;
+
     --violet: #9B6DFF;
     --violet-bright: #B38AFF;
     --cyan: #45E6FF;
     --blue: #548CFF;
+
     --text: #F3F0FF;
     --text-light: #C0BAD5;
     --border: #39304F;
     --code-bg: #0B0A13;
+
     --shadow: 0 10px 30px rgba(0, 0, 0, 0.24);
 }
 
-/* =========================================
-   BASE STYLES
-   ========================================= */
+/* Base */
 
 * {
     box-sizing: border-box;
@@ -42,6 +44,11 @@ body {
         linear-gradient(90deg, rgba(155, 109, 255, 0.035) 1px, transparent 1px),
         radial-gradient(ellipse at top left, rgba(103, 61, 180, 0.16), transparent 45%);
     background-size: 36px 36px, 36px 36px, auto;
+}
+
+img {
+    display: block;
+    max-width: 100%;
 }
 
 h1,
@@ -89,16 +96,14 @@ strong {
     color: #FFFFFF;
 }
 
-/* =========================================
-   HEADER
-   ========================================= */
+/* Header */
 
-header {
+.site-header {
     position: relative;
     isolation: isolate;
     overflow: hidden;
     text-align: center;
-    padding: 75px 24px 65px;
+    padding: 70px 24px 65px;
     background:
         radial-gradient(ellipse at 15% 15%, rgba(155, 109, 255, 0.2), transparent 45%),
         radial-gradient(ellipse at 90% 80%, rgba(69, 230, 255, 0.1), transparent 40%),
@@ -106,7 +111,7 @@ header {
     border-bottom: 1px solid var(--border);
 }
 
-header::before {
+.site-header::before {
     content: "";
     position: absolute;
     z-index: -1;
@@ -116,13 +121,11 @@ header::before {
     right: -60px;
     border: 1px solid rgba(155, 109, 255, 0.35);
     border-radius: 50%;
-    box-shadow:
-        0 0 0 24px rgba(155, 109, 255, 0.04),
-        0 0 35px rgba(155, 109, 255, 0.1);
+    box-shadow: 0 0 0 24px rgba(155, 109, 255, 0.04);
     pointer-events: none;
 }
 
-header::after {
+.site-header::after {
     content: "";
     position: absolute;
     z-index: -1;
@@ -135,10 +138,27 @@ header::after {
     pointer-events: none;
 }
 
-header h1 {
-    max-width: 850px;
+.header-content {
+    position: relative;
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.eyebrow,
+.section-label {
+    color: var(--cyan);
+    font-family: Consolas, "Courier New", monospace;
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+}
+
+.eyebrow {
+    margin-bottom: 12px;
+}
+
+.site-header h1 {
     margin: 0 auto 18px;
-    color: var(--violet-bright);
     background: linear-gradient(
         100deg,
         #C1A2FF,
@@ -150,36 +170,32 @@ header h1 {
     -webkit-text-fill-color: transparent;
 }
 
-header p {
+.site-header .header-description {
     max-width: 680px;
     margin: 0 auto;
     font-size: 1.08rem;
 }
 
-/* =========================================
-   MAIN LAYOUT
-   ========================================= */
+/* Main layout */
 
 .container {
     width: 90%;
-    max-width: 1100px;
+    max-width: 1050px;
     min-width: 0;
     margin: 40px auto;
 }
 
 section {
     min-width: 0;
-    margin-bottom: 30px;
+    margin-bottom: 26px;
 }
 
-/* =========================================
-   CARDS
-   ========================================= */
+/* Cards */
 
 .card {
     position: relative;
-    min-width: 0;
     width: 100%;
+    min-width: 0;
     padding: 28px;
     margin-bottom: 24px;
     background: var(--surface);
@@ -209,13 +225,22 @@ section {
     font-weight: 700;
 }
 
-/* =========================================
-   TOKENISATION SECTION
-   ========================================= */
+.section-label {
+    margin: 0 0 10px;
+}
+
+.card > .section-label:first-child {
+    margin-bottom: 10px;
+}
+
+/* Tokenisation section */
 
 .tokenisation {
-    background:
-        linear-gradient(135deg, rgba(48, 35, 76, 0.65), var(--surface));
+    background: linear-gradient(
+        135deg,
+        rgba(48, 35, 76, 0.65),
+        var(--surface)
+    );
     border-color: #4C3B70;
 }
 
@@ -223,38 +248,123 @@ section {
     color: var(--violet-bright);
 }
 
-/* =========================================
-   PROPERTY IMAGE
-   Smaller and centred
-   ========================================= */
+/* Property image container */
 
 .property-image {
-    display: block;
+    position: relative;
     width: 100%;
     max-width: 320px;
-    height: auto;
-    max-height: 220px;
-    object-fit: contain;
-    margin: 22px auto;
+    height: 200px;
+    margin: 24px auto;
+    overflow: hidden;
     border: 1px solid #4C4169;
     border-radius: 12px;
+    background: var(--code-bg);
     box-shadow: 0 0 20px rgba(155, 109, 255, 0.1);
 }
 
-/* Prevent images from overflowing their containers */
+/* Important: size the image inside its container */
 
-img {
-    max-width: 100%;
+.property-image img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
 }
 
-/* =========================================
-   BUTTONS
-   ========================================= */
+.property-label {
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+    max-width: calc(100% - 20px);
+    padding: 5px 9px;
+    border: 1px solid rgba(69, 230, 255, 0.35);
+    border-radius: 5px;
+    background: rgba(11, 10, 19, 0.88);
+    color: var(--cyan);
+    font-family: Consolas, "Courier New", monospace;
+    font-size: 0.68rem;
+    letter-spacing: 0.8px;
+}
+
+/* Property details */
+
+.property-details {
+    margin: 25px 0;
+    padding: 20px;
+    background: rgba(11, 10, 19, 0.35);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+}
+
+.detail-label {
+    margin: 0 0 5px;
+    color: var(--cyan);
+    font-family: Consolas, "Courier New", monospace;
+    font-size: 0.76rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+}
+
+.property-details h3 {
+    margin-bottom: 8px;
+}
+
+.property-description {
+    margin-bottom: 0;
+}
+
+/* Investment figures */
+
+.investment-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 14px;
+    align-items: stretch;
+    margin: 22px 0;
+}
+
+.investment-item {
+    min-width: 0;
+    padding: 18px 14px;
+    background: var(--surface-light);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    overflow-wrap: anywhere;
+}
+
+.investment-item p {
+    margin-top: 0;
+}
+
+.property-value,
+.token-number,
+.token-price {
+    margin-bottom: 0;
+    color: var(--text);
+    font-size: clamp(1.15rem, 2.5vw, 1.65rem);
+    font-weight: 700;
+}
+
+.property-value {
+    color: var(--violet-bright);
+}
+
+.token-number {
+    color: var(--cyan);
+}
+
+.token-price {
+    color: #82A9FF;
+}
+
+/* Buttons */
 
 button {
     display: inline-block;
     max-width: 100%;
-    padding: 12px 22px;
+    padding: 12px 20px;
     border: 1px solid rgba(179, 138, 255, 0.35);
     border-radius: 9px;
     background: linear-gradient(110deg, #7547D9, #5149C9);
@@ -262,7 +372,9 @@ button {
     font-family: inherit;
     font-size: 1rem;
     font-weight: 600;
+    line-height: 1.5;
     cursor: pointer;
+    overflow-wrap: break-word;
     box-shadow: 0 0 16px rgba(117, 71, 217, 0.17);
     transition: filter 0.2s ease, box-shadow 0.2s ease;
 }
@@ -280,12 +392,9 @@ input:focus-visible {
     outline-offset: 3px;
 }
 
-/* =========================================
-   EXPLANATION PANEL
-   ========================================= */
+/* Explanation panel */
 
 #explanation {
-    display: none;
     min-width: 0;
     margin-top: 18px;
     padding: 20px;
@@ -296,53 +405,59 @@ input:focus-visible {
     overflow-wrap: break-word;
 }
 
+/* Keep the explanation hidden until JavaScript reveals it */
+
+#explanation[hidden] {
+    display: none !important;
+}
+
+#explanation:not([hidden]) {
+    display: block;
+}
+
 #explanation p:last-child {
     margin-bottom: 0;
 }
 
-/* =========================================
-   EXAMPLE NOTE
-   ========================================= */
+/* Educational disclaimer */
 
 .example-note {
     min-width: 0;
-    margin-top: 18px;
+    margin-top: 22px;
     padding: 16px 18px;
     background: #172839;
     border: 1px solid #294A60;
     border-left: 4px solid var(--cyan);
     border-radius: 10px;
+    overflow-wrap: break-word;
 }
 
-/* =========================================
-   CALCULATOR
-   ========================================= */
+/* Calculator */
 
 .calculator {
-    background:
-        linear-gradient(135deg, rgba(25, 40, 58, 0.92), var(--surface));
-    border-color: #31506B;
-}
-
-.calculator h2::before {
-    color: var(--cyan);
-}
-
-.investment-grid {
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 20px;
-    align-items: start;
-}
-
-.investment-grid > * {
     min-width: 0;
-    max-width: 100%;
+    margin-top: 26px;
+    padding: 24px;
+    background: linear-gradient(
+        135deg,
+        rgba(25, 40, 58, 0.92),
+        var(--surface)
+    );
+    border: 1px solid #31506B;
+    border-radius: 14px;
+}
+
+.calculator h3 {
+    margin-bottom: 8px;
+}
+
+.calculator .section-label {
+    color: var(--cyan);
 }
 
 .calculator label {
     display: block;
-    margin-bottom: 8px;
+    margin: 18px 0 8px;
     color: var(--text);
     font-weight: 600;
 }
@@ -353,7 +468,7 @@ input:focus-visible {
     min-width: 0;
     max-width: 100%;
     padding: 12px 14px;
-    margin-bottom: 15px;
+    margin-bottom: 16px;
     border: 1px solid #49415F;
     border-radius: 8px;
     background: #100E1B;
@@ -373,8 +488,8 @@ input:focus-visible {
 
 #calculatorResult {
     min-width: 0;
-    max-width: 100%;
-    min-height: 50px;
+    width: 100%;
+    min-height: 55px;
     margin-top: 18px;
     padding: 15px;
     background: #121B2A;
@@ -385,9 +500,7 @@ input:focus-visible {
     overflow-wrap: anywhere;
 }
 
-/* =========================================
-   CODE STYLING
-   ========================================= */
+/* Code styling for future examples */
 
 code {
     padding: 3px 6px;
@@ -403,7 +516,7 @@ pre {
     max-width: 100%;
     padding: 20px;
     overflow-x: auto;
-    border: 1px solid #39304F;
+    border: 1px solid var(--border);
     border-radius: 12px;
     background: var(--code-bg);
     color: #D8D5F0;
@@ -414,15 +527,13 @@ pre {
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
 }
 
-/* Optional terminal window styles for future use */
-
 .code-window {
     width: 100%;
     max-width: 100%;
     min-width: 0;
     margin: 20px 0;
     overflow: hidden;
-    border: 1px solid #39304F;
+    border: 1px solid var(--border);
     border-radius: 12px;
     background: var(--code-bg);
 }
@@ -433,7 +544,7 @@ pre {
     gap: 7px;
     padding: 12px 15px;
     background: #211E32;
-    border-bottom: 1px solid #39304F;
+    border-bottom: 1px solid var(--border);
     color: var(--text-light);
     font-family: Consolas, "Courier New", monospace;
     font-size: 0.82rem;
@@ -466,9 +577,7 @@ pre {
     box-shadow: none;
 }
 
-/* =========================================
-   LISTS
-   ========================================= */
+/* Lists */
 
 ul {
     padding-left: 24px;
@@ -483,27 +592,39 @@ li::marker {
     color: var(--cyan);
 }
 
-/* =========================================
-   FOOTER
-   ========================================= */
+/* Footer */
 
-footer {
+.site-footer {
     margin-top: 50px;
-    padding: 28px 20px;
+    padding: 30px 20px;
     text-align: center;
     background: #151224;
     border-top: 1px solid var(--border);
 }
 
-footer p {
+.site-footer p {
     margin: 5px 0;
     color: var(--text-light);
     font-size: 0.9rem;
 }
 
-/* =========================================
-   TABLET AND MOBILE
-   ========================================= */
+.site-footer .footer-title {
+    color: var(--text);
+    font-size: 1.1rem;
+    font-weight: 700;
+}
+
+.site-footer .footer-title span {
+    color: var(--violet-bright);
+}
+
+.site-footer .footer-note {
+    margin-top: 12px;
+    color: #8F88A7;
+    font-size: 0.82rem;
+}
+
+/* Tablet and mobile */
 
 @media (max-width: 700px) {
     .container {
@@ -515,15 +636,23 @@ footer p {
         grid-template-columns: minmax(0, 1fr);
     }
 
+    .investment-item {
+        padding: 16px;
+    }
+
     .property-image {
-        max-width: 280px;
-        max-height: 200px;
+        max-width: 300px;
+        height: 190px;
+    }
+
+    .calculator {
+        padding: 20px;
     }
 }
 
 @media (max-width: 480px) {
-    header {
-        padding: 55px 18px;
+    .site-header {
+        padding: 50px 18px;
     }
 
     .card {
@@ -532,8 +661,8 @@ footer p {
     }
 
     .property-image {
-        max-width: 240px;
-        max-height: 180px;
+        max-width: 250px;
+        height: 165px;
     }
 
     button {
@@ -559,3 +688,4 @@ footer p {
         transition: none !important;
     }
 }
+```
