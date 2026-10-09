@@ -1,100 +1,191 @@
+
+/* RESET */
 * {
-    box-sizing: border-box;
     margin: 0;
     padding: 0;
+    box-sizing: border-box;
 }
 
+/* MAIN BACKGROUND */
 body {
     font-family: Arial, sans-serif;
-    background: #f5f7fa;
-    color: #1f2937;
-    line-height: 1.6;
+    background: linear-gradient(135deg, #0b1026, #17113b, #101d3d);
+    color: #f4f4ff;
+    line-height: 1.7;
+    min-height: 100vh;
 }
 
+/* HEADER */
 header {
-    background: #111827;
-    color: white;
-    padding: 70px 20px;
+    position: relative;
+    overflow: hidden;
     text-align: center;
+    padding: 65px 20px;
+    background: linear-gradient(120deg, #6d28d9, #2563eb, #0891b2);
+    color: white;
+}
+
+header::before {
+    content: "";
+    position: absolute;
+    width: 260px;
+    height: 260px;
+    background: rgba(255, 255, 255, 0.12);
+    border-radius: 50%;
+    top: -120px;
+    right: 8%;
 }
 
 header h1 {
-    font-size: 48px;
-    margin-bottom: 15px;
+    position: relative;
+    font-size: 42px;
+    margin-bottom: 12px;
+    letter-spacing: 1px;
 }
 
 header p {
-    font-size: 20px;
-    color: #d1d5db;
+    position: relative;
+    font-size: 18px;
+    color: #e0f2fe;
 }
 
+/* PAGE CONTENT */
 .container {
-    max-width: 900px;
+    width: 90%;
+    max-width: 1000px;
     margin: 40px auto;
-    padding: 0 20px;
 }
 
+/* CONTENT CARDS */
 .card {
-    background: white;
-    padding: 30px;
+    position: relative;
+    overflow: hidden;
+    background: linear-gradient(145deg, #1b2142, #171a35);
+    border: 1px solid #343b70;
+    border-radius: 18px;
+    padding: 28px;
     margin-bottom: 25px;
-    border-radius: 12px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.06);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+    transition: transform 0.25s ease, border-color 0.25s ease;
+}
+
+.card:hover {
+    transform: translateY(-4px);
+    border-color: #8b5cf6;
 }
 
 .card h2 {
-    margin-bottom: 15px;
-    color: #111827;
+    color: #a78bfa;
+    margin-bottom: 14px;
+    font-size: 25px;
 }
 
+.card p {
+    color: #d5d9f2;
+    margin-bottom: 12px;
+}
+
+.card ul {
+    padding-left: 22px;
+    color: #d5d9f2;
+}
+
+/* TOKENISATION SECTION */
 .tokenisation {
-    text-align: center;
+    background: linear-gradient(135deg, #20204c, #12394c);
+    border: 1px solid #22d3ee;
+}
+
+.tokenisation h2 {
+    color: #67e8f9;
 }
 
 .property-value {
-    font-size: 28px;
+    color: #c4b5fd;
+    font-size: 22px;
     font-weight: bold;
-    margin: 20px 0;
+    margin: 12px 0;
 }
 
 .token-number {
+    color: #67e8f9;
     font-size: 22px;
-    margin-bottom: 10px;
+    font-weight: bold;
+    margin: 12px 0;
 }
 
 .token-price {
-    font-size: 20px;
-    margin-bottom: 20px;
+    color: #86efac;
+    font-size: 22px;
+    font-weight: bold;
+    margin: 12px 0;
 }
 
+/* INTERACTIVE BUTTON */
 button {
-    background: #111827;
+    background: linear-gradient(90deg, #8b5cf6, #06b6d4);
     color: white;
     border: none;
-    padding: 12px 22px;
-    border-radius: 8px;
-    cursor: pointer;
+    padding: 13px 24px;
+    border-radius: 10px;
     font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    margin-top: 12px;
+    box-shadow: 0 0 18px rgba(139, 92, 246, 0.25);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 button:hover {
-    opacity: 0.85;
+    transform: scale(1.04);
+    box-shadow: 0 0 25px rgba(6, 182, 212, 0.4);
 }
 
+/* EXPLANATION THAT OPENS WHEN YOU CLICK */
 #explanation {
     display: none;
-    margin-top: 25px;
-    padding: 20px;
-    background: #f3f4f6;
+    background: rgba(6, 182, 212, 0.1);
+    border-left: 4px solid #22d3ee;
     border-radius: 8px;
+    padding: 18px;
+    margin-top: 18px;
+    color: #e0f2fe;
 }
 
-ul {
-    padding-left: 25px;
-}
-
+/* FOOTER */
 footer {
     text-align: center;
-    padding: 30px;
-    color: #6b7280;
+    padding: 30px 20px;
+    color: #a5b4d6;
+    border-top: 1px solid #343b70;
+    margin-top: 45px;
 }
+
+/* MOBILE FRIENDLY */
+@media (max-width: 600px) {
+    header {
+        padding: 45px 18px;
+    }
+
+    header h1 {
+        font-size: 32px;
+    }
+
+    header p {
+        font-size: 16px;
+    }
+
+    .container {
+        width: 92%;
+        margin: 25px auto;
+    }
+
+    .card {
+        padding: 20px;
+    }
+
+    .card h2 {
+        font-size: 22px;
+    }
+}
+
