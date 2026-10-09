@@ -1,26 +1,29 @@
 /* =========================================
    PROPERTYTECH EXPLORER
-   Lavender + Futuristic Coding Aesthetic
+   Cyber-Tech Edition
    ========================================= */
 
 :root {
-    --background: #F7F4FF;
+    --background: #F4F2FF;
     --surface: #FFFFFF;
-    --lavender: #E8DFFF;
-    --lavender-light: #F0EBFF;
-    --violet: #7955F5;
-    --violet-soft: #8D79D6;
-    --blue: #A9CCFF;
-    --blue-light: #EAF3FF;
-    --text: #29243A;
-    --text-light: #6F6883;
-    --border: #DDD5F3;
-    --code-bg: #272337;
-    --code-text: #E8E2FF;
-    --shadow: 0 10px 30px rgba(80, 57, 145, 0.09);
+    --surface-blue: #EAF5FF;
+    --lavender: #E7DEFF;
+    --violet: #7547FF;
+    --neon-violet: #9B5CFF;
+    --electric-blue: #3478FF;
+    --cyan: #00BFEA;
+    --text: #211B35;
+    --text-light: #68647B;
+    --border: #D9D2F2;
+    --code-bg: #171526;
+    --code-panel: #211E38;
+    --code-text: #E7E5FF;
+    --shadow: 0 10px 30px rgba(72, 49, 150, 0.10);
 }
 
-/* General page styling */
+/* =========================================
+   BASE STYLES
+   ========================================= */
 
 * {
     box-sizing: border-box;
@@ -33,21 +36,22 @@ html {
 body {
     margin: 0;
     font-family: "Segoe UI", Arial, sans-serif;
-    background-color: var(--background);
-    background-image:
-        radial-gradient(circle at 10% 5%, rgba(169, 204, 255, 0.22), transparent 28%),
-        radial-gradient(circle at 90% 20%, rgba(205, 187, 255, 0.28), transparent 30%);
     color: var(--text);
     line-height: 1.7;
+    background-color: var(--background);
+    background-image:
+        linear-gradient(rgba(117, 71, 255, 0.035) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(117, 71, 255, 0.035) 1px, transparent 1px),
+        radial-gradient(circle at 10% 5%, rgba(155, 92, 255, 0.13), transparent 30%),
+        radial-gradient(circle at 90% 20%, rgba(0, 191, 234, 0.10), transparent 28%);
+    background-size: 32px 32px, 32px 32px, auto, auto;
 }
-
-/* Headings */
 
 h1,
 h2,
 h3 {
-    line-height: 1.25;
     color: var(--text);
+    line-height: 1.25;
 }
 
 h1 {
@@ -69,68 +73,87 @@ p {
 }
 
 a {
-    color: var(--violet);
+    color: var(--electric-blue);
     text-decoration: none;
 }
 
 a:hover {
+    color: var(--violet);
     text-decoration: underline;
 }
 
-/* Header and introduction */
+strong {
+    color: var(--text);
+}
+
+::selection {
+    background: var(--violet);
+    color: #FFFFFF;
+}
+
+/* =========================================
+   HERO / HEADER
+   ========================================= */
 
 header {
     position: relative;
     overflow: hidden;
+    isolation: isolate;
     text-align: center;
     padding: 85px 24px 75px;
-    background: linear-gradient(
-        135deg,
-        #E9E0FF 0%,
-        #F6F1FF 50%,
-        #E3EEFF 100%
-    );
+    background:
+        radial-gradient(ellipse at 15% 20%, rgba(155, 92, 255, 0.24), transparent 42%),
+        radial-gradient(ellipse at 85% 70%, rgba(0, 191, 234, 0.19), transparent 40%),
+        linear-gradient(135deg, #E9E3FF, #F8F7FF 52%, #E5F4FF);
     border-bottom: 1px solid var(--border);
 }
 
 header::before {
     content: "";
     position: absolute;
-    width: 260px;
-    height: 260px;
-    border: 1px solid rgba(121, 85, 245, 0.15);
+    z-index: -1;
+    width: 300px;
+    height: 300px;
+    top: -150px;
+    right: -70px;
+    border: 1px solid rgba(117, 71, 255, 0.28);
     border-radius: 50%;
-    top: -130px;
-    right: -50px;
+    box-shadow:
+        0 0 0 25px rgba(117, 71, 255, 0.035),
+        0 0 0 50px rgba(117, 71, 255, 0.025);
 }
 
 header::after {
     content: "";
     position: absolute;
-    width: 190px;
-    height: 190px;
-    border: 1px solid rgba(121, 85, 245, 0.15);
-    border-radius: 50%;
+    z-index: -1;
+    width: 180px;
+    height: 180px;
     bottom: -100px;
     left: -40px;
+    border: 1px solid rgba(0, 191, 234, 0.4);
+    border-radius: 50%;
+    box-shadow: 0 0 35px rgba(0, 191, 234, 0.12);
 }
 
 header h1 {
     max-width: 850px;
     margin: 0 auto 18px;
-    position: relative;
-    z-index: 1;
+    background: linear-gradient(100deg, #6536E8, #3478FF 55%, #009FC8);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
 }
 
 header p {
     max-width: 680px;
     margin: 0 auto;
     font-size: 1.1rem;
-    position: relative;
-    z-index: 1;
 }
 
-/* Main content */
+/* =========================================
+   MAIN CONTENT
+   ========================================= */
 
 .container {
     width: min(1100px, 90%);
@@ -141,21 +164,30 @@ section {
     margin-bottom: 35px;
 }
 
-/* Cards and content sections */
+/* =========================================
+   CONTENT CARDS
+   ========================================= */
 
 .card {
-    background: rgba(255, 255, 255, 0.9);
+    position: relative;
+    background: rgba(255, 255, 255, 0.94);
     border: 1px solid var(--border);
-    border-radius: 22px;
+    border-radius: 20px;
     padding: 30px;
     margin-bottom: 25px;
     box-shadow: var(--shadow);
-    transition: transform 0.25s ease, box-shadow 0.25s ease;
+    transition:
+        transform 0.25s ease,
+        box-shadow 0.25s ease,
+        border-color 0.25s ease;
 }
 
 .card:hover {
     transform: translateY(-3px);
-    box-shadow: 0 15px 35px rgba(80, 57, 145, 0.13);
+    border-color: #B9A4FF;
+    box-shadow:
+        0 14px 35px rgba(72, 49, 150, 0.13),
+        0 0 0 1px rgba(117, 71, 255, 0.04);
 }
 
 .card h2,
@@ -166,81 +198,95 @@ section {
 .card h2::before {
     content: "// ";
     color: var(--violet);
-    font-family: monospace;
+    font-family: Consolas, "Courier New", monospace;
     font-weight: 700;
 }
 
-/* Highlighted technology sections */
+/* =========================================
+   TOKENISATION SECTION
+   ========================================= */
 
 .tokenisation {
-    background: linear-gradient(135deg, #EEE7FF, #F8F5FF);
-    border-color: #D9CCFF;
+    background:
+        linear-gradient(135deg, rgba(231, 222, 255, 0.8), rgba(255, 255, 255, 0.96));
+    border-color: #D2C3FF;
 }
 
 .tokenisation h2::before {
-    color: var(--violet);
+    color: var(--neon-violet);
 }
 
-.calculator {
-    background: linear-gradient(135deg, #EAF3FF, #F8FAFF);
-    border-color: #C8DEFF;
-}
-
-.calculator h2::before {
-    color: #537FC9;
-}
-
-/* Images */
+/* =========================================
+   PROPERTY IMAGE
+   Smaller, centred image
+   ========================================= */
 
 .property-image {
     display: block;
     width: 100%;
-    max-width: 650px;
+    max-width: 380px;
+    max-height: 260px;
     height: auto;
+    object-fit: cover;
     margin: 25px auto;
-    border-radius: 16px;
-    border: 1px solid var(--border);
-    box-shadow: 0 8px 25px rgba(48, 38, 83, 0.12);
+    border-radius: 14px;
+    border: 1px solid #CFC4F5;
+    box-shadow:
+        0 8px 25px rgba(48, 38, 83, 0.12),
+        0 0 16px rgba(117, 71, 255, 0.08);
 }
 
-/* Buttons */
+/* =========================================
+   BUTTONS
+   ========================================= */
 
 button {
     display: inline-block;
     padding: 12px 22px;
-    border: none;
-    border-radius: 11px;
-    background: var(--violet);
+    border: 1px solid transparent;
+    border-radius: 10px;
+    background: linear-gradient(110deg, var(--violet), var(--electric-blue));
     color: #FFFFFF;
+    font-family: inherit;
     font-size: 1rem;
     font-weight: 600;
-    font-family: inherit;
     cursor: pointer;
-    box-shadow: 0 5px 14px rgba(121, 85, 245, 0.2);
-    transition: background 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+    box-shadow: 0 5px 16px rgba(117, 71, 255, 0.23);
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease,
+        filter 0.2s ease;
 }
 
 button:hover {
-    background: #6240D9;
     transform: translateY(-2px);
-    box-shadow: 0 8px 18px rgba(121, 85, 245, 0.28);
+    filter: brightness(1.08);
+    box-shadow:
+        0 8px 22px rgba(117, 71, 255, 0.28),
+        0 0 14px rgba(0, 191, 234, 0.12);
+}
+
+button:active {
+    transform: translateY(0);
 }
 
 button:focus-visible,
 input:focus-visible {
-    outline: 3px solid var(--blue);
+    outline: 3px solid var(--cyan);
     outline-offset: 3px;
 }
 
-/* Explanation panel */
+/* =========================================
+   EXPLANATION PANEL
+   ========================================= */
 
 #explanation {
     display: none;
     margin-top: 20px;
     padding: 22px;
-    border-radius: 14px;
-    background: var(--lavender-light);
-    border: 1px solid #D8CBFF;
+    border-radius: 13px;
+    background: #F0EBFF;
+    border: 1px solid #D5C8FF;
     border-left: 5px solid var(--violet);
 }
 
@@ -248,17 +294,32 @@ input:focus-visible {
     margin-bottom: 0;
 }
 
-/* Example notes */
+/* =========================================
+   EXAMPLE NOTE
+   ========================================= */
 
 .example-note {
     margin-top: 20px;
     padding: 16px 20px;
-    background: var(--blue-light);
-    border: 1px solid #C9DEFF;
+    background: var(--surface-blue);
+    border: 1px solid #C7E5FF;
+    border-left: 4px solid var(--cyan);
     border-radius: 12px;
 }
 
-/* Investment calculator */
+/* =========================================
+   CALCULATOR
+   ========================================= */
+
+.calculator {
+    background:
+        linear-gradient(135deg, #EAF5FF, #F9F8FF 75%);
+    border-color: #C7DFFF;
+}
+
+.calculator h2::before {
+    color: var(--electric-blue);
+}
 
 .investment-grid {
     display: grid;
@@ -270,15 +331,15 @@ input:focus-visible {
 .calculator label {
     display: block;
     margin-bottom: 8px;
-    font-weight: 600;
     color: var(--text);
+    font-weight: 600;
 }
 
 .calculator input {
     width: 100%;
     padding: 13px 15px;
     margin-bottom: 15px;
-    border: 1px solid #C9C0E6;
+    border: 1px solid #C8C8E7;
     border-radius: 10px;
     background: #FFFFFF;
     color: var(--text);
@@ -286,9 +347,9 @@ input:focus-visible {
 }
 
 .calculator input:focus {
-    border-color: var(--violet);
+    border-color: var(--electric-blue);
     outline: none;
-    box-shadow: 0 0 0 3px rgba(121, 85, 245, 0.12);
+    box-shadow: 0 0 0 3px rgba(52, 120, 255, 0.13);
 }
 
 #calculatorResult {
@@ -297,18 +358,21 @@ input:focus-visible {
     min-height: 50px;
     border-radius: 12px;
     background: #FFFFFF;
-    border: 1px solid #D5E4FF;
+    border: 1px solid #C7E5FF;
+    border-left: 4px solid var(--electric-blue);
     color: var(--text);
     overflow-wrap: anywhere;
 }
 
-/* Developer-style code snippets */
+/* =========================================
+   CODE / DEVELOPER DETAILS
+   ========================================= */
 
 code {
     padding: 3px 7px;
-    border-radius: 6px;
-    background: #EAE4FF;
-    color: #6342CC;
+    border-radius: 5px;
+    background: #E9E2FF;
+    color: #673DE6;
     font-family: Consolas, "Courier New", monospace;
     font-size: 0.92em;
 }
@@ -316,17 +380,69 @@ code {
 pre {
     padding: 22px;
     overflow-x: auto;
-    border: 1px solid #403751;
+    border: 1px solid #3B3656;
     border-radius: 14px;
     background: var(--code-bg);
     color: var(--code-text);
     font-family: Consolas, "Courier New", monospace;
     font-size: 0.9rem;
     line-height: 1.7;
-    box-shadow: 0 8px 20px rgba(39, 35, 55, 0.12);
+    box-shadow: 0 8px 22px rgba(23, 21, 38, 0.16);
 }
 
-/* Lists */
+/* If you add code snippets with these classes later */
+
+.code-window {
+    overflow: hidden;
+    margin: 22px 0;
+    border: 1px solid #3B3656;
+    border-radius: 14px;
+    background: var(--code-bg);
+    box-shadow: 0 10px 25px rgba(23, 21, 38, 0.15);
+}
+
+.code-window-header {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    padding: 12px 15px;
+    background: var(--code-panel);
+    border-bottom: 1px solid #3B3656;
+    color: #C7C0E8;
+    font-family: Consolas, "Courier New", monospace;
+    font-size: 0.85rem;
+}
+
+.code-window-header span {
+    display: inline-block;
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    background: var(--neon-violet);
+}
+
+.code-window-header span:first-child {
+    background: #FF719A;
+}
+
+.code-window-header span:nth-child(2) {
+    background: #FFC766;
+}
+
+.code-window-header span:nth-child(3) {
+    background: #52E0CB;
+}
+
+.code-window pre {
+    margin: 0;
+    border: none;
+    border-radius: 0;
+    box-shadow: none;
+}
+
+/* =========================================
+   LISTS
+   ========================================= */
 
 ul {
     padding-left: 24px;
@@ -341,24 +457,15 @@ li::marker {
     color: var(--violet);
 }
 
-/* Small labels and highlighted text */
-
-strong {
-    color: var(--text);
-}
-
-::selection {
-    background: #D9CCFF;
-    color: #29243A;
-}
-
-/* Footer */
+/* =========================================
+   FOOTER
+   ========================================= */
 
 footer {
     margin-top: 60px;
     padding: 30px 20px;
     text-align: center;
-    background: #EAE4FA;
+    background: linear-gradient(110deg, #E8E0FF, #E7F4FF);
     border-top: 1px solid var(--border);
 }
 
@@ -367,7 +474,9 @@ footer p {
     font-size: 0.9rem;
 }
 
-/* Mobile layout */
+/* =========================================
+   RESPONSIVE DESIGN
+   ========================================= */
 
 @media (max-width: 600px) {
     header {
@@ -381,11 +490,16 @@ footer p {
 
     .card {
         padding: 22px;
-        border-radius: 17px;
+        border-radius: 16px;
+    }
+
+    .property-image {
+        max-width: 100%;
+        max-height: 230px;
     }
 
     button {
-        width: 100%;
+        max-width: 100%;
     }
 
     pre {
@@ -393,6 +507,8 @@ footer p {
         font-size: 0.82rem;
     }
 }
+
+/* Respect reduced-motion preferences */
 
 @media (prefers-reduced-motion: reduce) {
     html {
