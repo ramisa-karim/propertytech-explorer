@@ -2,13 +2,12 @@
 function showExplanation() {
     const explanation = document.getElementById("explanation");
 
-    if (!explanation) {
-        alert("I couldn't find the explanation section.");
-        return;
-    }
+    if (!explanation) return;
 
-    if (explanation.style.display === "none" ||
-        explanation.style.display === "") {
+    if (
+        explanation.style.display === "none" ||
+        explanation.style.display === ""
+    ) {
         explanation.style.display = "block";
     } else {
         explanation.style.display = "none";
@@ -16,26 +15,27 @@ function showExplanation() {
 }
 
 function calculateTokens() {
-    alert("The calculator button is connected to JavaScript!");
-
     const input = document.getElementById("investmentAmount");
     const result = document.getElementById("calculatorResult");
 
-    if (!input || !result) {
-        alert("I couldn't find the calculator input or result area.");
-        return;
-    }
+    if (!input || !result) return;
 
-    const amount = Number(input.value);
+    const rawAmount = input.value.trim();
+    const amount = Number(rawAmount);
     const tokenPrice = 100;
 
-    if (input.value.trim() === "" || !Number.isFinite(amount) || amount <= 0) {
+    if (
+        rawAmount === "" ||
+        !Number.isFinite(amount) ||
+        amount <= 0
+    ) {
         result.textContent = "Please enter an amount greater than £0.";
         return;
     }
 
     if (amount % tokenPrice !== 0) {
-        result.textContent = "Please enter an amount in multiples of £100.";
+        result.textContent =
+            "Please enter an amount in multiples of £100.";
         return;
     }
 
@@ -43,6 +43,7 @@ function calculateTokens() {
 
     result.textContent =
         "£" + amount.toLocaleString("en-GB") +
-        " represents " + tokens.toLocaleString("en-GB") +
+        " represents " +
+        tokens.toLocaleString("en-GB") +
         " hypothetical tokens at £100 each.";
 }
