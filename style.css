@@ -1,24 +1,22 @@
 /* =========================================
    PROPERTYTECH EXPLORER
-   Cyber-Tech Edition
+   DARK CYBER-TECH THEME
    ========================================= */
 
 :root {
-    --background: #F4F2FF;
-    --surface: #FFFFFF;
-    --surface-blue: #EAF5FF;
-    --lavender: #E7DEFF;
-    --violet: #7547FF;
-    --neon-violet: #9B5CFF;
-    --electric-blue: #3478FF;
-    --cyan: #00BFEA;
-    --text: #211B35;
-    --text-light: #68647B;
-    --border: #D9D2F2;
-    --code-bg: #171526;
-    --code-panel: #211E38;
-    --code-text: #E7E5FF;
-    --shadow: 0 10px 30px rgba(72, 49, 150, 0.10);
+    --background: #100E1B;
+    --surface: #1B182B;
+    --surface-light: #242039;
+    --surface-blue: #19283A;
+    --violet: #9B6DFF;
+    --violet-bright: #B38AFF;
+    --cyan: #45E6FF;
+    --blue: #548CFF;
+    --text: #F3F0FF;
+    --text-light: #C0BAD5;
+    --border: #39304F;
+    --code-bg: #0B0A13;
+    --shadow: 0 10px 30px rgba(0, 0, 0, 0.24);
 }
 
 /* =========================================
@@ -40,32 +38,31 @@ body {
     line-height: 1.7;
     background-color: var(--background);
     background-image:
-        linear-gradient(rgba(117, 71, 255, 0.035) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(117, 71, 255, 0.035) 1px, transparent 1px),
-        radial-gradient(circle at 10% 5%, rgba(155, 92, 255, 0.13), transparent 30%),
-        radial-gradient(circle at 90% 20%, rgba(0, 191, 234, 0.10), transparent 28%);
-    background-size: 32px 32px, 32px 32px, auto, auto;
+        linear-gradient(rgba(155, 109, 255, 0.035) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(155, 109, 255, 0.035) 1px, transparent 1px),
+        radial-gradient(ellipse at top left, rgba(103, 61, 180, 0.16), transparent 45%);
+    background-size: 36px 36px, 36px 36px, auto;
 }
 
 h1,
 h2,
 h3 {
     color: var(--text);
-    line-height: 1.25;
+    line-height: 1.3;
 }
 
 h1 {
-    font-size: clamp(2.3rem, 5vw, 3.8rem);
-    letter-spacing: -1.5px;
+    font-size: clamp(2.2rem, 5vw, 3.6rem);
+    letter-spacing: -1.3px;
 }
 
 h2 {
-    font-size: clamp(1.6rem, 3vw, 2.2rem);
-    letter-spacing: -0.6px;
+    font-size: clamp(1.5rem, 3vw, 2.1rem);
+    letter-spacing: -0.5px;
 }
 
 h3 {
-    font-size: 1.25rem;
+    font-size: 1.2rem;
 }
 
 p {
@@ -73,12 +70,13 @@ p {
 }
 
 a {
-    color: var(--electric-blue);
+    color: var(--cyan);
     text-decoration: none;
+    overflow-wrap: anywhere;
 }
 
 a:hover {
-    color: var(--violet);
+    color: var(--violet-bright);
     text-decoration: underline;
 }
 
@@ -92,19 +90,19 @@ strong {
 }
 
 /* =========================================
-   HERO / HEADER
+   HEADER
    ========================================= */
 
 header {
     position: relative;
-    overflow: hidden;
     isolation: isolate;
+    overflow: hidden;
     text-align: center;
-    padding: 85px 24px 75px;
+    padding: 75px 24px 65px;
     background:
-        radial-gradient(ellipse at 15% 20%, rgba(155, 92, 255, 0.24), transparent 42%),
-        radial-gradient(ellipse at 85% 70%, rgba(0, 191, 234, 0.19), transparent 40%),
-        linear-gradient(135deg, #E9E3FF, #F8F7FF 52%, #E5F4FF);
+        radial-gradient(ellipse at 15% 15%, rgba(155, 109, 255, 0.2), transparent 45%),
+        radial-gradient(ellipse at 90% 80%, rgba(69, 230, 255, 0.1), transparent 40%),
+        #151224;
     border-bottom: 1px solid var(--border);
 }
 
@@ -112,82 +110,91 @@ header::before {
     content: "";
     position: absolute;
     z-index: -1;
-    width: 300px;
-    height: 300px;
-    top: -150px;
-    right: -70px;
-    border: 1px solid rgba(117, 71, 255, 0.28);
+    width: 250px;
+    height: 250px;
+    top: -125px;
+    right: -60px;
+    border: 1px solid rgba(155, 109, 255, 0.35);
     border-radius: 50%;
     box-shadow:
-        0 0 0 25px rgba(117, 71, 255, 0.035),
-        0 0 0 50px rgba(117, 71, 255, 0.025);
+        0 0 0 24px rgba(155, 109, 255, 0.04),
+        0 0 35px rgba(155, 109, 255, 0.1);
+    pointer-events: none;
 }
 
 header::after {
     content: "";
     position: absolute;
     z-index: -1;
-    width: 180px;
-    height: 180px;
-    bottom: -100px;
-    left: -40px;
-    border: 1px solid rgba(0, 191, 234, 0.4);
+    width: 170px;
+    height: 170px;
+    bottom: -90px;
+    left: -45px;
+    border: 1px solid rgba(69, 230, 255, 0.3);
     border-radius: 50%;
-    box-shadow: 0 0 35px rgba(0, 191, 234, 0.12);
+    pointer-events: none;
 }
 
 header h1 {
     max-width: 850px;
     margin: 0 auto 18px;
-    background: linear-gradient(100deg, #6536E8, #3478FF 55%, #009FC8);
+    color: var(--violet-bright);
+    background: linear-gradient(
+        100deg,
+        #C1A2FF,
+        #8D7CFF 50%,
+        #45E6FF
+    );
     -webkit-background-clip: text;
     background-clip: text;
-    color: transparent;
+    -webkit-text-fill-color: transparent;
 }
 
 header p {
     max-width: 680px;
     margin: 0 auto;
-    font-size: 1.1rem;
+    font-size: 1.08rem;
 }
 
 /* =========================================
-   MAIN CONTENT
+   MAIN LAYOUT
    ========================================= */
 
 .container {
-    width: min(1100px, 90%);
-    margin: 45px auto;
+    width: 90%;
+    max-width: 1100px;
+    min-width: 0;
+    margin: 40px auto;
 }
 
 section {
-    margin-bottom: 35px;
+    min-width: 0;
+    margin-bottom: 30px;
 }
 
 /* =========================================
-   CONTENT CARDS
+   CARDS
    ========================================= */
 
 .card {
     position: relative;
-    background: rgba(255, 255, 255, 0.94);
+    min-width: 0;
+    width: 100%;
+    padding: 28px;
+    margin-bottom: 24px;
+    background: var(--surface);
     border: 1px solid var(--border);
-    border-radius: 20px;
-    padding: 30px;
-    margin-bottom: 25px;
+    border-radius: 18px;
     box-shadow: var(--shadow);
-    transition:
-        transform 0.25s ease,
-        box-shadow 0.25s ease,
-        border-color 0.25s ease;
+    overflow-wrap: break-word;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
 }
 
 .card:hover {
-    transform: translateY(-3px);
-    border-color: #B9A4FF;
+    border-color: #66518F;
     box-shadow:
-        0 14px 35px rgba(72, 49, 150, 0.13),
-        0 0 0 1px rgba(117, 71, 255, 0.04);
+        0 12px 30px rgba(0, 0, 0, 0.28),
+        0 0 14px rgba(155, 109, 255, 0.06);
 }
 
 .card h2,
@@ -197,7 +204,7 @@ section {
 
 .card h2::before {
     content: "// ";
-    color: var(--violet);
+    color: var(--cyan);
     font-family: Consolas, "Courier New", monospace;
     font-weight: 700;
 }
@@ -208,32 +215,36 @@ section {
 
 .tokenisation {
     background:
-        linear-gradient(135deg, rgba(231, 222, 255, 0.8), rgba(255, 255, 255, 0.96));
-    border-color: #D2C3FF;
+        linear-gradient(135deg, rgba(48, 35, 76, 0.65), var(--surface));
+    border-color: #4C3B70;
 }
 
 .tokenisation h2::before {
-    color: var(--neon-violet);
+    color: var(--violet-bright);
 }
 
 /* =========================================
    PROPERTY IMAGE
-   Smaller, centred image
+   Smaller and centred
    ========================================= */
 
 .property-image {
     display: block;
     width: 100%;
-    max-width: 380px;
-    max-height: 260px;
+    max-width: 320px;
     height: auto;
-    object-fit: cover;
-    margin: 25px auto;
-    border-radius: 14px;
-    border: 1px solid #CFC4F5;
-    box-shadow:
-        0 8px 25px rgba(48, 38, 83, 0.12),
-        0 0 16px rgba(117, 71, 255, 0.08);
+    max-height: 220px;
+    object-fit: contain;
+    margin: 22px auto;
+    border: 1px solid #4C4169;
+    border-radius: 12px;
+    box-shadow: 0 0 20px rgba(155, 109, 255, 0.1);
+}
+
+/* Prevent images from overflowing their containers */
+
+img {
+    max-width: 100%;
 }
 
 /* =========================================
@@ -242,37 +253,30 @@ section {
 
 button {
     display: inline-block;
+    max-width: 100%;
     padding: 12px 22px;
-    border: 1px solid transparent;
-    border-radius: 10px;
-    background: linear-gradient(110deg, var(--violet), var(--electric-blue));
+    border: 1px solid rgba(179, 138, 255, 0.35);
+    border-radius: 9px;
+    background: linear-gradient(110deg, #7547D9, #5149C9);
     color: #FFFFFF;
     font-family: inherit;
     font-size: 1rem;
     font-weight: 600;
     cursor: pointer;
-    box-shadow: 0 5px 16px rgba(117, 71, 255, 0.23);
-    transition:
-        transform 0.2s ease,
-        box-shadow 0.2s ease,
-        filter 0.2s ease;
+    box-shadow: 0 0 16px rgba(117, 71, 217, 0.17);
+    transition: filter 0.2s ease, box-shadow 0.2s ease;
 }
 
 button:hover {
-    transform: translateY(-2px);
-    filter: brightness(1.08);
+    filter: brightness(1.15);
     box-shadow:
-        0 8px 22px rgba(117, 71, 255, 0.28),
-        0 0 14px rgba(0, 191, 234, 0.12);
-}
-
-button:active {
-    transform: translateY(0);
+        0 0 20px rgba(155, 109, 255, 0.24),
+        0 0 10px rgba(69, 230, 255, 0.08);
 }
 
 button:focus-visible,
 input:focus-visible {
-    outline: 3px solid var(--cyan);
+    outline: 2px solid var(--cyan);
     outline-offset: 3px;
 }
 
@@ -282,12 +286,14 @@ input:focus-visible {
 
 #explanation {
     display: none;
-    margin-top: 20px;
-    padding: 22px;
-    border-radius: 13px;
-    background: #F0EBFF;
-    border: 1px solid #D5C8FF;
-    border-left: 5px solid var(--violet);
+    min-width: 0;
+    margin-top: 18px;
+    padding: 20px;
+    background: #211B35;
+    border: 1px solid #514071;
+    border-left: 4px solid var(--violet);
+    border-radius: 10px;
+    overflow-wrap: break-word;
 }
 
 #explanation p:last-child {
@@ -299,12 +305,13 @@ input:focus-visible {
    ========================================= */
 
 .example-note {
-    margin-top: 20px;
-    padding: 16px 20px;
-    background: var(--surface-blue);
-    border: 1px solid #C7E5FF;
+    min-width: 0;
+    margin-top: 18px;
+    padding: 16px 18px;
+    background: #172839;
+    border: 1px solid #294A60;
     border-left: 4px solid var(--cyan);
-    border-radius: 12px;
+    border-radius: 10px;
 }
 
 /* =========================================
@@ -313,19 +320,24 @@ input:focus-visible {
 
 .calculator {
     background:
-        linear-gradient(135deg, #EAF5FF, #F9F8FF 75%);
-    border-color: #C7DFFF;
+        linear-gradient(135deg, rgba(25, 40, 58, 0.92), var(--surface));
+    border-color: #31506B;
 }
 
 .calculator h2::before {
-    color: var(--electric-blue);
+    color: var(--cyan);
 }
 
 .investment-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    gap: 22px;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 20px;
     align-items: start;
+}
+
+.investment-grid > * {
+    min-width: 0;
+    max-width: 100%;
 }
 
 .calculator label {
@@ -336,69 +348,83 @@ input:focus-visible {
 }
 
 .calculator input {
+    display: block;
     width: 100%;
-    padding: 13px 15px;
+    min-width: 0;
+    max-width: 100%;
+    padding: 12px 14px;
     margin-bottom: 15px;
-    border: 1px solid #C8C8E7;
-    border-radius: 10px;
-    background: #FFFFFF;
-    color: var(--text);
+    border: 1px solid #49415F;
+    border-radius: 8px;
+    background: #100E1B;
+    color: #FFFFFF;
     font: inherit;
 }
 
+.calculator input::placeholder {
+    color: #9690AC;
+}
+
 .calculator input:focus {
-    border-color: var(--electric-blue);
+    border-color: var(--cyan);
     outline: none;
-    box-shadow: 0 0 0 3px rgba(52, 120, 255, 0.13);
+    box-shadow: 0 0 0 3px rgba(69, 230, 255, 0.1);
 }
 
 #calculatorResult {
+    min-width: 0;
+    max-width: 100%;
+    min-height: 50px;
     margin-top: 18px;
     padding: 15px;
-    min-height: 50px;
-    border-radius: 12px;
-    background: #FFFFFF;
-    border: 1px solid #C7E5FF;
-    border-left: 4px solid var(--electric-blue);
+    background: #121B2A;
+    border: 1px solid #31506B;
+    border-left: 4px solid var(--cyan);
+    border-radius: 9px;
     color: var(--text);
     overflow-wrap: anywhere;
 }
 
 /* =========================================
-   CODE / DEVELOPER DETAILS
+   CODE STYLING
    ========================================= */
 
 code {
-    padding: 3px 7px;
+    padding: 3px 6px;
     border-radius: 5px;
-    background: #E9E2FF;
-    color: #673DE6;
+    background: #302444;
+    color: #D0B8FF;
     font-family: Consolas, "Courier New", monospace;
     font-size: 0.92em;
+    overflow-wrap: anywhere;
 }
 
 pre {
-    padding: 22px;
+    max-width: 100%;
+    padding: 20px;
     overflow-x: auto;
-    border: 1px solid #3B3656;
-    border-radius: 14px;
+    border: 1px solid #39304F;
+    border-radius: 12px;
     background: var(--code-bg);
-    color: var(--code-text);
+    color: #D8D5F0;
     font-family: Consolas, "Courier New", monospace;
-    font-size: 0.9rem;
+    font-size: 0.88rem;
     line-height: 1.7;
-    box-shadow: 0 8px 22px rgba(23, 21, 38, 0.16);
+    white-space: pre;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
 }
 
-/* If you add code snippets with these classes later */
+/* Optional terminal window styles for future use */
 
 .code-window {
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+    margin: 20px 0;
     overflow: hidden;
-    margin: 22px 0;
-    border: 1px solid #3B3656;
-    border-radius: 14px;
+    border: 1px solid #39304F;
+    border-radius: 12px;
     background: var(--code-bg);
-    box-shadow: 0 10px 25px rgba(23, 21, 38, 0.15);
 }
 
 .code-window-header {
@@ -406,11 +432,11 @@ pre {
     align-items: center;
     gap: 7px;
     padding: 12px 15px;
-    background: var(--code-panel);
-    border-bottom: 1px solid #3B3656;
-    color: #C7C0E8;
+    background: #211E32;
+    border-bottom: 1px solid #39304F;
+    color: var(--text-light);
     font-family: Consolas, "Courier New", monospace;
-    font-size: 0.85rem;
+    font-size: 0.82rem;
 }
 
 .code-window-header span {
@@ -418,7 +444,7 @@ pre {
     width: 9px;
     height: 9px;
     border-radius: 50%;
-    background: var(--neon-violet);
+    background: var(--violet);
 }
 
 .code-window-header span:first-child {
@@ -430,12 +456,12 @@ pre {
 }
 
 .code-window-header span:nth-child(3) {
-    background: #52E0CB;
+    background: #45E6A8;
 }
 
 .code-window pre {
     margin: 0;
-    border: none;
+    border: 0;
     border-radius: 0;
     box-shadow: none;
 }
@@ -454,7 +480,7 @@ li {
 }
 
 li::marker {
-    color: var(--violet);
+    color: var(--cyan);
 }
 
 /* =========================================
@@ -462,49 +488,61 @@ li::marker {
    ========================================= */
 
 footer {
-    margin-top: 60px;
-    padding: 30px 20px;
+    margin-top: 50px;
+    padding: 28px 20px;
     text-align: center;
-    background: linear-gradient(110deg, #E8E0FF, #E7F4FF);
+    background: #151224;
     border-top: 1px solid var(--border);
 }
 
 footer p {
     margin: 5px 0;
+    color: var(--text-light);
     font-size: 0.9rem;
 }
 
 /* =========================================
-   RESPONSIVE DESIGN
+   TABLET AND MOBILE
    ========================================= */
 
-@media (max-width: 600px) {
-    header {
-        padding: 60px 20px;
-    }
-
+@media (max-width: 700px) {
     .container {
         width: 92%;
         margin: 28px auto;
     }
 
-    .card {
-        padding: 22px;
-        border-radius: 16px;
+    .investment-grid {
+        grid-template-columns: minmax(0, 1fr);
     }
 
     .property-image {
-        max-width: 100%;
-        max-height: 230px;
+        max-width: 280px;
+        max-height: 200px;
+    }
+}
+
+@media (max-width: 480px) {
+    header {
+        padding: 55px 18px;
+    }
+
+    .card {
+        padding: 20px;
+        border-radius: 14px;
+    }
+
+    .property-image {
+        max-width: 240px;
+        max-height: 180px;
     }
 
     button {
-        max-width: 100%;
+        padding: 11px 16px;
     }
 
     pre {
-        padding: 16px;
-        font-size: 0.82rem;
+        padding: 14px;
+        font-size: 0.8rem;
     }
 }
 
