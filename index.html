@@ -1,546 +1,198 @@
 
-/* =========================================
-   PROPERTYTECH EXPLORER
-   Phase 1: Modern PropTech website design
-   ========================================= */
-
-/* 1. GLOBAL STYLES */
-
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-}
-
-:root {
-    --background: #080d19;
-    --surface: #101829;
-    --surface-light: #172238;
-    --border: rgba(157, 174, 208, 0.16);
-    --text: #f2f5fc;
-    --muted: #a1aec5;
-    --purple: #9b8cff;
-    --blue: #6b9dff;
-    --turquoise: #6de4d0;
-}
-
-html {
-    scroll-behavior: smooth;
-}
-
-body {
-    font-family: Inter, "Segoe UI", Arial, sans-serif;
-    background:
-        radial-gradient(
-            ellipse at 50% 0%,
-            rgba(94, 87, 190, 0.17),
-            transparent 45%
-        ),
-        var(--background);
-    color: var(--text);
-    line-height: 1.75;
-    font-size: 16px;
-    min-height: 100vh;
-}
-
-::selection {
-    background: rgba(155, 140, 255, 0.4);
-    color: white;
-}
-
-p {
-    color: var(--muted);
-    margin-bottom: 16px;
-}
-
-p:last-child {
-    margin-bottom: 0;
-}
-
-a {
-    color: var(--turquoise);
-    text-decoration: none;
-}
-
-
-/* 2. HEADER */
-
-header {
-    position: relative;
-    overflow: hidden;
-    text-align: center;
-    padding: 88px 24px 78px;
-    border-bottom: 1px solid var(--border);
-    background:
-        radial-gradient(
-            ellipse at 15% 10%,
-            rgba(109, 228, 208, 0.13),
-            transparent 40%
-        ),
-        radial-gradient(
-            ellipse at 85% 0%,
-            rgba(155, 140, 255, 0.2),
-            transparent 45%
-        );
-}
-
-header::before {
-    content: "";
-    position: absolute;
-    width: 280px;
-    height: 280px;
-    border: 1px solid rgba(155, 140, 255, 0.12);
-    border-radius: 50%;
-    top: -180px;
-    left: calc(50% - 140px);
-    pointer-events: none;
-}
-
-header h1 {
-    position: relative;
-    font-size: clamp(2.3rem, 6vw, 4.2rem);
-    font-weight: 750;
-    letter-spacing: -2px;
-    line-height: 1.15;
-    margin-bottom: 20px;
-    background: linear-gradient(
-        100deg,
-        #ffffff 15%,
-        #c9c1ff 55%,
-        #8eeadd 100%
-    );
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
-}
-
-header p {
-    position: relative;
-    max-width: 600px;
-    margin: 0 auto;
-    font-size: 1.08rem;
-    color: #b6c2d9;
-}
-
-
-/* 3. MAIN LAYOUT */
-
-.container {
-    width: min(100% - 40px, 900px);
-    margin: 0 auto;
-    padding: 46px 0 72px;
-}
-
-.card {
-    background: linear-gradient(
-        145deg,
-        rgba(20, 31, 51, 0.96),
-        rgba(13, 22, 38, 0.96)
-    );
-    border: 1px solid var(--border);
-    border-radius: 20px;
-    padding: 34px;
-    margin-bottom: 24px;
-    box-shadow: 0 12px 35px rgba(0, 0, 0, 0.12);
-    transition:
-        border-color 0.25s ease,
-        transform 0.25s ease,
-        box-shadow 0.25s ease;
-}
-
-.card:hover {
-    border-color: rgba(155, 140, 255, 0.34);
-    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.18);
-}
-
-.card h2 {
-    font-size: clamp(1.35rem, 3vw, 1.75rem);
-    font-weight: 680;
-    letter-spacing: -0.6px;
-    line-height: 1.35;
-    margin-bottom: 18px;
-    color: var(--text);
-}
-
-.card h2::after {
-    content: "";
-    display: block;
-    width: 42px;
-    height: 3px;
-    margin-top: 15px;
-    border-radius: 5px;
-    background: linear-gradient(
-        90deg,
-        var(--purple),
-        var(--turquoise)
-    );
-}
-
-.card h3 {
-    color: var(--text);
-    font-size: 1.35rem;
-    line-height: 1.4;
-    margin-bottom: 10px;
-}
-
-.card ul {
-    padding-left: 22px;
-    color: var(--muted);
-}
-
-.card li {
-    padding: 5px 0 5px 4px;
-}
-
-.card li::marker {
-    color: var(--turquoise);
-}
-
-
-/* 4. PROPERTY EXAMPLE */
-
-.tokenisation {
-    overflow: hidden;
-    background:
-        radial-gradient(
-            ellipse at 100% 0%,
-            rgba(107, 157, 255, 0.09),
-            transparent 42%
-        ),
-        linear-gradient(145deg, #131d32, #0d1627);
-}
-
-.property-image {
-    position: relative;
-    overflow: hidden;
-    border-radius: 15px;
-    border: 1px solid var(--border);
-    margin: 26px 0 28px;
-    background: var(--surface-light);
-}
-
-.property-image img {
-    display: block;
-    width: 100%;
-    height: 320px;
-    object-fit: cover;
-    transition: transform 0.5s ease;
-}
-
-.property-image:hover img {
-    transform: scale(1.035);
-}
-
-.property-label {
-    position: absolute;
-    left: 18px;
-    top: 18px;
-    padding: 7px 12px;
-    border-radius: 7px;
-    background: rgba(8, 13, 25, 0.85);
-    border: 1px solid rgba(255, 255, 255, 0.18);
-    color: var(--turquoise);
-    font-size: 0.7rem;
-    font-weight: 750;
-    letter-spacing: 1px;
-}
-
-.property-details {
-    margin-bottom: 26px;
-}
-
-.detail-label {
-    font-size: 0.72rem;
-    font-weight: 750;
-    letter-spacing: 1.15px;
-    color: #91a4c5;
-    margin-bottom: 8px;
-}
-
-.property-description {
-    max-width: 620px;
-}
-
-
-/* 5. PROPERTY METRICS */
-
-.investment-grid {
-    display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 14px;
-    margin: 28px 0;
-}
-
-.investment-item {
-    min-width: 0;
-    padding: 20px 17px;
-    border-radius: 13px;
-    background: rgba(7, 14, 27, 0.65);
-    border: 1px solid var(--border);
-}
-
-.investment-item .detail-label {
-    line-height: 1.5;
-    min-height: 34px;
-    margin-bottom: 10px;
-}
-
-.property-value,
-.token-number,
-.token-price {
-    font-size: clamp(1.15rem, 2.6vw, 1.65rem);
-    font-weight: 750;
-    letter-spacing: -0.7px;
-    line-height: 1.35;
-    overflow-wrap: anywhere;
-}
-
-.property-value {
-    color: var(--turquoise);
-}
-
-.token-number {
-    color: #b9aaff;
-}
-
-.token-price {
-    color: #91b8ff;
-}
-
-
-/* 6. BUTTONS */
-
-button {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    min-height: 46px;
-    padding: 12px 20px;
-    border: 1px solid transparent;
-    border-radius: 10px;
-    background: linear-gradient(
-        110deg,
-        #8876f5,
-        #648df5
-    );
-    color: #ffffff;
-    font: inherit;
-    font-size: 0.94rem;
-    font-weight: 700;
-    cursor: pointer;
-    box-shadow: 0 5px 18px rgba(107, 127, 245, 0.18);
-    transition:
-        transform 0.2s ease,
-        filter 0.2s ease,
-        box-shadow 0.2s ease;
-}
-
-button:hover {
-    filter: brightness(1.12);
-    transform: translateY(-2px);
-    box-shadow: 0 8px 22px rgba(107, 127, 245, 0.27);
-}
-
-button:active {
-    transform: translateY(0);
-}
-
-button:focus-visible,
-input:focus-visible {
-    outline: 2px solid var(--turquoise);
-    outline-offset: 4px;
-}
-
-
-/* 7. EXPLANATION */
-
-#explanation {
-    display: none;
-    margin-top: 22px;
-    padding: 23px;
-    border: 1px solid rgba(155, 140, 255, 0.25);
-    border-left: 3px solid var(--purple);
-    border-radius: 12px;
-    background: rgba(155, 140, 255, 0.07);
-}
-
-#explanation p {
-    font-size: 0.95rem;
-}
-
-
-/* 8. EDUCATIONAL NOTE */
-
-.example-note {
-    margin-top: 23px;
-    padding: 15px 17px;
-    border: 1px solid rgba(109, 228, 208, 0.17);
-    border-radius: 10px;
-    background: rgba(109, 228, 208, 0.045);
-    color: #a7c9c8;
-    font-size: 0.87rem;
-}
-
-
-/* 9. TOKEN CALCULATOR */
-
-.calculator {
-    margin-top: 30px;
-    padding: 26px;
-    border-radius: 15px;
-    border: 1px solid rgba(107, 157, 255, 0.25);
-    background: rgba(6, 13, 25, 0.65);
-}
-
-.calculator h3 {
-    margin-bottom: 10px;
-    font-size: 1.3rem;
-}
-
-.calculator > p {
-    font-size: 0.94rem;
-}
-
-.calculator label {
-    display: block;
-    margin: 20px 0 8px;
-    color: #dce5f6;
-    font-size: 0.9rem;
-    font-weight: 650;
-}
-
-.calculator input {
-    display: block;
-    width: 100%;
-    min-height: 48px;
-    margin-bottom: 16px;
-    padding: 12px 14px;
-    border: 1px solid #34435f;
-    border-radius: 9px;
-    background: #0b1425;
-    color: var(--text);
-    font: inherit;
-    transition: border-color 0.2s ease;
-}
-
-.calculator input:focus {
-    border-color: var(--purple);
-    outline: 2px solid rgba(155, 140, 255, 0.15);
-}
-
-.calculator input::placeholder {
-    color: #71819e;
-}
-
-#calculatorResult {
-    min-height: 52px;
-    display: flex;
-    align-items: center;
-    margin-top: 18px;
-    padding: 13px 15px;
-    border: 1px solid var(--border);
-    border-radius: 9px;
-    background: rgba(23, 34, 56, 0.75);
-    color: #c8d6ed;
-    font-size: 0.94rem;
-    overflow-wrap: anywhere;
-}
-
-
-/* 10. FOOTER */
-
-footer {
-    padding: 32px 20px;
-    text-align: center;
-    border-top: 1px solid var(--border);
-    background: rgba(5, 9, 17, 0.7);
-}
-
-footer p:first-child {
-    margin-bottom: 5px;
-    color: var(--text);
-    font-weight: 750;
-    letter-spacing: 0.2px;
-}
-
-footer p:last-child {
-    font-size: 0.85rem;
-    color: #8392ad;
-}
-
-
-/* 11. ACCESSIBILITY */
-
-@media (prefers-reduced-motion: reduce) {
-    html {
-        scroll-behavior: auto;
-    }
-
-    *,
-    *::before,
-    *::after {
-        transition-duration: 0.01ms !important;
-        animation-duration: 0.01ms !important;
-    }
-}
-
-
-/* 12. TABLETS AND MOBILE */
-
-@media (max-width: 650px) {
-    header {
-        padding: 64px 20px 56px;
-    }
-
-    header h1 {
-        letter-spacing: -1.2px;
-    }
-
-    header p {
-        font-size: 0.98rem;
-    }
-
-    .container {
-        width: min(100% - 28px, 900px);
-        padding: 28px 0 46px;
-    }
-
-    .card {
-        padding: 23px 20px;
-        margin-bottom: 17px;
-        border-radius: 16px;
-    }
-
-    .investment-grid {
-        grid-template-columns: 1fr;
-        gap: 11px;
-    }
-
-    .investment-item {
-        padding: 17px;
-    }
-
-    .investment-item .detail-label {
-        min-height: 0;
-    }
-
-    .property-image img {
-        height: 230px;
-    }
-
-    .calculator {
-        padding: 20px 16px;
-    }
-
-    .calculator button,
-    .tokenisation > button {
-        width: 100%;
-    }
-
-    footer {
-        padding: 27px 18px;
-    }
-}
-
-
-         
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Exploring real estate, technology, blockchain and tokenisation.">
+    <title>PropertyTech Explorer</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header>
+    <h1>PropertyTech Explorer</h1>
+    <p>Exploring the intersection of real estate, technology and Web3.</p>
+</header>
+
+<main class="container">
+
+    <section class="card">
+        <h2>Welcome to PropertyTech Explorer</h2>
+        <p>
+            This is my personal learning project exploring how technology
+            could change the real estate industry. I'm particularly
+            interested in blockchain, tokenisation, artificial intelligence
+            and data, and how these technologies could influence property
+            ownership, management and investment.
+        </p>
+    </section>
+
+    <section class="card">
+        <h2>Why I'm interested</h2>
+        <p>
+            As a Real Estate Management student, I'm interested in the
+            corporate and commercial side of real estate, particularly
+            asset management. I want to explore how coding, data analysis
+            and PropTech could support better property portfolio decisions.
+        </p>
+    </section>
+
+    <section class="card">
+        <h2>What is blockchain?</h2>
+        <p>
+            Blockchain is a digital record system that stores information
+            in connected blocks. It can help networks maintain and verify
+            transaction records without relying on a single central record.
+        </p>
+        <p>
+            In real estate, potential applications include transaction
+            records, ownership documentation and digital representations
+            of certain property-related rights.
+        </p>
+    </section>
+
+    <section class="card">
+        <h2>What is property tokenisation?</h2>
+        <p>
+            Tokenisation involves representing an asset or rights connected
+            to it as digital tokens. In property, the rights attached to
+            tokens depend on the legal and investment structure.
+        </p>
+    </section>
+
+    <section class="card tokenisation">
+        <h2>Interactive Property Tokenisation Example</h2>
+        <p>
+            Imagine a hypothetical commercial property valued at £1,000,000.
+            For this simplified example, its notional value is divided into
+            10,000 tokens priced at £100 each.
+        </p>
+
+        <div class="property-image">
+            <img
+                src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1400&q=85"
+                alt="Modern commercial office buildings"
+                loading="lazy"
+            >
+            <span class="property-label">HYPOTHETICAL PROPERTY</span>
+        </div>
+
+        <div class="property-details">
+            <p class="detail-label">PROPERTY TYPE</p>
+            <h3>Commercial Office Building</h3>
+            <p class="property-description">
+                An illustrative example of how tokenisation might represent
+                units of notional property value.
+            </p>
+        </div>
+
+        <div class="investment-grid">
+            <div class="investment-item">
+                <p class="detail-label">PROPERTY VALUE</p>
+                <p class="property-value">£1,000,000</p>
+            </div>
+            <div class="investment-item">
+                <p class="detail-label">HYPOTHETICAL TOKENS</p>
+                <p class="token-number">10,000</p>
+            </div>
+            <div class="investment-item">
+                <p class="detail-label">PRICE PER TOKEN</p>
+                <p class="token-price">£100</p>
+            </div>
+        </div>
+
+        <button type="button" onclick="showExplanation()">
+            Show me how it works
+        </button>
+
+        <div id="explanation">
+            <h3>Breaking down the example</h3>
+            <p>
+                £1,000,000 divided by 10,000 equal units gives a notional
+                value of £100 per unit. For example, five units represent
+                £500 of notional value in this simplified illustration.
+            </p>
+            <p>
+                In a real arrangement, tokens do not automatically confer
+                legal ownership of part of a building. Actual rights,
+                costs, risks and returns depend on the investment structure.
+            </p>
+        </div>
+
+        <div class="example-note">
+            <strong>Educational example only:</strong> This is not a real
+            investment opportunity. Token values do not guarantee returns,
+            liquidity or legal ownership.
+        </div>
+
+        <div class="calculator">
+            <h3>Token Calculator</h3>
+            <p>
+                Enter an amount to see how many hypothetical £100 tokens
+                it would represent in this example.
+            </p>
+
+            <label for="investmentAmount">
+                Hypothetical investment amount (£)
+            </label>
+            <input
+                type="number"
+                id="investmentAmount"
+                min="100"
+                step="100"
+                placeholder="e.g. 1000"
+            >
+
+            <button type="button" onclick="calculateTokens()">
+                Calculate tokens
+            </button>
+
+            <div id="calculatorResult" aria-live="polite">
+                Your result will appear here.
+            </div>
+        </div>
+    </section>
+
+    <section class="card">
+        <h2>Smart contracts and real estate</h2>
+        <p>
+            Smart contracts are programs on a blockchain that can execute
+            predefined actions when specified conditions are met. They
+            could potentially automate certain steps in property-related
+            transactions, but legal agreements and reliable information
+            remain essential.
+        </p>
+    </section>
+
+    <section class="card">
+        <h2>What I'm learning</h2>
+        <ul>
+            <li>HTML and CSS to build and style websites.</li>
+            <li>JavaScript to create interactive features.</li>
+            <li>Blockchain and tokenisation in real estate.</li>
+            <li>PropTech and data analysis for asset management.</li>
+            <li>Technology's potential role in commercial property investment.</li>
+        </ul>
+    </section>
+
+    <section class="card">
+        <h2>My next questions</h2>
+        <ul>
+            <li>Could tokenisation make certain property investments more accessible?</li>
+            <li>What legal and regulatory challenges would tokenised property face?</li>
+            <li>How could AI improve commercial asset management?</li>
+            <li>How might technology change property portfolio management?</li>
+        </ul>
+    </section>
+
+</main>
+
+<footer>
+    <p>PropertyTech Explorer</p>
+    <p>A personal learning project exploring real estate and technology.</p>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
