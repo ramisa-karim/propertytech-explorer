@@ -398,11 +398,12 @@ input:focus-visible {
     min-width: 0;
     margin-top: 18px;
     padding: 20px;
-    background: #211B35;
-    border: 1px solid #514071;
-    border-left: 4px solid var(--violet);
+    background: #352751;
+    border: 1px solid #8064B5;
+    border-left: 4px solid #B38AFF;
     border-radius: 10px;
     overflow-wrap: break-word;
+    color: #F3F0FF;
 }
 
 /* Keep the explanation hidden until JavaScript reveals it */
@@ -469,15 +470,16 @@ input:focus-visible {
     max-width: 100%;
     padding: 12px 14px;
     margin-bottom: 16px;
-    border: 1px solid #49415F;
+    border: 1px solid #8064B5;
     border-radius: 8px;
-    background: #100E1B;
+    background: #352751;
     color: #FFFFFF;
     font: inherit;
 }
 
 .calculator input::placeholder {
-    color: #9690AC;
+    color: #D2C4EE;
+    opacity: 1;
 }
 
 .calculator input:focus {
@@ -492,11 +494,11 @@ input:focus-visible {
     min-height: 55px;
     margin-top: 18px;
     padding: 15px;
-    background: #121B2A;
-    border: 1px solid #31506B;
-    border-left: 4px solid var(--cyan);
+    background: #352751;
+    border: 1px solid #8064B5;
+    border-left: 4px solid #B38AFF;
     border-radius: 9px;
-    color: var(--text);
+    color: #FFFFFF;
     overflow-wrap: anywhere;
 }
 
