@@ -1,95 +1,136 @@
-```css
-/* =====================================================
+/* =========================================================
    PROPERTYTECH EXPLORER
-   HOLOGRAPHIC GLASS / CYBERTECH THEME
-   Midnight • Iridescent • Neon • Futuristic
-   ===================================================== */
+   CYBERPUNK / FUTURISTIC TECH UI
+   Neon Cyan • Electric Blue • Violet • Magenta
+   ========================================================= */
 
-/* ---------- 1. GLOBAL COLOURS & RESET ---------- */
+
+/* =========================================================
+   1. GLOBAL COLOURS & RESET
+   ========================================================= */
 
 :root {
     color-scheme: dark;
 
-    --bg-deep: #050816;
-    --bg-midnight: #080D20;
-    --bg-panel: rgba(13, 23, 48, 0.76);
+    /* Main backgrounds */
+    --bg-main: #08111B;
+    --bg-secondary: #0C1724;
+    --bg-panel: rgba(15, 29, 45, 0.88);
+    --bg-panel-light: rgba(20, 39, 59, 0.90);
 
-    --cyan: #66FFF0;
-    --cyan-bright: #00F5FF;
-    --blue: #65AFFF;
-    --violet: #A78BFA;
-    --purple: #D4A0FF;
-    --pink: #FF9DE6;
+    /* Cyber colours */
+    --cyan: #00F5D4;
+    --cyan-bright: #00FFE1;
+    --electric-blue: #19BFFF;
+    --blue: #5AA9FF;
+    --violet: #8B5CF6;
+    --purple: #B66CFF;
+    --magenta: #E84DFF;
+    --pink: #FF70D9;
 
-    --text-main: #F2F5FF;
-    --text-muted: #B5C4DF;
+    /* Text */
+    --text-main: #F4F8FF;
+    --text-secondary: #D5E1EF;
+    --text-muted: #A9BCD0;
+    --text-dim: #7890A7;
 
-    --glass-border: rgba(120, 220, 255, 0.32);
+    /* Borders */
+    --border: rgba(92, 194, 255, 0.25);
+    --border-bright: rgba(0, 245, 212, 0.58);
 
-    --glass-shadow:
-        0 20px 60px rgba(0, 0, 0, 0.30),
-        inset 0 1px 0 rgba(255, 255, 255, 0.09);
+    /* Shadows */
+    --shadow:
+        0 15px 45px rgba(0, 0, 0, 0.28);
 
-    --neon-glow:
-        0 0 20px rgba(0, 245, 255, 0.10),
-        0 0 35px rgba(167, 139, 250, 0.08);
+    --cyan-glow:
+        0 0 18px rgba(0, 245, 212, 0.18);
+
+    --blue-glow:
+        0 0 22px rgba(25, 191, 255, 0.16);
+
+    --purple-glow:
+        0 0 25px rgba(139, 92, 246, 0.16);
+
+    /* Layout */
+    --radius-small: 8px;
+    --radius-medium: 12px;
+    --radius-large: 18px;
 }
+
 
 * {
     box-sizing: border-box;
 }
 
+
 html {
     min-height: 100%;
-    background: var(--bg-deep) !important;
+    background: var(--bg-main) !important;
     scroll-behavior: smooth;
 }
+
 
 body {
     position: relative;
     isolation: isolate;
+
     min-height: 100vh;
     margin: 0;
 
     color: var(--text-main) !important;
-    background-color: var(--bg-deep) !important;
+
+    background-color: var(--bg-main) !important;
 
     background-image:
+
+        /* Cyan atmospheric glow */
         radial-gradient(
-            ellipse at 8% 8%,
-            rgba(0, 245, 255, 0.19) 0%,
+            circle at 8% 15%,
+            rgba(0, 245, 212, 0.14) 0%,
+            transparent 28%
+        ),
+
+        /* Blue glow */
+        radial-gradient(
+            circle at 85% 18%,
+            rgba(25, 191, 255, 0.14) 0%,
+            transparent 30%
+        ),
+
+        /* Purple glow */
+        radial-gradient(
+            circle at 75% 75%,
+            rgba(139, 92, 246, 0.13) 0%,
             transparent 32%
         ),
+
+        /* Magenta accent */
         radial-gradient(
-            ellipse at 92% 15%,
-            rgba(151, 71, 255, 0.20) 0%,
-            transparent 35%
+            circle at 15% 90%,
+            rgba(232, 77, 255, 0.08) 0%,
+            transparent 28%
         ),
-        radial-gradient(
-            ellipse at 50% 55%,
-            rgba(31, 76, 161, 0.12) 0%,
-            transparent 45%
-        ),
-        radial-gradient(
-            ellipse at 85% 92%,
-            rgba(255, 74, 218, 0.10) 0%,
-            transparent 32%
-        ),
+
+        /* Cyber grid - horizontal */
         linear-gradient(
-            rgba(101, 220, 255, 0.045) 1px,
+            rgba(75, 180, 220, 0.045) 1px,
             transparent 1px
         ),
+
+        /* Cyber grid - vertical */
         linear-gradient(
             90deg,
-            rgba(101, 220, 255, 0.045) 1px,
+            rgba(75, 180, 220, 0.045) 1px,
             transparent 1px
         ),
+
+        /* Main background */
         linear-gradient(
             135deg,
-            #050816 0%,
-            #0A1025 42%,
-            #100B27 72%,
-            #060A18 100%
+            #08111B 0%,
+            #0A1622 38%,
+            #10172A 68%,
+            #0A101B 100%
         ) !important;
 
     background-size:
@@ -97,8 +138,8 @@ body {
         auto,
         auto,
         auto,
-        42px 42px,
-        42px 42px,
+        44px 44px,
+        44px 44px,
         auto !important;
 
     background-attachment: fixed !important;
@@ -108,46 +149,90 @@ body {
         "Segoe UI",
         system-ui,
         -apple-system,
+        BlinkMacSystemFont,
         sans-serif;
 
-    line-height: 1.7;
+    font-size: 16px;
+    line-height: 1.65;
+
     overflow-x: hidden;
 }
 
-/* Subtle holographic light across the entire page */
+
+/* =========================================================
+   2. CYBER ATMOSPHERE
+   ========================================================= */
 
 body::before {
     content: "";
+
     position: fixed;
     inset: 0;
+
     z-index: -1;
+
     pointer-events: none;
 
     background:
         linear-gradient(
             115deg,
             transparent 15%,
-            rgba(0, 245, 255, 0.025) 35%,
-            rgba(167, 139, 250, 0.035) 55%,
-            transparent 75%
+            rgba(0, 245, 212, 0.018) 35%,
+            rgba(25, 191, 255, 0.025) 48%,
+            rgba(139, 92, 246, 0.025) 62%,
+            transparent 80%
         );
 
     background-size: 200% 200%;
 
-    animation: holographic-drift 18s ease-in-out infinite alternate;
+    animation:
+        cyber-drift 20s ease-in-out infinite alternate;
 }
 
-@keyframes holographic-drift {
-    from {
+
+@keyframes cyber-drift {
+    0% {
         background-position: 0% 20%;
     }
 
-    to {
+    50% {
+        background-position: 50% 60%;
+    }
+
+    100% {
         background-position: 100% 80%;
     }
 }
 
-/* ---------- 2. HEADINGS & TYPOGRAPHY ---------- */
+
+/* Subtle scanline effect */
+
+body::after {
+    content: "";
+
+    position: fixed;
+    inset: 0;
+
+    z-index: -1;
+
+    pointer-events: none;
+
+    background:
+        repeating-linear-gradient(
+            0deg,
+            rgba(255, 255, 255, 0.012) 0px,
+            rgba(255, 255, 255, 0.012) 1px,
+            transparent 1px,
+            transparent 4px
+        );
+
+    opacity: 0.25;
+}
+
+
+/* =========================================================
+   3. TYPOGRAPHY
+   ========================================================= */
 
 h1,
 h2,
@@ -157,10 +242,12 @@ strong {
     color: var(--text-main) !important;
 }
 
+
 p,
 li {
-    color: var(--text-muted);
+    color: var(--text-secondary);
 }
+
 
 h1,
 h2,
@@ -168,509 +255,856 @@ h3 {
     letter-spacing: -0.035em;
 }
 
+
 h1 {
-    line-height: 1.12;
+    line-height: 1.08;
+    font-weight: 800;
 }
 
+
 h2 {
+    line-height: 1.25;
+}
+
+
+h3 {
     line-height: 1.3;
 }
+
+
+/* Cyber section labels */
 
 .eyebrow,
 .section-label,
 .detail-label {
-    color: var(--cyan) !important;
-    font-size: 0.78rem;
+    color: var(--cyan-bright) !important;
+
+    font-size: 0.76rem;
     font-weight: 800;
+
     letter-spacing: 0.18em;
+
     text-transform: uppercase;
 
     text-shadow:
-        0 0 10px rgba(0, 245, 255, 0.45);
+        0 0 10px rgba(0, 245, 212, 0.35);
 }
 
-/* ---------- 3. HOLOGRAPHIC HEADER ---------- */
+
+/* =========================================================
+   4. SITE HEADER
+   ========================================================= */
 
 .site-header {
     position: relative;
+
     overflow: hidden;
 
     background:
+
         radial-gradient(
-            ellipse at 12% 50%,
-            rgba(0, 245, 255, 0.16),
-            transparent 42%
+            circle at 10% 50%,
+            rgba(0, 245, 212, 0.10),
+            transparent 35%
         ),
+
         radial-gradient(
-            ellipse at 88% 20%,
-            rgba(167, 139, 250, 0.20),
-            transparent 44%
+            circle at 90% 0%,
+            rgba(139, 92, 246, 0.13),
+            transparent 38%
         ),
-        linear-gradient(
-            125deg,
-            rgba(8, 18, 40, 0.97),
-            rgba(17, 16, 49, 0.94) 55%,
-            rgba(8, 22, 44, 0.97)
-        ) !important;
 
-    border-bottom: 1px solid rgba(102, 255, 240, 0.45) !important;
-
-    box-shadow:
-        0 8px 40px rgba(0, 245, 255, 0.08),
-        0 1px 0 rgba(167, 139, 250, 0.16);
-
-    backdrop-filter: blur(24px);
-    -webkit-backdrop-filter: blur(24px);
-}
-
-.site-header::after {
-    content: "";
-    position: absolute;
-    bottom: 0;
-    left: 8%;
-    width: 84%;
-    height: 1px;
-
-    background: linear-gradient(
-        90deg,
-        transparent,
-        var(--cyan),
-        var(--violet),
-        var(--pink),
-        transparent
-    );
-
-    opacity: 0.9;
-    pointer-events: none;
-}
-
-.site-header h1 {
-    color: var(--text-main) !important;
-
-    background: linear-gradient(
-        100deg,
-        #FFFFFF 0%,
-        #91FFF5 22%,
-        #67CFFF 43%,
-        #C4A1FF 68%,
-        #FFB5EF 88%,
-        #FFFFFF 100%
-    ) !important;
-
-    -webkit-background-clip: text !important;
-    background-clip: text !important;
-    -webkit-text-fill-color: transparent !important;
-
-    filter: drop-shadow(
-        0 0 18px rgba(102, 255, 240, 0.23)
-    );
-}
-
-/* ---------- 4. GLASSMORPHISM CARDS ---------- */
-
-.card {
-    position: relative;
-    overflow: hidden;
-
-    background:
-        linear-gradient(
-            135deg,
-            rgba(18, 33, 65, 0.84) 0%,
-            rgba(12, 22, 48, 0.80) 45%,
-            rgba(30, 20, 61, 0.78) 100%
-        ) !important;
-
-    border: 1px solid var(--glass-border) !important;
-    border-radius: 18px;
-
-    box-shadow:
-        var(--glass-shadow),
-        var(--neon-glow) !important;
-
-    backdrop-filter: blur(22px) saturate(150%);
-    -webkit-backdrop-filter: blur(22px) saturate(150%);
-
-    transition:
-        transform 0.3s ease,
-        border-color 0.3s ease,
-        box-shadow 0.3s ease,
-        background 0.3s ease;
-}
-
-/* Iridescent highlight along the top edge */
-
-.card::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 8%;
-    width: 84%;
-    height: 1px;
-
-    background: linear-gradient(
-        90deg,
-        transparent,
-        rgba(255, 255, 255, 0.65),
-        var(--cyan),
-        var(--violet),
-        transparent
-    );
-
-    opacity: 0.7;
-    pointer-events: none;
-}
-
-.card:hover {
-    transform: translateY(-5px);
-
-    border-color: rgba(102, 255, 240, 0.70) !important;
-
-    background:
-        linear-gradient(
-            135deg,
-            rgba(19, 43, 76, 0.93),
-            rgba(20, 27, 60, 0.90) 50%,
-            rgba(48, 28, 81, 0.88)
-        ) !important;
-
-    box-shadow:
-        0 22px 55px rgba(0, 0, 0, 0.35),
-        0 0 25px rgba(0, 245, 255, 0.13),
-        0 0 40px rgba(167, 139, 250, 0.12),
-        inset 0 1px 0 rgba(255, 255, 255, 0.13) !important;
-}
-
-.card h2::before {
-    color: var(--cyan) !important;
-    text-shadow: 0 0 12px rgba(0, 245, 255, 0.45);
-}
-
-/* ---------- 5. TOKENISATION FEATURE PANEL ---------- */
-
-.tokenisation {
-    position: relative;
-    overflow: hidden;
-
-    background:
-        radial-gradient(
-            ellipse at 0% 0%,
-            rgba(0, 245, 255, 0.15),
-            transparent 50%
-        ),
-        radial-gradient(
-            ellipse at 100% 100%,
-            rgba(190, 107, 255, 0.19),
-            transparent 50%
-        ),
-        linear-gradient(
-            135deg,
-            rgba(15, 47, 68, 0.90),
-            rgba(21, 24, 61, 0.90) 55%,
-            rgba(46, 23, 70, 0.88)
-        ) !important;
-
-    border: 1px solid rgba(171, 148, 255, 0.55) !important;
-
-    box-shadow:
-        0 0 30px rgba(0, 245, 255, 0.07),
-        0 0 35px rgba(167, 139, 250, 0.09),
-        inset 0 1px 0 rgba(255, 255, 255, 0.09);
-}
-
-/* ---------- 6. PROPERTY DETAILS & INVESTMENT ITEMS ---------- */
-
-.property-details,
-.investment-item {
-    background:
-        linear-gradient(
-            135deg,
-            rgba(10, 27, 52, 0.91),
-            rgba(19, 25, 57, 0.88) 60%,
-            rgba(33, 24, 62, 0.85)
-        ) !important;
-
-    border: 1px solid rgba(112, 213, 255, 0.27) !important;
-    border-radius: 14px;
-
-    box-shadow:
-        inset 0 1px 0 rgba(255, 255, 255, 0.045),
-        0 8px 24px rgba(0, 0, 0, 0.15);
-
-    transition:
-        border-color 0.25s ease,
-        box-shadow 0.25s ease;
-}
-
-.property-details:hover,
-.investment-item:hover {
-    border-color: rgba(102, 255, 240, 0.48) !important;
-
-    box-shadow:
-        0 0 22px rgba(0, 245, 255, 0.06),
-        inset 0 1px 0 rgba(255, 255, 255, 0.07);
-}
-
-/* Property image frame */
-
-.property-image {
-    border: 1px solid rgba(102, 255, 240, 0.72) !important;
-    border-radius: 14px;
-
-    box-shadow:
-        0 0 16px rgba(0, 245, 255, 0.17),
-        0 0 32px rgba(167, 139, 250, 0.12);
-
-    overflow: hidden;
-}
-
-.property-label {
-    background: rgba(5, 11, 27, 0.90) !important;
-    color: var(--cyan) !important;
-
-    border: 1px solid rgba(102, 255, 240, 0.58) !important;
-    border-radius: 8px;
-
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-}
-
-.property-value {
-    color: var(--purple) !important;
-
-    text-shadow:
-        0 0 15px rgba(167, 139, 250, 0.25);
-}
-
-.token-number {
-    color: var(--cyan) !important;
-
-    text-shadow:
-        0 0 16px rgba(0, 245, 255, 0.25);
-}
-
-.token-price {
-    color: var(--blue) !important;
-
-    text-shadow:
-        0 0 12px rgba(101, 175, 255, 0.22);
-}
-
-/* ---------- 7. NEON HOLOGRAPHIC BUTTONS ---------- */
-
-button {
-    position: relative;
-    overflow: hidden;
-
-    background:
         linear-gradient(
             110deg,
-            #087E91 0%,
-            #146CA9 32%,
-            #5354C8 66%,
-            #914BC4 100%
+            rgba(9, 22, 34, 0.97),
+            rgba(12, 26, 43, 0.96),
+            rgba(17, 20, 42, 0.96)
         ) !important;
 
-    color: #FFFFFF !important;
-
-    border: 1px solid rgba(145, 255, 246, 0.75) !important;
-    border-radius: 10px;
+    border-bottom:
+        1px solid rgba(79, 205, 255, 0.28) !important;
 
     box-shadow:
-        0 0 16px rgba(0, 245, 255, 0.17),
-        0 0 26px rgba(134, 88, 255, 0.10),
-        inset 0 1px 0 rgba(255, 255, 255, 0.23) !important;
-
-    font-weight: 700;
-    letter-spacing: 0.025em;
-
-    transition:
-        filter 0.25s ease,
-        transform 0.25s ease,
-        box-shadow 0.25s ease;
-}
-
-button:hover {
-    filter: brightness(1.22) saturate(1.15) !important;
-    transform: translateY(-2px);
-
-    box-shadow:
-        0 0 24px rgba(0, 245, 255, 0.29),
-        0 0 36px rgba(167, 139, 250, 0.19),
-        inset 0 1px 0 rgba(255, 255, 255, 0.30) !important;
-}
-
-button:active {
-    transform: translateY(0);
-}
-
-/* ---------- 8. EXPLANATION PANEL ---------- */
-
-#explanation {
-    background:
-        radial-gradient(
-            ellipse at 100% 0%,
-            rgba(167, 139, 250, 0.17),
-            transparent 48%
-        ),
-        linear-gradient(
-            125deg,
-            rgba(12, 48, 65, 0.92),
-            rgba(16, 33, 64, 0.92) 55%,
-            rgba(46, 27, 77, 0.90)
-        ) !important;
-
-    color: var(--text-main) !important;
-
-    border: 1px solid rgba(102, 255, 240, 0.44) !important;
-    border-left: 3px solid var(--cyan) !important;
-    border-radius: 12px;
-
-    box-shadow:
-        0 0 24px rgba(0, 245, 255, 0.07),
-        inset 0 1px 0 rgba(255, 255, 255, 0.06);
-}
-
-#explanation p {
-    color: #DFE9FF !important;
-}
-
-/* ---------- 9. TOKEN CALCULATOR ---------- */
-
-.calculator {
-    background:
-        radial-gradient(
-            ellipse at 100% 0%,
-            rgba(167, 139, 250, 0.19),
-            transparent 48%
-        ),
-        radial-gradient(
-            ellipse at 0% 100%,
-            rgba(0, 245, 255, 0.10),
-            transparent 45%
-        ),
-        linear-gradient(
-            135deg,
-            rgba(13, 38, 61, 0.94),
-            rgba(21, 22, 59, 0.93)
-        ) !important;
-
-    border: 1px solid rgba(102, 220, 255, 0.48) !important;
-    border-radius: 16px;
-
-    box-shadow:
-        0 12px 35px rgba(0, 0, 0, 0.20),
-        0 0 28px rgba(0, 245, 255, 0.06),
-        inset 0 1px 0 rgba(255, 255, 255, 0.07);
+        0 8px 35px rgba(0, 0, 0, 0.24);
 
     backdrop-filter: blur(18px);
     -webkit-backdrop-filter: blur(18px);
 }
 
-.calculator input {
-    background: rgba(4, 13, 31, 0.88) !important;
-    color: #FFFFFF !important;
 
-    border: 1px solid rgba(102, 220, 255, 0.48) !important;
-    border-radius: 9px;
+/* Futuristic line underneath header */
+
+.site-header::after {
+    content: "";
+
+    position: absolute;
+
+    bottom: 0;
+    left: 6%;
+
+    width: 88%;
+    height: 1px;
+
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            var(--cyan),
+            var(--electric-blue),
+            var(--violet),
+            var(--magenta),
+            transparent
+        );
+
+    opacity: 0.75;
+
+    pointer-events: none;
+}
+
+
+/* Header title */
+
+.site-header h1 {
+    color: var(--text-main) !important;
+
+    background:
+        linear-gradient(
+            100deg,
+            #FFFFFF 0%,
+            #7EFFF0 25%,
+            #25CFFF 50%,
+            #A878FF 76%,
+            #FF7BE5 100%
+        ) !important;
+
+    -webkit-background-clip: text !important;
+    background-clip: text !important;
+
+    -webkit-text-fill-color: transparent !important;
+
+    filter:
+        drop-shadow(
+            0 0 15px rgba(0, 245, 212, 0.20)
+        );
+}
+
+
+/* =========================================================
+   5. MAIN CARDS
+   ========================================================= */
+
+.card {
+    position: relative;
+
+    overflow: hidden;
+
+    background:
+
+        linear-gradient(
+            145deg,
+            rgba(20, 39, 57, 0.92),
+            rgba(14, 29, 46, 0.90) 55%,
+            rgba(25, 27, 52, 0.90)
+        ) !important;
+
+    border:
+        1px solid var(--border) !important;
+
+    border-radius:
+        var(--radius-large);
 
     box-shadow:
-        inset 0 2px 8px rgba(0, 0, 0, 0.20);
+        var(--shadow),
+        inset 0 1px 0 rgba(255, 255, 255, 0.055);
+
+    backdrop-filter:
+        blur(14px);
+
+    -webkit-backdrop-filter:
+        blur(14px);
+
+    transition:
+        transform 0.28s ease,
+        border-color 0.28s ease,
+        box-shadow 0.28s ease;
+}
+
+
+/* Neon top edge */
+
+.card::before {
+    content: "";
+
+    position: absolute;
+
+    top: 0;
+    left: 7.5%;
+
+    width: 85%;
+    height: 1px;
+
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            var(--cyan),
+            var(--electric-blue),
+            var(--violet),
+            transparent
+        );
+
+    opacity: 0.65;
+
+    pointer-events: none;
+}
+
+
+/* Small corner accent */
+
+.card::after {
+    content: "";
+
+    position: absolute;
+
+    top: 12px;
+    right: 12px;
+
+    width: 6px;
+    height: 6px;
+
+    border-top:
+        1px solid var(--cyan);
+
+    border-right:
+        1px solid var(--cyan);
+
+    opacity: 0.6;
+
+    pointer-events: none;
+}
+
+
+.card:hover {
+    transform:
+        translateY(-4px);
+
+    border-color:
+        rgba(0, 245, 212, 0.48) !important;
+
+    box-shadow:
+        0 18px 45px rgba(0, 0, 0, 0.32),
+        0 0 22px rgba(0, 245, 212, 0.08),
+        inset 0 1px 0 rgba(255, 255, 255, 0.08);
+}
+
+
+.card h2::before {
+    color:
+        var(--cyan-bright) !important;
+
+    text-shadow:
+        0 0 12px rgba(0, 245, 212, 0.35);
+}
+
+
+/* =========================================================
+   6. TOKENISATION FEATURE PANEL
+   ========================================================= */
+
+.tokenisation {
+    position: relative;
+
+    overflow: hidden;
+
+    background:
+
+        radial-gradient(
+            circle at 0% 0%,
+            rgba(0, 245, 212, 0.12),
+            transparent 45%
+        ),
+
+        radial-gradient(
+            circle at 100% 100%,
+            rgba(139, 92, 246, 0.15),
+            transparent 48%
+        ),
+
+        linear-gradient(
+            135deg,
+            rgba(17, 48, 61, 0.93),
+            rgba(17, 32, 52, 0.94) 52%,
+            rgba(39, 27, 60, 0.91)
+        ) !important;
+
+    border:
+        1px solid rgba(95, 211, 255, 0.38) !important;
+
+    box-shadow:
+        0 0 30px rgba(0, 245, 212, 0.055),
+        0 0 35px rgba(139, 92, 246, 0.055),
+        inset 0 1px 0 rgba(255, 255, 255, 0.065);
+}
+
+
+/* =========================================================
+   7. PROPERTY DETAILS / INVESTMENT ITEMS
+   ========================================================= */
+
+.property-details,
+.investment-item {
+    background:
+
+        linear-gradient(
+            135deg,
+            rgba(17, 35, 53, 0.95),
+            rgba(14, 31, 48, 0.92) 60%,
+            rgba(28, 27, 52, 0.90)
+        ) !important;
+
+    border:
+        1px solid rgba(98, 190, 239, 0.23) !important;
+
+    border-radius:
+        var(--radius-medium);
+
+    box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.04),
+        0 8px 22px rgba(0, 0, 0, 0.14);
+
+    transition:
+        border-color 0.25s ease,
+        box-shadow 0.25s ease,
+        transform 0.25s ease;
+}
+
+
+.property-details:hover,
+.investment-item:hover {
+    border-color:
+        rgba(0, 245, 212, 0.42) !important;
+
+    box-shadow:
+        0 0 20px rgba(0, 245, 212, 0.06),
+        inset 0 1px 0 rgba(255, 255, 255, 0.065);
+
+    transform:
+        translateY(-2px);
+}
+
+
+/* =========================================================
+   8. PROPERTY IMAGES
+   ========================================================= */
+
+.property-image {
+    position: relative;
+
+    width: 100%;
+    max-width: 100%;
+
+    overflow: hidden;
+
+    border:
+        1px solid rgba(0, 245, 212, 0.50) !important;
+
+    border-radius:
+        var(--radius-medium);
+
+    box-shadow:
+        0 0 18px rgba(0, 245, 212, 0.09),
+        0 0 28px rgba(139, 92, 246, 0.07);
+}
+
+
+/* Prevent images from becoming oversized */
+
+.property-image img {
+    display: block;
+
+    width: 100%;
+    max-width: 100%;
+
+    height: auto;
+
+    max-height: 420px;
+
+    object-fit: cover;
+
+    transition:
+        transform 0.45s ease,
+        filter 0.45s ease;
+}
+
+
+.property-image:hover img {
+    transform:
+        scale(1.025);
+
+    filter:
+        saturate(1.08)
+        contrast(1.03);
+}
+
+
+/* Image cyber overlay */
+
+.property-image::after {
+    content: "";
+
+    position: absolute;
+
+    inset: 0;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(0, 245, 212, 0.04),
+            transparent 40%,
+            rgba(139, 92, 246, 0.06)
+        );
+
+    pointer-events: none;
+}
+
+
+/* =========================================================
+   9. PROPERTY LABELS / VALUES
+   ========================================================= */
+
+.property-label {
+    background:
+        rgba(8, 18, 30, 0.92) !important;
+
+    color:
+        var(--cyan-bright) !important;
+
+    border:
+        1px solid rgba(0, 245, 212, 0.45) !important;
+
+    border-radius:
+        7px;
+
+    backdrop-filter:
+        blur(10px);
+
+    -webkit-backdrop-filter:
+        blur(10px);
+
+    box-shadow:
+        0 0 12px rgba(0, 245, 212, 0.06);
+}
+
+
+.property-value {
+    color:
+        #C49CFF !important;
+
+    text-shadow:
+        0 0 12px rgba(182, 108, 255, 0.22);
+}
+
+
+.token-number {
+    color:
+        var(--cyan-bright) !important;
+
+    text-shadow:
+        0 0 14px rgba(0, 245, 212, 0.20);
+}
+
+
+.token-price {
+    color:
+        var(--electric-blue) !important;
+
+    text-shadow:
+        0 0 12px rgba(25, 191, 255, 0.18);
+}
+
+
+/* =========================================================
+   10. CYBERPUNK BUTTONS
+   ========================================================= */
+
+button {
+    position: relative;
+
+    overflow: hidden;
+
+    background:
+        linear-gradient(
+            110deg,
+            #00BFAE 0%,
+            #009DD8 38%,
+            #5963D8 70%,
+            #A84FE5 100%
+        ) !important;
+
+    color:
+        #FFFFFF !important;
+
+    border:
+        1px solid rgba(145, 255, 246, 0.65) !important;
+
+    border-radius:
+        9px;
+
+    box-shadow:
+        0 0 15px rgba(0, 245, 212, 0.12),
+        0 0 25px rgba(139, 92, 246, 0.08),
+        inset 0 1px 0 rgba(255, 255, 255, 0.20);
+
+    font-weight:
+        750;
+
+    letter-spacing:
+        0.025em;
+
+    transition:
+        transform 0.22s ease,
+        filter 0.22s ease,
+        box-shadow 0.22s ease;
+}
+
+
+/* Button shine */
+
+button::before {
+    content: "";
+
+    position: absolute;
+
+    top: 0;
+    left: -100%;
+
+    width: 60%;
+    height: 100%;
+
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            rgba(255, 255, 255, 0.16),
+            transparent
+        );
+
+    transform:
+        skewX(-20deg);
+
+    transition:
+        left 0.55s ease;
+}
+
+
+button:hover::before {
+    left:
+        140%;
+}
+
+
+button:hover {
+    filter:
+        brightness(1.12)
+        saturate(1.12) !important;
+
+    transform:
+        translateY(-2px);
+
+    box-shadow:
+        0 0 22px rgba(0, 245, 212, 0.20),
+        0 0 32px rgba(139, 92, 246, 0.13),
+        inset 0 1px 0 rgba(255, 255, 255, 0.25) !important;
+}
+
+
+button:active {
+    transform:
+        translateY(0);
+}
+
+
+/* =========================================================
+   11. EXPLANATION PANEL
+   ========================================================= */
+
+#explanation {
+    background:
+
+        radial-gradient(
+            circle at 100% 0%,
+            rgba(139, 92, 246, 0.13),
+            transparent 45%
+        ),
+
+        linear-gradient(
+            125deg,
+            rgba(15, 48, 61, 0.94),
+            rgba(15, 35, 55, 0.94) 55%,
+            rgba(42, 29, 63, 0.92)
+        ) !important;
+
+    color:
+        var(--text-main) !important;
+
+    border:
+        1px solid rgba(0, 245, 212, 0.34) !important;
+
+    border-left:
+        3px solid var(--cyan) !important;
+
+    border-radius:
+        var(--radius-medium);
+
+    box-shadow:
+        0 0 22px rgba(0, 245, 212, 0.055),
+        inset 0 1px 0 rgba(255, 255, 255, 0.055);
+}
+
+
+#explanation p {
+    color:
+        #E1EBF5 !important;
+}
+
+
+/* =========================================================
+   12. TOKEN CALCULATOR
+   ========================================================= */
+
+.calculator {
+    background:
+
+        radial-gradient(
+            circle at 100% 0%,
+            rgba(139, 92, 246, 0.14),
+            transparent 46%
+        ),
+
+        radial-gradient(
+            circle at 0% 100%,
+            rgba(0, 245, 212, 0.08),
+            transparent 42%
+        ),
+
+        linear-gradient(
+            135deg,
+            rgba(16, 39, 58, 0.96),
+            rgba(20, 28, 53, 0.95)
+        ) !important;
+
+    border:
+        1px solid rgba(70, 207, 255, 0.38) !important;
+
+    border-radius:
+        16px;
+
+    box-shadow:
+        0 12px 35px rgba(0, 0, 0, 0.20),
+        0 0 25px rgba(0, 245, 212, 0.045),
+        inset 0 1px 0 rgba(255, 255, 255, 0.065);
+
+    backdrop-filter:
+        blur(14px);
+
+    -webkit-backdrop-filter:
+        blur(14px);
+}
+
+
+/* Calculator input */
+
+.calculator input {
+    background:
+        rgba(7, 20, 33, 0.92) !important;
+
+    color:
+        #FFFFFF !important;
+
+    border:
+        1px solid rgba(83, 190, 235, 0.38) !important;
+
+    border-radius:
+        8px;
+
+    box-shadow:
+        inset 0 2px 8px rgba(0, 0, 0, 0.18);
 
     transition:
         border-color 0.25s ease,
         box-shadow 0.25s ease;
 }
 
+
 .calculator input::placeholder {
-    color: #93A9C8 !important;
-    opacity: 1;
+    color:
+        #91A8BF !important;
+
+    opacity:
+        1;
 }
+
 
 .calculator input:focus {
-    border-color: var(--cyan) !important;
-    outline: none;
+    border-color:
+        var(--cyan) !important;
+
+    outline:
+        none;
 
     box-shadow:
-        0 0 0 3px rgba(0, 245, 255, 0.13),
-        0 0 18px rgba(0, 245, 255, 0.10) !important;
+        0 0 0 3px rgba(0, 245, 212, 0.10),
+        0 0 16px rgba(0, 245, 212, 0.09) !important;
 }
+
+
+/* Calculator result */
 
 #calculatorResult {
     background:
+
         linear-gradient(
             115deg,
-            rgba(18, 67, 80, 0.88),
-            rgba(34, 43, 88, 0.90),
-            rgba(66, 38, 91, 0.88)
+            rgba(19, 67, 77, 0.92),
+            rgba(29, 45, 78, 0.93),
+            rgba(58, 37, 79, 0.91)
         ) !important;
 
-    color: #FFFFFF !important;
+    color:
+        #FFFFFF !important;
 
-    border: 1px solid rgba(190, 155, 255, 0.54) !important;
-    border-left: 3px solid var(--violet) !important;
-    border-radius: 10px;
+    border:
+        1px solid rgba(182, 108, 255, 0.42) !important;
+
+    border-left:
+        3px solid var(--violet) !important;
+
+    border-radius:
+        10px;
 
     box-shadow:
-        0 0 20px rgba(167, 139, 250, 0.08);
+        0 0 20px rgba(139, 92, 246, 0.07);
 }
 
-/* ---------- 10. CODE WINDOWS ---------- */
+
+/* =========================================================
+   13. CODE WINDOWS
+   ========================================================= */
 
 code {
-    background: rgba(17, 35, 60, 0.92) !important;
-    color: var(--cyan) !important;
+    background:
+        rgba(15, 34, 51, 0.96) !important;
 
-    border: 1px solid rgba(102, 220, 255, 0.16);
-    border-radius: 5px;
+    color:
+        var(--cyan-bright) !important;
 
-    padding: 2px 5px;
+    border:
+        1px solid rgba(0, 245, 212, 0.16);
+
+    border-radius:
+        5px;
+
+    padding:
+        2px 5px;
 }
+
 
 pre,
 .code-window {
+    position: relative;
+
     background:
+
         linear-gradient(
             135deg,
-            rgba(5, 13, 29, 0.98),
-            rgba(11, 19, 42, 0.97)
+            rgba(8, 19, 31, 0.98),
+            rgba(12, 26, 43, 0.98)
         ) !important;
 
-    border: 1px solid rgba(111, 219, 255, 0.32) !important;
-    border-radius: 12px;
+    border:
+        1px solid rgba(85, 198, 241, 0.28) !important;
 
-    color: #E5F2FF !important;
+    border-radius:
+        12px;
+
+    color:
+        #E5F3FF !important;
 
     box-shadow:
-        inset 0 1px 0 rgba(255, 255, 255, 0.04),
-        0 8px 25px rgba(0, 0, 0, 0.15);
+        inset 0 1px 0 rgba(255, 255, 255, 0.035),
+        0 8px 25px rgba(0, 0, 0, 0.18);
 
-    overflow-x: auto;
+    overflow-x:
+        auto;
+
+    max-width:
+        100%;
 }
+
+
+/* Code window top accent */
+
+.code-window::before {
+    content: "●  ●  ●";
+
+    display: block;
+
+    padding:
+        7px 12px;
+
+    color:
+        rgba(160, 220, 240, 0.45);
+
+    font-size:
+        0.65rem;
+
+    letter-spacing:
+        0.16em;
+
+    border-bottom:
+        1px solid rgba(86, 192, 233, 0.14);
+}
+
 
 pre code {
-    background: transparent !important;
-    border: none;
-    padding: 0;
+    background:
+        transparent !important;
+
+    border:
+        none;
+
+    padding:
+        0;
 }
+
 
 .code-window-header {
     background:
+
         linear-gradient(
             100deg,
-            rgba(19, 43, 67, 0.96),
-            rgba(34, 29, 68, 0.96)
+            rgba(18, 44, 62, 0.97),
+            rgba(37, 30, 65, 0.97)
         ) !important;
 
-    border-color: rgba(111, 219, 255, 0.25) !important;
-    color: var(--text-main);
+    border-color:
+        rgba(95, 201, 239, 0.23) !important;
+
+    color:
+        var(--text-main);
 }
 
-/* ---------- 11. LINKS ---------- */
+
+/* =========================================================
+   14. LINKS
+   ========================================================= */
 
 a {
-    color: var(--cyan) !important;
+    color:
+        var(--cyan-bright) !important;
 
-    text-decoration-color: rgba(102, 255, 240, 0.35);
+    text-decoration-color:
+        rgba(0, 245, 212, 0.35);
 
     transition:
         color 0.2s ease,
@@ -678,125 +1112,197 @@ a {
         text-decoration-color 0.2s ease;
 }
 
-a:hover {
-    color: var(--purple) !important;
 
-    text-decoration-color: var(--purple);
+a:hover {
+    color:
+        #B895FF !important;
+
+    text-decoration-color:
+        #B895FF;
 
     text-shadow:
-        0 0 12px rgba(167, 139, 250, 0.30);
+        0 0 11px rgba(182, 108, 255, 0.30);
 }
 
-/* ---------- 12. NOTES & CALLOUTS ---------- */
+
+/* =========================================================
+   15. NOTES & CALLOUTS
+   ========================================================= */
 
 .example-note {
     background:
+
         linear-gradient(
             115deg,
-            rgba(14, 52, 64, 0.87),
-            rgba(18, 35, 62, 0.90),
-            rgba(38, 26, 67, 0.86)
+            rgba(15, 51, 62, 0.91),
+            rgba(18, 37, 57, 0.92),
+            rgba(38, 29, 61, 0.90)
         ) !important;
 
-    border: 1px solid rgba(101, 255, 231, 0.34) !important;
-    border-left: 3px solid var(--cyan) !important;
-    border-radius: 10px;
+    border:
+        1px solid rgba(76, 223, 205, 0.30) !important;
+
+    border-left:
+        3px solid var(--cyan) !important;
+
+    border-radius:
+        10px;
 
     box-shadow:
-        0 0 20px rgba(0, 245, 255, 0.04);
+        0 0 18px rgba(0, 245, 212, 0.035);
 }
+
 
 .example-note p {
-    color: #E1EDF5 !important;
+    color:
+        #E1EDF5 !important;
 }
 
-/* ---------- 13. FOOTER ---------- */
+
+/* =========================================================
+   16. FOOTER
+   ========================================================= */
 
 .site-footer {
     position: relative;
 
     background:
+
         radial-gradient(
-            ellipse at 15% 0%,
-            rgba(0, 245, 255, 0.09),
-            transparent 45%
+            circle at 15% 0%,
+            rgba(0, 245, 212, 0.08),
+            transparent 40%
         ),
+
         radial-gradient(
-            ellipse at 85% 0%,
-            rgba(167, 139, 250, 0.12),
-            transparent 45%
+            circle at 85% 0%,
+            rgba(139, 92, 246, 0.10),
+            transparent 42%
         ),
+
         linear-gradient(
             120deg,
-            #070F20,
-            #11102B,
-            #09182A
+            #081520,
+            #11172A,
+            #0A1723
         ) !important;
 
-    border-top: 1px solid rgba(102, 255, 240, 0.42) !important;
+    border-top:
+        1px solid rgba(0, 245, 212, 0.30) !important;
 
     box-shadow:
-        0 -10px 35px rgba(0, 245, 255, 0.035);
+        0 -10px 35px rgba(0, 0, 0, 0.15);
 }
+
 
 .site-footer .footer-title span {
-    color: var(--cyan) !important;
+    color:
+        var(--cyan-bright) !important;
 
     text-shadow:
-        0 0 12px rgba(0, 245, 255, 0.20);
+        0 0 11px rgba(0, 245, 212, 0.20);
 }
+
 
 .site-footer .footer-note {
-    color: #9EB1CC !important;
+    color:
+        #91A8BD !important;
 }
 
-/* ---------- 14. SCROLLBAR ---------- */
+
+/* =========================================================
+   17. CYBER SCROLLBAR
+   ========================================================= */
 
 ::-webkit-scrollbar {
-    width: 10px;
+    width:
+        9px;
 }
+
 
 ::-webkit-scrollbar-track {
-    background: #050816;
+    background:
+        #07111A;
 }
+
 
 ::-webkit-scrollbar-thumb {
-    background: linear-gradient(
-        180deg,
-        #087E91,
-        #5354C8,
-        #914BC4
-    );
+    background:
 
-    border: 2px solid #050816;
-    border-radius: 10px;
+        linear-gradient(
+            180deg,
+            #00BFAE,
+            #238FD3,
+            #7655D8
+        );
+
+    border:
+        2px solid #07111A;
+
+    border-radius:
+        10px;
 }
+
 
 ::-webkit-scrollbar-thumb:hover {
-    background: linear-gradient(
-        180deg,
-        #66FFF0,
-        #A78BFA
-    );
+    background:
+
+        linear-gradient(
+            180deg,
+            #00FFE1,
+            #39CFFF,
+            #A77CFF
+        );
 }
 
-/* ---------- 15. KEYBOARD ACCESSIBILITY ---------- */
+
+/* =========================================================
+   18. ACCESSIBILITY / FOCUS
+   ========================================================= */
 
 button:focus-visible,
 input:focus-visible,
 a:focus-visible {
-    outline: 2px solid var(--cyan) !important;
-    outline-offset: 4px;
+    outline:
+        2px solid var(--cyan) !important;
+
+    outline-offset:
+        4px;
 
     box-shadow:
-        0 0 18px rgba(0, 245, 255, 0.18);
+        0 0 16px rgba(0, 245, 212, 0.16);
 }
 
-/* ---------- 16. MOBILE RESPONSIVENESS ---------- */
+
+/* =========================================================
+   19. RESPONSIVE DESIGN
+   ========================================================= */
+
+@media (max-width: 1024px) {
+
+    body {
+        font-size:
+            15.5px;
+    }
+
+    .card {
+        border-radius:
+            15px;
+    }
+
+    .property-image img {
+        max-height:
+            360px;
+    }
+}
+
 
 @media (max-width: 768px) {
+
     body {
-        background-attachment: scroll !important;
+        background-attachment:
+            scroll !important;
+
         background-size:
             auto,
             auto,
@@ -807,32 +1313,98 @@ a:focus-visible {
             auto !important;
     }
 
+
     .card {
-        border-radius: 14px;
-        backdrop-filter: blur(14px);
-        -webkit-backdrop-filter: blur(14px);
+        border-radius:
+            14px;
+
+        backdrop-filter:
+            blur(11px);
+
+        -webkit-backdrop-filter:
+            blur(11px);
     }
+
 
     .card:hover {
-        transform: translateY(-2px);
+        transform:
+            translateY(-2px);
     }
 
+
     .site-header {
-        backdrop-filter: blur(16px);
-        -webkit-backdrop-filter: blur(16px);
+        backdrop-filter:
+            blur(14px);
+
+        -webkit-backdrop-filter:
+            blur(14px);
+    }
+
+
+    .property-image img {
+        max-height:
+            300px;
+    }
+
+
+    button {
+        max-width:
+            100%;
     }
 }
 
-/* ---------- 17. REDUCED MOTION ---------- */
+
+@media (max-width: 480px) {
+
+    body {
+        font-size:
+            15px;
+    }
+
+
+    .card {
+        border-radius:
+            12px;
+    }
+
+
+    .property-image img {
+        max-height:
+            240px;
+    }
+
+
+    .eyebrow,
+    .section-label,
+    .detail-label {
+        font-size:
+            0.68rem;
+
+        letter-spacing:
+            0.14em;
+    }
+}
+
+
+/* =========================================================
+   20. REDUCED MOTION
+   ========================================================= */
 
 @media (prefers-reduced-motion: reduce) {
+
     *,
     *::before,
     *::after {
-        animation-duration: 0.01ms !important;
-        animation-iteration-count: 1 !important;
-        scroll-behavior: auto !important;
-        transition-duration: 0.01ms !important;
+        animation-duration:
+            0.01ms !important;
+
+        animation-iteration-count:
+            1 !important;
+
+        scroll-behavior:
+            auto !important;
+
+        transition-duration:
+            0.01ms !important;
     }
 }
-```
