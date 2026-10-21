@@ -16,11 +16,7 @@ function showExplanation() {
         return;
     }
 
-    if (explanation.hidden) {
-        explanation.hidden = false;
-    } else {
-        explanation.hidden = true;
-    }
+    explanation.hidden = !explanation.hidden;
 }
 
 
@@ -40,7 +36,6 @@ function calculateTokens() {
     const tokenPrice = 100;
     const propertyValue = 1000000;
 
-    // Check whether the input is empty or invalid
     if (
         investmentInput.value.trim() === "" ||
         !Number.isFinite(investmentAmount) ||
@@ -48,42 +43,32 @@ function calculateTokens() {
     ) {
         result.textContent =
             "Please enter a valid amount greater than £0.";
-
         return;
     }
 
-    // Check the minimum investment amount
     if (investmentAmount < tokenPrice) {
         result.textContent =
             "The minimum amount for this example is £100.";
-
         return;
     }
 
-    // Check that the amount is in multiples of £100
     if (investmentAmount % tokenPrice !== 0) {
         result.textContent =
             "Please enter an amount in multiples of £100, such as £500 or £1,000.";
-
         return;
     }
 
-    // Calculate the number of hypothetical tokens
-    const numberOfTokens = investmentAmount / tokenPrice;
-
-    // Check that the amount does not exceed the example's property value
     if (investmentAmount > propertyValue) {
         result.textContent =
             "This amount exceeds the hypothetical property value of £1,000,000.";
-
         return;
     }
 
-    // Calculate the percentage of the notional property value
+    const numberOfTokens = investmentAmount / tokenPrice;
+
     const percentageOfProperty =
         (investmentAmount / propertyValue) * 100;
 
-    // Display the result
     result.textContent =
         "Your hypothetical amount of " +
         investmentAmount.toLocaleString("en-GB", {
@@ -100,13 +85,9 @@ function calculateTokens() {
 
 
 /* =========================================
-   3. COMMERCIAL PROPERTY PORTFOLIO DASHBOARD
-
-   All properties and figures below are fictional
-   and are provided for educational purposes.
+   3. FICTIONAL COMMERCIAL PROPERTY PORTFOLIO
    ========================================= */
 
-// Fictional commercial property portfolio
 const portfolioAssets = [
     {
         name: "Meridian House",
@@ -139,16 +120,22 @@ const portfolioAssets = [
    4. FORMATTING HELPERS
    ========================================= */
 
-// Format numbers as pounds sterling
 const gbpFormatter = new Intl.NumberFormat("en-GB", {
     style: "currency",
     currency: "GBP",
     maximumFractionDigits: 0
 });
 
-// Format percentages to two decimal places
 function formatPercentage(value) {
     return value.toFixed(2) + "%";
+}
+
+function getGrossYield(asset) {
+    if (asset.value <= 0) {
+        return 0;
+    }
+
+    return (asset.annualRent / asset.value) * 100;
 }
 
 
@@ -165,8 +152,7 @@ function calculatePortfolioTotals(assets) {
         return total + asset.annualRent;
     }, 0);
 
-    // Weighted portfolio gross yield:
-    // Total annual rent divided by total property value
+    // Weighted gross yield for the selected properties
     const portfolioYield =
         totalValue > 0 ? (totalRent / totalValue) * 100 : 0;
 
@@ -179,7 +165,7 @@ function calculatePortfolioTotals(assets) {
 
 
 /* =========================================
-   6. DISPLAY THE PORTFOLIO SUMMARY
+   6. DISPLAY PORTFOLIO SUMMARY
    ========================================= */
 
 function renderPortfolioSummary(totals) {
@@ -192,7 +178,6 @@ function renderPortfolioSummary(totals) {
     const averageYieldElement =
         document.getElementById("portfolioAverageYield");
 
-    // Update each metric only if its HTML element exists
     if (totalValueElement) {
         totalValueElement.textContent =
             gbpFormatter.format(totals.totalValue);
@@ -211,32 +196,23 @@ function renderPortfolioSummary(totals) {
 
 
 /* =========================================
-   7. DISPLAY THE PROPERTY COMPARISON TABLE
+   7. DISPLAY PROPERTY COMPARISON TABLE
    ========================================= */
 
 function renderPortfolioTable(assets) {
     const tableBody = document.getElementById("portfolioTableBody");
 
-    // Stop safely if the dashboard table is not on this page
     if (!tableBody) {
         return;
     }
 
-    // Show a message if no properties are available
     if (assets.length === 0) {
         tableBody.innerHTML =
-            '<tr><td colspan="4">No property data is available.</td></tr>';
-
+            '<tr><td colspan="5">No properties match your selected filter.</td></tr>';
         return;
     }
 
-    // Create one table row for each property
     tableBody.innerHTML = assets.map(function (asset) {
-        const grossYield =
-            asset.value > 0
-                ? (asset.annualRent / asset.value) * 100
-                : 0;
-
         return `
             <tr>
                 <td>${asset.name}</td>
@@ -247,7 +223,7 @@ function renderPortfolioTable(assets) {
                 <td>${gbpFormatter.format(asset.annualRent)}</td>
                 <td>
                     <span class="yield-value">
-                        ${formatPercentage(grossYield)}
+                        ${formatPercentage(getGrossYield(asset))}
                     </span>
                 </td>
             </tr>
@@ -257,33 +233,147 @@ function renderPortfolioTable(assets) {
 
 
 /* =========================================
-   8. INITIALISE THE PORTFOLIO DASHBOARD
+   8. PHASE 3.1: FILTER AND SORT PROPERTIES
    ========================================= */
 
-function renderPortfolioDashboard() {
-    // Check that the dashboard exists before updating it
+function getFilteredAndSortedAssets() {
+    const typeFilter = document.getElementById("portfolioTypeFilter");
+    const sortSelect = document.getElementById("portfolioSortBy");
+
+    const selectedType = typeFilter ? typeFilter.value : "all";
+    const selectedSort = sortSelect ? sortSelect.value : "default";
+
+    // Copy the original data so its order is not permanently changed
+    let displayedAssets = portfolioAssets.slice();
+
+    // Filter by the selected property type
+    if (selectedType !== "all") {
+        displayedAssets = displayedAssets.filter(function (asset) {
+            return asset.type === selectedType;
+        });
+    }
+
+    // Sort the filtered properties
+    switch (selectedSort) {
+        case "value-desc":
+            displayedAssets.sort(function (a, b) {
+                return b.value - a.value;
+            });
+            break;
+
+        case "value-asc":
+            displayedAssets.sort(function (a, b) {
+                return a.value - b.value;
+            });
+            break;
+
+        case "yield-desc":
+            displayedAssets.sort(function (a, b) {
+                return getGrossYield(b) - getGrossYield(a);
+            });
+            break;
+
+        case "yield-asc":
+            displayedAssets.sort(function (a, b) {
+                return getGrossYield(a) - getGrossYield(b);
+            });
+            break;
+
+        case "default":
+        default:
+            // Restore original order when no sorting is selected
+            // Filtering still applies if a type has been selected
+            break;
+    }
+
+    return displayedAssets;
+}
+
+
+/* =========================================
+   9. UPDATE THE DASHBOARD
+   ========================================= */
+
+function updatePortfolioDashboard() {
     const dashboard = document.getElementById("portfolio-dashboard");
 
     if (!dashboard) {
         return;
     }
 
-    // Calculate totals using the fictional property data
-    const totals = calculatePortfolioTotals(portfolioAssets);
+    const displayedAssets = getFilteredAndSortedAssets();
 
-    // Display the summary figures
+    // Update the summary to match the currently displayed properties
+    const totals = calculatePortfolioTotals(displayedAssets);
+
     renderPortfolioSummary(totals);
-
-    // Display the property comparison table
-    renderPortfolioTable(portfolioAssets);
+    renderPortfolioTable(displayedAssets);
+    updatePortfolioAssetCount(displayedAssets.length);
 }
 
 
 /* =========================================
-   9. START THE DASHBOARD WHEN THE PAGE LOADS
+   10. UPDATE THE ASSET COUNT
+   ========================================= */
+
+function updatePortfolioAssetCount(count) {
+    const assetCountElement =
+        document.getElementById("portfolioAssetCount");
+
+    if (!assetCountElement) {
+        return;
+    }
+
+    assetCountElement.textContent =
+        String(count).padStart(2, "0") +
+        (count === 1 ? " SAMPLE ASSET" : " SAMPLE ASSETS");
+}
+
+
+/* =========================================
+   11. RESET FILTERS AND SORTING
+   ========================================= */
+
+function resetPortfolioFilters() {
+    const typeFilter = document.getElementById("portfolioTypeFilter");
+    const sortSelect = document.getElementById("portfolioSortBy");
+
+    if (typeFilter) {
+        typeFilter.value = "all";
+    }
+
+    if (sortSelect) {
+        sortSelect.value = "default";
+    }
+
+    updatePortfolioDashboard();
+}
+
+
+/* =========================================
+   12. INITIALISE THE WEBSITE
    ========================================= */
 
 document.addEventListener("DOMContentLoaded", function () {
-    renderPortfolioDashboard();
-});
+    // Display the portfolio when the page loads
+    updatePortfolioDashboard();
 
+    const typeFilter = document.getElementById("portfolioTypeFilter");
+    const sortSelect = document.getElementById("portfolioSortBy");
+    const resetButton = document.getElementById("resetPortfolioFilters");
+
+    // Respond when a property type is selected
+    if (typeFilter) {
+        typeFilter.addEventListener("change", updatePortfolioDashboard);
+    }
+
+    // Respond when the sorting option changes
+    if (sortSelect) {
+        sortSelect.addEventListener("change", updatePortfolioDashboard);
+    }
+
+    // Restore the default portfolio view
+    if (resetButton) {
+        resetButton.addEventListener("click", resetPortfolioFilters);
+    }
+});
