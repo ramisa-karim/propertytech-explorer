@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -350,6 +349,37 @@
             </article>
         </div>
 
+        <!-- PHASE 3.1 / PORTFOLIO FILTERS AND SORTING -->
+
+        <div class="portfolio-controls" aria-label="Portfolio filters and sorting">
+
+            <div class="portfolio-filter">
+                <label for="portfolioTypeFilter">Filter by asset type</label>
+                <select id="portfolioTypeFilter">
+                    <option value="all">All property types</option>
+                    <option value="Office">Office</option>
+                    <option value="Retail">Retail</option>
+                    <option value="Industrial">Industrial</option>
+                </select>
+            </div>
+
+            <div class="portfolio-filter">
+                <label for="portfolioSortBy">Sort properties by</label>
+                <select id="portfolioSortBy">
+                    <option value="default">Original order</option>
+                    <option value="value-desc">Property value: highest first</option>
+                    <option value="value-asc">Property value: lowest first</option>
+                    <option value="yield-desc">Gross yield: highest first</option>
+                    <option value="yield-asc">Gross yield: lowest first</option>
+                </select>
+            </div>
+
+            <button type="button" id="resetPortfolioFilters" class="portfolio-reset-button">
+                Reset filters
+            </button>
+
+        </div>
+
         <!-- ASSET COMPARISON -->
 
         <div class="portfolio-table-wrap">
@@ -360,7 +390,9 @@
                     <p>Compare rental income and gross yield across assets.</p>
                 </div>
 
-                <span class="portfolio-table-indicator">04 SAMPLE ASSETS</span>
+                <span class="portfolio-table-indicator" id="portfolioAssetCount">
+                    04 SAMPLE ASSETS
+                </span>
             </div>
 
             <div class="portfolio-table-scroll">
@@ -509,4 +541,3 @@
 
 </body>
 </html>
-
