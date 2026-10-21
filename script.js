@@ -11,9 +11,7 @@
 function showExplanation() {
     const explanation = document.getElementById("explanation");
 
-    if (!explanation) {
-        return;
-    }
+    if (!explanation) return;
 
     explanation.hidden = !explanation.hidden;
 }
@@ -27,9 +25,7 @@ function calculateTokens() {
     const investmentInput = document.getElementById("investmentAmount");
     const result = document.getElementById("calculatorResult");
 
-    if (!investmentInput || !result) {
-        return;
-    }
+    if (!investmentInput || !result) return;
 
     const investmentAmount = Number(investmentInput.value);
     const tokenPrice = 100;
@@ -40,14 +36,12 @@ function calculateTokens() {
         !Number.isFinite(investmentAmount) ||
         investmentAmount <= 0
     ) {
-        result.textContent =
-            "Please enter a valid amount greater than £0.";
+        result.textContent = "Please enter a valid amount greater than £0.";
         return;
     }
 
     if (investmentAmount < tokenPrice) {
-        result.textContent =
-            "The minimum amount for this example is £100.";
+        result.textContent = "The minimum amount for this example is £100.";
         return;
     }
 
@@ -64,9 +58,7 @@ function calculateTokens() {
     }
 
     const numberOfTokens = investmentAmount / tokenPrice;
-
-    const percentageOfProperty =
-        (investmentAmount / propertyValue) * 100;
+    const percentageOfProperty = (investmentAmount / propertyValue) * 100;
 
     result.textContent =
         "Your hypothetical amount of " +
@@ -130,11 +122,13 @@ function formatPercentage(value) {
 }
 
 function getGrossYield(asset) {
-    if (asset.value <= 0) {
-        return 0;
-    }
+    if (!asset || asset.value <= 0) return 0;
 
     return (asset.annualRent / asset.value) * 100;
+}
+
+function calculatePercentage(part, whole) {
+    return whole > 0 ? (part / whole) * 100 : 0;
 }
 
 
@@ -151,7 +145,6 @@ function calculatePortfolioTotals(assets) {
         return total + asset.annualRent;
     }, 0);
 
-    // Weighted gross yield for the selected properties
     const portfolioYield =
         totalValue > 0 ? (totalRent / totalValue) * 100 : 0;
 
@@ -178,13 +171,11 @@ function renderPortfolioSummary(totals) {
         document.getElementById("portfolioAverageYield");
 
     if (totalValueElement) {
-        totalValueElement.textContent =
-            gbpFormatter.format(totals.totalValue);
+        totalValueElement.textContent = gbpFormatter.format(totals.totalValue);
     }
 
     if (totalRentElement) {
-        totalRentElement.textContent =
-            gbpFormatter.format(totals.totalRent);
+        totalRentElement.textContent = gbpFormatter.format(totals.totalRent);
     }
 
     if (averageYieldElement) {
@@ -201,9 +192,7 @@ function renderPortfolioSummary(totals) {
 function renderPortfolioTable(assets) {
     const tableBody = document.getElementById("portfolioTableBody");
 
-    if (!tableBody) {
-        return;
-    }
+    if (!tableBody) return;
 
     if (assets.length === 0) {
         tableBody.innerHTML =
@@ -215,9 +204,7 @@ function renderPortfolioTable(assets) {
         return `
             <tr>
                 <td>${asset.name}</td>
-                <td>
-                    <span class="asset-type">${asset.type}</span>
-                </td>
+                <td><span class="asset-type">${asset.type}</span></td>
                 <td>${gbpFormatter.format(asset.value)}</td>
                 <td>${gbpFormatter.format(asset.annualRent)}</td>
                 <td>
@@ -242,17 +229,14 @@ function getFilteredAndSortedAssets() {
     const selectedType = typeFilter ? typeFilter.value : "all";
     const selectedSort = sortSelect ? sortSelect.value : "default";
 
-    // Copy the original data so its order is not permanently changed
     let displayedAssets = portfolioAssets.slice();
 
-    // Filter by the selected property type
     if (selectedType !== "all") {
         displayedAssets = displayedAssets.filter(function (asset) {
             return asset.type === selectedType;
         });
     }
 
-    // Sort the filtered properties
     switch (selectedSort) {
         case "value-desc":
             displayedAssets.sort(function (a, b) {
@@ -280,8 +264,6 @@ function getFilteredAndSortedAssets() {
 
         case "default":
         default:
-            // Keep the original order when no sorting is selected
-            // Filtering still applies if a type has been selected
             break;
     }
 
@@ -297,9 +279,7 @@ function updatePortfolioAssetCount(count) {
     const assetCountElement =
         document.getElementById("portfolioAssetCount");
 
-    if (!assetCountElement) {
-        return;
-    }
+    if (!assetCountElement) return;
 
     assetCountElement.textContent =
         String(count).padStart(2, "0") +
@@ -318,11 +298,8 @@ function renderAssetAllocation() {
     const legendElement =
         document.getElementById("assetAllocationLegend");
 
-    if (!chartElement || !legendElement) {
-        return;
-    }
+    if (!chartElement || !legendElement) return;
 
-    // Always analyse the full portfolio, not the filtered table
     const totalValue = portfolioAssets.reduce(function (total, asset) {
         return total + asset.value;
     }, 0);
@@ -341,9 +318,7 @@ function renderAssetAllocation() {
         return {
             type: type,
             value: typeValue,
-            percentage: totalValue > 0
-                ? (typeValue / totalValue) * 100
-                : 0
+            percentage: calculatePercentage(typeValue, totalValue)
         };
     });
 
@@ -401,9 +376,7 @@ function renderHighestYieldAsset() {
     const resultElement =
         document.getElementById("highestYieldAsset");
 
-    if (!resultElement) {
-        return;
-    }
+    if (!resultElement) return;
 
     if (portfolioAssets.length === 0) {
         resultElement.textContent =
@@ -429,9 +402,7 @@ function renderHighestYieldAsset() {
             ${formatPercentage(getGrossYield(highestYieldAsset))}
         </div>
 
-        <p class="highest-yield-type">
-            ${highestYieldAsset.type} property
-        </p>
+        <p class="highest-yield-type">${highestYieldAsset.type} property</p>
 
         <div class="highest-yield-details">
             <div>
@@ -449,16 +420,14 @@ function renderHighestYieldAsset() {
 
 
 /* =========================================
-   12. PHASE 3.2: AUTOMATIC PORTFOLIO OBSERVATIONS
+   12. PHASE 3.2: PORTFOLIO OBSERVATIONS
    ========================================= */
 
 function renderPortfolioObservations() {
     const observationsElement =
         document.getElementById("portfolioObservations");
 
-    if (!observationsElement) {
-        return;
-    }
+    if (!observationsElement) return;
 
     if (portfolioAssets.length === 0) {
         observationsElement.textContent =
@@ -468,17 +437,14 @@ function renderPortfolioObservations() {
 
     const totals = calculatePortfolioTotals(portfolioAssets);
 
-    // Find the property with the highest market value
     const largestAsset = portfolioAssets.reduce(function (largest, asset) {
         return asset.value > largest.value ? asset : largest;
     }, portfolioAssets[0]);
 
-    // Find the property generating the most annual rent
     const highestRentAsset = portfolioAssets.reduce(function (highest, asset) {
         return asset.annualRent > highest.annualRent ? asset : highest;
     }, portfolioAssets[0]);
 
-    // Find the asset type with the greatest combined value
     const typeTotals = {};
 
     portfolioAssets.forEach(function (asset) {
@@ -495,21 +461,23 @@ function renderPortfolioObservations() {
         typeTotals[asset.type].count += 1;
     });
 
-    const dominantType = Object.keys(typeTotals).reduce(function (largest, type) {
+    const types = Object.keys(typeTotals);
+
+    const dominantType = types.reduce(function (largest, type) {
         return typeTotals[type].value > typeTotals[largest].value
             ? type
             : largest;
-    }, Object.keys(typeTotals)[0]);
+    }, types[0]);
 
-    const dominantTypeShare =
-        totals.totalValue > 0
-            ? (typeTotals[dominantType].value / totals.totalValue) * 100
-            : 0;
+    const dominantTypeShare = calculatePercentage(
+        typeTotals[dominantType].value,
+        totals.totalValue
+    );
 
-    const largestAssetShare =
-        totals.totalValue > 0
-            ? (largestAsset.value / totals.totalValue) * 100
-            : 0;
+    const largestAssetShare = calculatePercentage(
+        largestAsset.value,
+        totals.totalValue
+    );
 
     const observations = [
         {
@@ -562,77 +530,58 @@ function renderPortfolioObservations() {
 
 
 /* =========================================
-   13. UPDATE THE DASHBOARD
+   13. PHASE 3.3: RENTAL INCOME CONCENTRATION
    ========================================= */
 
-function updatePortfolioDashboard() {
-    const dashboard = document.getElementById("portfolio-dashboard");
+function renderRentalIncomeConcentration() {
+    const chartElement =
+        document.getElementById("rentalIncomeConcentration");
 
-    if (!dashboard) {
+    if (!chartElement) return;
+
+    if (portfolioAssets.length === 0) {
+        chartElement.textContent = "No rental income data is available.";
         return;
     }
 
-    const displayedAssets = getFilteredAndSortedAssets();
+    const totals = calculatePortfolioTotals(portfolioAssets);
 
-    // Summary cards and table follow the active filter and sorting
-    const totals = calculatePortfolioTotals(displayedAssets);
+    const sortedAssets = portfolioAssets.slice().sort(function (a, b) {
+        return b.annualRent - a.annualRent;
+    });
 
-    renderPortfolioSummary(totals);
-    renderPortfolioTable(displayedAssets);
-    updatePortfolioAssetCount(displayedAssets.length);
+    chartElement.innerHTML = sortedAssets.map(function (asset) {
+        const share = calculatePercentage(
+            asset.annualRent,
+            totals.totalRent
+        );
 
-    // Phase 3.2 insights always analyse the entire portfolio
-    renderAssetAllocation();
-    renderHighestYieldAsset();
-    renderPortfolioObservations();
+        return `
+            <div class="risk-chart-row">
+                <div class="risk-chart-heading">
+                    <span>${asset.name}</span>
+                    <strong>${formatPercentage(share)}</strong>
+                </div>
+
+                <div
+                    class="risk-chart-track"
+                    role="img"
+                    aria-label="${asset.name} generates ${formatPercentage(share)} of total annual rental income"
+                >
+                    <div
+                        class="risk-chart-bar"
+                        style="width: ${share}%"
+                    ></div>
+                </div>
+
+                <p class="risk-chart-detail">
+                    ${gbpFormatter.format(asset.annualRent)} per year
+                </p>
+            </div>
+        `;
+    }).join("");
 }
 
 
 /* =========================================
-   14. RESET FILTERS AND SORTING
-   ========================================= */
-
-function resetPortfolioFilters() {
-    const typeFilter = document.getElementById("portfolioTypeFilter");
-    const sortSelect = document.getElementById("portfolioSortBy");
-
-    if (typeFilter) {
-        typeFilter.value = "all";
-    }
-
-    if (sortSelect) {
-        sortSelect.value = "default";
-    }
-
-    updatePortfolioDashboard();
-}
-
-
-/* =========================================
-   15. INITIALISE THE WEBSITE
-   ========================================= */
-
-document.addEventListener("DOMContentLoaded", function () {
-    // Render the portfolio and its insights when the page loads
-    updatePortfolioDashboard();
-
-    const typeFilter = document.getElementById("portfolioTypeFilter");
-    const sortSelect = document.getElementById("portfolioSortBy");
-    const resetButton = document.getElementById("resetPortfolioFilters");
-
-    // Respond when a property type is selected
-    if (typeFilter) {
-        typeFilter.addEventListener("change", updatePortfolioDashboard);
-    }
-
-    // Respond when the sorting option changes
-    if (sortSelect) {
-        sortSelect.addEventListener("change", updatePortfolioDashboard);
-    }
-
-    // Restore the default portfolio view
-    if (resetButton) {
-        resetButton.addEventListener("click", resetPortfolioFilters);
-    }
-});
-
+   14. PHASE 3.3: Y
