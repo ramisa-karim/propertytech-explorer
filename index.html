@@ -1,3 +1,4 @@
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -326,7 +327,7 @@
             how a property manager might review a portfolio.
         </p>
 
-        <!-- SUMMARY CARDS -->
+        <!-- PORTFOLIO SUMMARY CARDS -->
 
         <div class="portfolio-metrics">
             <article class="portfolio-metric">
@@ -362,8 +363,6 @@
 
             <div class="insights-grid">
 
-                <!-- ASSET ALLOCATION -->
-
                 <article class="insight-card allocation-card">
                     <p class="insight-label">01 / PORTFOLIO COMPOSITION</p>
                     <h4>Asset Allocation</h4>
@@ -376,11 +375,8 @@
                         <p class="insight-loading">Calculating asset allocation...</p>
                     </div>
 
-                    <div id="assetAllocationLegend" class="asset-allocation-legend">
-                    </div>
+                    <div id="assetAllocationLegend" class="asset-allocation-legend"></div>
                 </article>
-
-                <!-- HIGHEST-YIELDING ASSET -->
 
                 <article class="insight-card top-asset-card">
                     <p class="insight-label">02 / ASSET PERFORMANCE</p>
@@ -402,8 +398,6 @@
 
             </div>
 
-            <!-- AUTOMATIC PORTFOLIO OBSERVATIONS -->
-
             <article class="insight-card portfolio-observations-card">
                 <div class="observations-heading">
                     <div>
@@ -424,6 +418,99 @@
                     <p class="insight-loading">Generating portfolio observations...</p>
                 </div>
             </article>
+        </section>
+
+        <!-- PHASE 3.3 / PORTFOLIO RISK & PERFORMANCE ANALYSIS -->
+
+        <section class="portfolio-risk-section" aria-labelledby="portfolioRiskTitle">
+
+            <div class="portfolio-insights-heading">
+                <p class="section-label">PHASE 3.3 / RISK & PERFORMANCE</p>
+                <h3 id="portfolioRiskTitle">Portfolio <span>Risk Analysis</span></h3>
+                <p>
+                    Examine rental income concentration, compare property yields
+                    against the portfolio average, and explore potential
+                    concentration risks across the fictional portfolio.
+                </p>
+            </div>
+
+            <div class="risk-analysis-grid">
+
+                <!-- 01 / RENTAL INCOME CONCENTRATION -->
+
+                <article class="insight-card risk-analysis-card">
+                    <p class="insight-label">01 / INCOME DISTRIBUTION</p>
+                    <h4>Rental Income Concentration</h4>
+                    <p class="insight-description">
+                        See how much of the portfolio's annual rental income
+                        comes from each property.
+                    </p>
+
+                    <div id="rentalIncomeConcentration" class="risk-chart">
+                        <p class="insight-loading">
+                            Analysing rental income concentration...
+                        </p>
+                    </div>
+                </article>
+
+                <!-- 02 / YIELD COMPARISON -->
+
+                <article class="insight-card risk-analysis-card">
+                    <p class="insight-label">02 / YIELD PERFORMANCE</p>
+                    <h4>Yield vs Portfolio Average</h4>
+                    <p class="insight-description">
+                        Compare each property's gross rental yield against
+                        the overall portfolio's weighted gross yield.
+                    </p>
+
+                    <div id="yieldPerformanceComparison" class="risk-chart">
+                        <p class="insight-loading">Comparing property yields...</p>
+                    </div>
+
+                    <div class="yield-benchmark">
+                        <span class="benchmark-indicator"></span>
+                        <span>
+                            Portfolio benchmark:
+                            <strong id="yieldBenchmarkValue">Calculating...</strong>
+                        </span>
+                    </div>
+                </article>
+
+            </div>
+
+            <!-- 03 / PORTFOLIO RISK INDICATORS -->
+
+            <article class="insight-card portfolio-risk-indicators">
+                <div class="observations-heading">
+                    <div>
+                        <p class="insight-label">03 / PORTFOLIO EXPOSURE</p>
+                        <h4>Risk Indicators</h4>
+                    </div>
+
+                    <span class="observations-status">ILLUSTRATIVE ANALYSIS</span>
+                </div>
+
+                <p class="insight-description">
+                    Review potential concentrations in property type and
+                    rental income. These indicators highlight areas for
+                    further investigation rather than provide a formal
+                    assessment of investment risk.
+                </p>
+
+                <div id="portfolioRiskIndicators" class="risk-indicators-grid">
+                    <p class="insight-loading">
+                        Assessing portfolio concentrations...
+                    </p>
+                </div>
+
+                <p class="insight-disclaimer">
+                    These are simplified educational indicators based on
+                    fictional data. They do not measure tenant covenant,
+                    lease expiry, vacancy, debt, market volatility or
+                    overall investment risk.
+                </p>
+            </article>
+
         </section>
 
         <!-- PHASE 3.1 / PORTFOLIO FILTERS AND SORTING -->
@@ -457,7 +544,7 @@
 
         </div>
 
-        <!-- ASSET COMPARISON -->
+        <!-- ASSET COMPARISON TABLE -->
 
         <div class="portfolio-table-wrap">
             <div class="portfolio-table-header">
@@ -618,3 +705,4 @@
 
 </body>
 </html>
+```
