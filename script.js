@@ -1,4 +1,4 @@
-```javascript
+
 /* =========================================
    PROPERTYTECH EXPLORER
    INTERACTIVE JAVASCRIPT FEATURES
@@ -286,4 +286,4 @@ function renderPortfolioDashboard() {
 document.addEventListener("DOMContentLoaded", function () {
     renderPortfolioDashboard();
 });
-```
+
