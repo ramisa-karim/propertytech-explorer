@@ -1,4 +1,3 @@
-```javascript
 /* =========================================
    PROPERTYTECH EXPLORER
    INTERACTIVE JAVASCRIPT FEATURES
@@ -636,4 +635,4 @@ document.addEventListener("DOMContentLoaded", function () {
         resetButton.addEventListener("click", resetPortfolioFilters);
     }
 });
-```
+
