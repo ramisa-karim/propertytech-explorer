@@ -2628,3 +2628,144 @@ input:focus-visible {
     }
 }
 
+/* =========================================================
+   23. PHASE 3.1: PORTFOLIO FILTERS AND SORTING
+   ========================================================= */
+
+.portfolio-controls {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) auto;
+    align-items: end;
+    gap: 16px;
+    margin: 0 0 22px;
+    padding: 20px;
+    border: 1px solid rgba(92, 194, 255, 0.22);
+    border-radius: 12px;
+    background:
+        linear-gradient(115deg, rgba(0, 245, 212, 0.045), rgba(139, 92, 246, 0.055)),
+        rgba(7, 18, 30, 0.62);
+}
+
+.portfolio-filter {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    min-width: 0;
+}
+
+.portfolio-filter label {
+    color: var(--muted);
+    font-size: 0.68rem;
+    font-weight: 800;
+    letter-spacing: 0.09em;
+    line-height: 1.5;
+    text-transform: uppercase;
+}
+
+.portfolio-filter select {
+    width: 100%;
+    min-height: 46px;
+    padding: 11px 38px 11px 13px;
+    color: var(--white);
+    border: 1px solid rgba(92, 194, 255, 0.3);
+    border-radius: 8px;
+    background-color: #0B1A29;
+    font: inherit;
+    font-size: 0.85rem;
+    cursor: pointer;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
+}
+
+.portfolio-filter select:hover {
+    border-color: rgba(0, 245, 212, 0.55);
+    background-color: #0D2030;
+}
+
+.portfolio-filter select:focus-visible {
+    outline: 2px solid var(--cyan-bright);
+    outline-offset: 3px;
+    border-color: var(--cyan);
+    box-shadow: 0 0 0 3px rgba(0, 245, 212, 0.09);
+}
+
+.portfolio-filter select option {
+    color: var(--white);
+    background: #0B1A29;
+}
+
+.portfolio-reset-button {
+    min-height: 46px;
+    padding: 11px 17px;
+    color: var(--cyan-bright);
+    border: 1px solid rgba(0, 245, 212, 0.42);
+    border-radius: 8px;
+    background: linear-gradient(120deg, rgba(0, 245, 212, 0.08), rgba(139, 92, 246, 0.1));
+    font: inherit;
+    font-size: 0.8rem;
+    font-weight: 800;
+    white-space: nowrap;
+    cursor: pointer;
+    transition: transform 0.2s ease, border-color 0.2s ease, background 0.2s ease, box-shadow 0.2s ease;
+}
+
+.portfolio-reset-button:hover {
+    transform: translateY(-2px);
+    border-color: var(--cyan-bright);
+    background: linear-gradient(120deg, rgba(0, 245, 212, 0.15), rgba(139, 92, 246, 0.16));
+    box-shadow: 0 0 20px rgba(0, 245, 212, 0.09);
+}
+
+.portfolio-reset-button:active {
+    transform: translateY(0);
+}
+
+.portfolio-reset-button:focus-visible {
+    outline: 2px solid var(--cyan-bright);
+    outline-offset: 4px;
+}
+
+.portfolio-table-indicator {
+    white-space: nowrap;
+}
+
+/* Tablet layout */
+@media (max-width: 900px) {
+    .portfolio-controls {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .portfolio-reset-button {
+        grid-column: 1 / -1;
+        justify-self: start;
+    }
+}
+
+/* Mobile layout */
+@media (max-width: 700px) {
+    .portfolio-controls {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 14px;
+        padding: 17px;
+    }
+
+    .portfolio-reset-button {
+        grid-column: auto;
+        width: 100%;
+    }
+
+    .portfolio-filter select {
+        min-height: 48px;
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .portfolio-controls {
+        padding: 14px;
+        border-radius: 10px;
+    }
+
+    .portfolio-filter label {
+        font-size: 0.64rem;
+    }
+}
