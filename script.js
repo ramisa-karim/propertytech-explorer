@@ -1,4 +1,4 @@
-
+```javascript
 /* =========================================
    PROPERTYTECH EXPLORER
    INTERACTIVE JAVASCRIPT FEATURES
@@ -281,7 +281,7 @@ function getFilteredAndSortedAssets() {
 
         case "default":
         default:
-            // Restore original order when no sorting is selected
+            // Keep the original order when no sorting is selected
             // Filtering still applies if a type has been selected
             break;
     }
@@ -291,29 +291,7 @@ function getFilteredAndSortedAssets() {
 
 
 /* =========================================
-   9. UPDATE THE DASHBOARD
-   ========================================= */
-
-function updatePortfolioDashboard() {
-    const dashboard = document.getElementById("portfolio-dashboard");
-
-    if (!dashboard) {
-        return;
-    }
-
-    const displayedAssets = getFilteredAndSortedAssets();
-
-    // Update the summary to match the currently displayed properties
-    const totals = calculatePortfolioTotals(displayedAssets);
-
-    renderPortfolioSummary(totals);
-    renderPortfolioTable(displayedAssets);
-    updatePortfolioAssetCount(displayedAssets.length);
-}
-
-
-/* =========================================
-   10. UPDATE THE ASSET COUNT
+   9. UPDATE THE ASSET COUNT
    ========================================= */
 
 function updatePortfolioAssetCount(count) {
@@ -331,7 +309,288 @@ function updatePortfolioAssetCount(count) {
 
 
 /* =========================================
-   11. RESET FILTERS AND SORTING
+   10. PHASE 3.2: ASSET ALLOCATION
+   ========================================= */
+
+function renderAssetAllocation() {
+    const chartElement =
+        document.getElementById("assetAllocationChart");
+
+    const legendElement =
+        document.getElementById("assetAllocationLegend");
+
+    if (!chartElement || !legendElement) {
+        return;
+    }
+
+    // Always analyse the full portfolio, not the filtered table
+    const totalValue = portfolioAssets.reduce(function (total, asset) {
+        return total + asset.value;
+    }, 0);
+
+    const assetTypes = ["Office", "Retail", "Industrial"];
+
+    const allocation = assetTypes.map(function (type) {
+        const typeValue = portfolioAssets
+            .filter(function (asset) {
+                return asset.type === type;
+            })
+            .reduce(function (total, asset) {
+                return total + asset.value;
+            }, 0);
+
+        return {
+            type: type,
+            value: typeValue,
+            percentage: totalValue > 0
+                ? (typeValue / totalValue) * 100
+                : 0
+        };
+    });
+
+    const allocationIcons = {
+        Office: "▦",
+        Retail: "◈",
+        Industrial: "⬡"
+    };
+
+    chartElement.innerHTML = allocation.map(function (item) {
+        return `
+            <div class="allocation-row">
+                <div class="allocation-row-heading">
+                    <span>${item.type}</span>
+                    <strong>${formatPercentage(item.percentage)}</strong>
+                </div>
+
+                <div
+                    class="allocation-track"
+                    role="img"
+                    aria-label="${item.type} represents ${formatPercentage(item.percentage)} of total portfolio value"
+                >
+                    <div
+                        class="allocation-bar allocation-${item.type.toLowerCase()}"
+                        style="width: ${item.percentage}%"
+                    ></div>
+                </div>
+
+                <p class="allocation-value">
+                    ${gbpFormatter.format(item.value)}
+                </p>
+            </div>
+        `;
+    }).join("");
+
+    legendElement.innerHTML = allocation.map(function (item) {
+        return `
+            <div class="allocation-legend-item">
+                <span class="allocation-legend-icon allocation-${item.type.toLowerCase()}">
+                    ${allocationIcons[item.type]}
+                </span>
+                <span>${item.type}</span>
+                <strong>${formatPercentage(item.percentage)}</strong>
+            </div>
+        `;
+    }).join("");
+}
+
+
+/* =========================================
+   11. PHASE 3.2: HIGHEST-YIELDING ASSET
+   ========================================= */
+
+function renderHighestYieldAsset() {
+    const resultElement =
+        document.getElementById("highestYieldAsset");
+
+    if (!resultElement) {
+        return;
+    }
+
+    if (portfolioAssets.length === 0) {
+        resultElement.textContent =
+            "No properties are available to analyse.";
+        return;
+    }
+
+    const highestYieldAsset = portfolioAssets.reduce(function (highest, asset) {
+        return getGrossYield(asset) > getGrossYield(highest)
+            ? asset
+            : highest;
+    }, portfolioAssets[0]);
+
+    resultElement.innerHTML = `
+        <div class="highest-yield-badge">
+            <span aria-hidden="true">↗</span>
+            HIGHEST GROSS YIELD
+        </div>
+
+        <h5>${highestYieldAsset.name}</h5>
+
+        <div class="highest-yield-percentage">
+            ${formatPercentage(getGrossYield(highestYieldAsset))}
+        </div>
+
+        <p class="highest-yield-type">
+            ${highestYieldAsset.type} property
+        </p>
+
+        <div class="highest-yield-details">
+            <div>
+                <span>Property value</span>
+                <strong>${gbpFormatter.format(highestYieldAsset.value)}</strong>
+            </div>
+
+            <div>
+                <span>Annual rent</span>
+                <strong>${gbpFormatter.format(highestYieldAsset.annualRent)}</strong>
+            </div>
+        </div>
+    `;
+}
+
+
+/* =========================================
+   12. PHASE 3.2: AUTOMATIC PORTFOLIO OBSERVATIONS
+   ========================================= */
+
+function renderPortfolioObservations() {
+    const observationsElement =
+        document.getElementById("portfolioObservations");
+
+    if (!observationsElement) {
+        return;
+    }
+
+    if (portfolioAssets.length === 0) {
+        observationsElement.textContent =
+            "Add portfolio assets to generate observations.";
+        return;
+    }
+
+    const totals = calculatePortfolioTotals(portfolioAssets);
+
+    // Find the property with the highest market value
+    const largestAsset = portfolioAssets.reduce(function (largest, asset) {
+        return asset.value > largest.value ? asset : largest;
+    }, portfolioAssets[0]);
+
+    // Find the property generating the most annual rent
+    const highestRentAsset = portfolioAssets.reduce(function (highest, asset) {
+        return asset.annualRent > highest.annualRent ? asset : highest;
+    }, portfolioAssets[0]);
+
+    // Find the asset type with the greatest combined value
+    const typeTotals = {};
+
+    portfolioAssets.forEach(function (asset) {
+        if (!typeTotals[asset.type]) {
+            typeTotals[asset.type] = {
+                value: 0,
+                rent: 0,
+                count: 0
+            };
+        }
+
+        typeTotals[asset.type].value += asset.value;
+        typeTotals[asset.type].rent += asset.annualRent;
+        typeTotals[asset.type].count += 1;
+    });
+
+    const dominantType = Object.keys(typeTotals).reduce(function (largest, type) {
+        return typeTotals[type].value > typeTotals[largest].value
+            ? type
+            : largest;
+    }, Object.keys(typeTotals)[0]);
+
+    const dominantTypeShare =
+        totals.totalValue > 0
+            ? (typeTotals[dominantType].value / totals.totalValue) * 100
+            : 0;
+
+    const largestAssetShare =
+        totals.totalValue > 0
+            ? (largestAsset.value / totals.totalValue) * 100
+            : 0;
+
+    const observations = [
+        {
+            number: "01",
+            title: "Largest asset type",
+            description:
+                dominantType + " properties account for " +
+                formatPercentage(dominantTypeShare) +
+                " of the portfolio's total value."
+        },
+        {
+            number: "02",
+            title: "Largest individual property",
+            description:
+                largestAsset.name + " has the highest individual value at " +
+                gbpFormatter.format(largestAsset.value) +
+                ", representing " + formatPercentage(largestAssetShare) +
+                " of the overall portfolio."
+        },
+        {
+            number: "03",
+            title: "Highest annual rental income",
+            description:
+                highestRentAsset.name + " generates the highest annual rent at " +
+                gbpFormatter.format(highestRentAsset.annualRent) +
+                " in this illustrative portfolio."
+        },
+        {
+            number: "04",
+            title: "Overall portfolio yield",
+            description:
+                "The portfolio's weighted gross rental yield is " +
+                formatPercentage(totals.portfolioYield) +
+                ", calculated using total annual rent divided by total property value."
+        }
+    ];
+
+    observationsElement.innerHTML = observations.map(function (observation) {
+        return `
+            <div class="portfolio-observation">
+                <span class="observation-number">${observation.number}</span>
+                <div class="observation-content">
+                    <h5>${observation.title}</h5>
+                    <p>${observation.description}</p>
+                </div>
+            </div>
+        `;
+    }).join("");
+}
+
+
+/* =========================================
+   13. UPDATE THE DASHBOARD
+   ========================================= */
+
+function updatePortfolioDashboard() {
+    const dashboard = document.getElementById("portfolio-dashboard");
+
+    if (!dashboard) {
+        return;
+    }
+
+    const displayedAssets = getFilteredAndSortedAssets();
+
+    // Summary cards and table follow the active filter and sorting
+    const totals = calculatePortfolioTotals(displayedAssets);
+
+    renderPortfolioSummary(totals);
+    renderPortfolioTable(displayedAssets);
+    updatePortfolioAssetCount(displayedAssets.length);
+
+    // Phase 3.2 insights always analyse the entire portfolio
+    renderAssetAllocation();
+    renderHighestYieldAsset();
+    renderPortfolioObservations();
+}
+
+
+/* =========================================
+   14. RESET FILTERS AND SORTING
    ========================================= */
 
 function resetPortfolioFilters() {
@@ -351,11 +610,11 @@ function resetPortfolioFilters() {
 
 
 /* =========================================
-   12. INITIALISE THE WEBSITE
+   15. INITIALISE THE WEBSITE
    ========================================= */
 
 document.addEventListener("DOMContentLoaded", function () {
-    // Display the portfolio when the page loads
+    // Render the portfolio and its insights when the page loads
     updatePortfolioDashboard();
 
     const typeFilter = document.getElementById("portfolioTypeFilter");
@@ -377,3 +636,4 @@ document.addEventListener("DOMContentLoaded", function () {
         resetButton.addEventListener("click", resetPortfolioFilters);
     }
 });
+```
