@@ -2231,3 +2231,400 @@ input:focus-visible {
             0.01ms !important;
     }
 }
+
+/* =========================================================
+   21. COMMERCIAL PROPERTY PORTFOLIO DASHBOARD
+   Added for the portfolio dashboard in index.html
+========================================================= */
+
+.portfolio-section {
+    position: relative;
+    margin: 0 0 130px;
+    padding: 42px;
+    overflow: hidden;
+    border: 1px solid rgba(92, 194, 255, 0.30);
+    border-radius: 18px;
+    background:
+        radial-gradient(circle at 100% 0%, rgba(139, 92, 246, 0.12), transparent 32%),
+        radial-gradient(circle at 0% 100%, rgba(0, 245, 212, 0.08), transparent 34%),
+        linear-gradient(145deg, rgba(13, 31, 47, 0.97), rgba(9, 22, 36, 0.97));
+    box-shadow: 0 18px 50px rgba(0, 0, 0, 0.25);
+}
+
+.portfolio-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 24px;
+    margin-bottom: 20px;
+}
+
+.portfolio-header h2 {
+    max-width: 760px;
+    margin: 8px 0 0;
+    font-size: clamp(2rem, 4vw, 3.25rem);
+    line-height: 1.1;
+}
+
+.portfolio-status,
+.portfolio-table-indicator {
+    flex-shrink: 0;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 11px;
+    color: var(--cyan-bright);
+    border: 1px solid rgba(0, 245, 212, 0.32);
+    border-radius: 6px;
+    background: rgba(0, 245, 212, 0.07);
+    font-size: 0.62rem;
+    font-weight: 800;
+    letter-spacing: 0.1em;
+}
+
+.portfolio-status::before {
+    content: "";
+    width: 6px;
+    height: 6px;
+    flex: 0 0 6px;
+    border-radius: 50%;
+    background: var(--cyan);
+    box-shadow: 0 0 9px rgba(0, 245, 212, 0.75);
+}
+
+.portfolio-intro {
+    max-width: 780px;
+    margin: 0 0 30px;
+    color: var(--muted);
+    font-size: 0.98rem;
+}
+
+.portfolio-metrics {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 16px;
+    margin: 0 0 30px;
+}
+
+.portfolio-metric {
+    position: relative;
+    min-width: 0;
+    padding: 23px 22px 20px;
+    border: 1px solid rgba(92, 194, 255, 0.24);
+    border-radius: 12px;
+    background:
+        linear-gradient(145deg, rgba(22, 45, 65, 0.92), rgba(13, 29, 45, 0.96));
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.025);
+    transition: border-color 0.25s ease, transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.portfolio-metric::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 22px;
+    width: 48px;
+    height: 2px;
+    background: linear-gradient(90deg, var(--cyan), var(--electric-blue), var(--violet));
+}
+
+.portfolio-metric:hover {
+    transform: translateY(-3px);
+    border-color: rgba(0, 245, 212, 0.48);
+    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.18);
+}
+
+.metric-label {
+    margin: 0 0 10px;
+    color: var(--muted);
+    font-size: 0.65rem;
+    font-weight: 800;
+    letter-spacing: 0.12em;
+    line-height: 1.5;
+}
+
+.portfolio-metric h3 {
+    margin: 0 0 8px;
+    color: var(--white);
+    font-size: clamp(1.45rem, 2.6vw, 2.15rem);
+    line-height: 1.2;
+    overflow-wrap: anywhere;
+    letter-spacing: -0.045em;
+}
+
+.portfolio-metric:first-child h3 {
+    background: linear-gradient(100deg, var(--cyan-bright), var(--electric-blue));
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.portfolio-metric:nth-child(2) h3 {
+    background: linear-gradient(100deg, #7DD3FC, var(--purple));
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.portfolio-metric:nth-child(3) h3 {
+    background: linear-gradient(100deg, var(--cyan-bright), var(--purple));
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.metric-description {
+    margin: 0;
+    color: var(--muted);
+    font-size: 0.78rem;
+}
+
+.portfolio-table-wrap {
+    overflow: hidden;
+    border: 1px solid rgba(92, 194, 255, 0.25);
+    border-radius: 12px;
+    background: rgba(7, 18, 30, 0.72);
+}
+
+.portfolio-table-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    padding: 24px 24px 20px;
+    border-bottom: 1px solid rgba(92, 194, 255, 0.18);
+    background: linear-gradient(100deg, rgba(0, 245, 212, 0.045), rgba(139, 92, 246, 0.06));
+}
+
+.portfolio-table-header .section-label {
+    margin-bottom: 7px;
+}
+
+.portfolio-table-header h3 {
+    margin: 0 0 5px;
+    font-size: 1.35rem;
+    letter-spacing: -0.025em;
+}
+
+.portfolio-table-header p:not(.section-label) {
+    margin: 0;
+    color: var(--muted);
+    font-size: 0.85rem;
+}
+
+.portfolio-table-scroll {
+    width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+}
+
+.portfolio-table {
+    width: 100%;
+    min-width: 700px;
+    border-collapse: collapse;
+    text-align: left;
+}
+
+.portfolio-table thead {
+    background: rgba(18, 39, 57, 0.94);
+}
+
+.portfolio-table th {
+    padding: 15px 18px;
+    color: var(--cyan-bright);
+    border-bottom: 1px solid rgba(0, 245, 212, 0.24);
+    font-size: 0.64rem;
+    font-weight: 800;
+    letter-spacing: 0.09em;
+    text-transform: uppercase;
+    white-space: nowrap;
+}
+
+.portfolio-table td {
+    padding: 18px;
+    color: var(--text);
+    border-bottom: 1px solid rgba(92, 194, 255, 0.12);
+    font-size: 0.86rem;
+    vertical-align: middle;
+}
+
+.portfolio-table tbody tr {
+    transition: background 0.2s ease;
+}
+
+.portfolio-table tbody tr:hover {
+    background: rgba(25, 191, 255, 0.055);
+}
+
+.portfolio-table tbody tr:last-child td {
+    border-bottom: 0;
+}
+
+.portfolio-table td:first-child {
+    color: var(--white);
+    font-weight: 750;
+}
+
+.portfolio-table td:last-child {
+    color: var(--cyan-bright);
+    font-weight: 800;
+    white-space: nowrap;
+}
+
+.portfolio-table td[colspan] {
+    padding: 26px 18px;
+    color: var(--muted);
+    text-align: center;
+}
+
+.asset-type {
+    display: inline-block;
+    padding: 5px 8px;
+    color: #B9D9F2;
+    border: 1px solid rgba(92, 194, 255, 0.2);
+    border-radius: 5px;
+    background: rgba(25, 191, 255, 0.07);
+    font-size: 0.72rem;
+    white-space: nowrap;
+}
+
+.yield-value {
+    display: inline-block;
+    padding: 5px 9px;
+    color: var(--cyan-bright);
+    border: 1px solid rgba(0, 245, 212, 0.24);
+    border-radius: 5px;
+    background: rgba(0, 245, 212, 0.07);
+    font-weight: 800;
+    white-space: nowrap;
+}
+
+.portfolio-note {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    margin-top: 20px;
+    padding: 16px 18px;
+    border: 1px solid rgba(139, 92, 246, 0.22);
+    border-radius: 9px;
+    background: rgba(139, 92, 246, 0.055);
+}
+
+.portfolio-note > span {
+    flex: 0 0 auto;
+    color: var(--purple);
+    font-size: 1.1rem;
+    line-height: 1.5;
+}
+
+.portfolio-note p {
+    margin: 0;
+    color: var(--muted);
+    font-size: 0.78rem;
+    line-height: 1.7;
+}
+
+.portfolio-note strong {
+    color: var(--white);
+}
+
+
+/* =========================================================
+   22. PORTFOLIO DASHBOARD RESPONSIVE LAYOUT
+========================================================= */
+
+@media (max-width: 900px) {
+    .portfolio-section {
+        padding: 30px;
+    }
+
+    .portfolio-metrics {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .portfolio-metric:last-child {
+        grid-column: 1 / -1;
+    }
+
+    .portfolio-header {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .portfolio-table-header {
+        align-items: flex-start;
+    }
+}
+
+@media (max-width: 700px) {
+    .portfolio-section {
+        margin-bottom: 85px;
+        padding: 25px 20px;
+    }
+
+    .portfolio-header h2 {
+        font-size: clamp(1.8rem, 8vw, 2.6rem);
+    }
+
+    .portfolio-intro {
+        font-size: 0.9rem;
+    }
+
+    .portfolio-metrics {
+        grid-template-columns: 1fr;
+        gap: 12px;
+    }
+
+    .portfolio-metric,
+    .portfolio-metric:last-child {
+        grid-column: auto;
+        padding: 20px;
+    }
+
+    .portfolio-metric h3 {
+        font-size: 1.8rem;
+    }
+
+    .portfolio-table-header {
+        flex-direction: column;
+        padding: 20px;
+    }
+
+    .portfolio-table-indicator {
+        white-space: normal;
+    }
+
+    .portfolio-table th,
+    .portfolio-table td {
+        padding: 14px 15px;
+    }
+
+    .portfolio-note {
+        padding: 14px;
+    }
+}
+
+@media (max-width: 480px) {
+    .portfolio-section {
+        padding: 22px 15px;
+        border-radius: 12px;
+    }
+
+    .portfolio-header h2 {
+        font-size: 1.8rem;
+    }
+
+    .portfolio-status,
+    .portfolio-table-indicator {
+        font-size: 0.57rem;
+    }
+
+    .portfolio-metric h3 {
+        font-size: 1.55rem;
+    }
+
+    .portfolio-table-header h3 {
+        font-size: 1.2rem;
+    }
+}
+
