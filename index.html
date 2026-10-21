@@ -34,7 +34,6 @@
     <section class="hero">
         <div class="hero-content">
             <p class="eyebrow">REAL ESTATE × TECHNOLOGY</p>
-
             <h1>PropertyTech <span>Explorer</span></h1>
 
             <p class="hero-description">
@@ -348,6 +347,84 @@
                 <p class="metric-description">Annual rent relative to value</p>
             </article>
         </div>
+
+        <!-- PHASE 3.2 / PORTFOLIO INSIGHTS -->
+
+        <section class="portfolio-insights" aria-labelledby="portfolioInsightsTitle">
+            <div class="portfolio-insights-heading">
+                <p class="section-label">PHASE 3.2 / PORTFOLIO INTELLIGENCE</p>
+                <h3 id="portfolioInsightsTitle">Portfolio <span>Insights</span></h3>
+                <p>
+                    Explore how portfolio composition and property performance
+                    can support commercial asset management decisions.
+                </p>
+            </div>
+
+            <div class="insights-grid">
+
+                <!-- ASSET ALLOCATION -->
+
+                <article class="insight-card allocation-card">
+                    <p class="insight-label">01 / PORTFOLIO COMPOSITION</p>
+                    <h4>Asset Allocation</h4>
+                    <p class="insight-description">
+                        See how the portfolio's total property value is
+                        distributed across different asset types.
+                    </p>
+
+                    <div id="assetAllocationChart" class="asset-allocation-chart">
+                        <p class="insight-loading">Calculating asset allocation...</p>
+                    </div>
+
+                    <div id="assetAllocationLegend" class="asset-allocation-legend">
+                    </div>
+                </article>
+
+                <!-- HIGHEST-YIELDING ASSET -->
+
+                <article class="insight-card top-asset-card">
+                    <p class="insight-label">02 / ASSET PERFORMANCE</p>
+                    <h4>Highest Gross Yield</h4>
+                    <p class="insight-description">
+                        Identify the property generating the highest gross
+                        rental yield relative to its value.
+                    </p>
+
+                    <div id="highestYieldAsset" class="highest-yield-result">
+                        <p class="insight-loading">Analysing asset performance...</p>
+                    </div>
+
+                    <p class="insight-disclaimer">
+                        Gross yield does not account for operating costs,
+                        vacancies, financing or other expenses.
+                    </p>
+                </article>
+
+            </div>
+
+            <!-- AUTOMATIC PORTFOLIO OBSERVATIONS -->
+
+            <article class="insight-card portfolio-observations-card">
+                <div class="observations-heading">
+                    <div>
+                        <p class="insight-label">03 / DATA-DRIVEN OBSERVATIONS</p>
+                        <h4>Portfolio Observations</h4>
+                    </div>
+
+                    <span class="observations-status">DATA ANALYSIS</span>
+                </div>
+
+                <p class="insight-description">
+                    Automatically generated observations based on the
+                    sample portfolio's property values, rental income
+                    and gross yields.
+                </p>
+
+                <div id="portfolioObservations" class="portfolio-observations">
+                    <p class="insight-loading">Generating portfolio observations...</p>
+                </div>
+            </article>
+        </section>
 
         <!-- PHASE 3.1 / PORTFOLIO FILTERS AND SORTING -->
 
