@@ -584,4 +584,263 @@ function renderRentalIncomeConcentration() {
 
 
 /* =========================================
-   14. PHASE 3.3: Y
+   14. PHASE 3.3: YIELD VS PORTFOLIO AVERAGE
+   ========================================= */
+
+function renderYieldPerformanceComparison() {
+    const chartElement =
+        document.getElementById("yieldPerformanceComparison");
+
+    const benchmarkElement =
+        document.getElementById("yieldBenchmarkValue");
+
+    if (!chartElement) return;
+
+    const totals = calculatePortfolioTotals(portfolioAssets);
+    const benchmark = totals.portfolioYield;
+
+    if (benchmarkElement) {
+        benchmarkElement.textContent = formatPercentage(benchmark);
+    }
+
+    if (portfolioAssets.length === 0) {
+        chartElement.textContent = "No property yield data is available.";
+        return;
+    }
+
+    // Use a shared scale so yields can be compared visually.
+    const yields = portfolioAssets.map(getGrossYield);
+    const maximumYield = Math.max.apply(null, yields.concat([benchmark, 1]));
+
+    const sortedAssets = portfolioAssets.slice().sort(function (a, b) {
+        return getGrossYield(b) - getGrossYield(a);
+    });
+
+    chartElement.innerHTML = sortedAssets.map(function (asset) {
+        const assetYield = getGrossYield(asset);
+        const barWidth = (assetYield / maximumYield) * 100;
+        const difference = assetYield - benchmark;
+
+        let comparisonText;
+
+        if (Math.abs(difference) < 0.005) {
+            comparisonText = "At portfolio average";
+        } else if (difference > 0) {
+            comparisonText =
+                formatPercentage(difference) + " percentage points above average";
+        } else {
+            comparisonText =
+                formatPercentage(Math.abs(difference)) +
+                " percentage points below average";
+        }
+
+        return `
+            <div class="risk-chart-row">
+                <div class="risk-chart-heading">
+                    <span>${asset.name}</span>
+                    <strong>${formatPercentage(assetYield)}</strong>
+                </div>
+
+                <div
+                    class="risk-chart-track"
+                    role="img"
+                    aria-label="${asset.name} gross yield is ${formatPercentage(assetYield)}"
+                >
+                    <div
+                        class="risk-chart-bar yield-comparison-bar"
+                        style="width: ${barWidth}%"
+                    ></div>
+                </div>
+
+                <p class="risk-chart-detail">${comparisonText}</p>
+            </div>
+        `;
+    }).join("");
+}
+
+
+/* =========================================
+   15. PHASE 3.3: PORTFOLIO RISK INDICATORS
+   ========================================= */
+
+function renderPortfolioRiskIndicators() {
+    const indicatorsElement =
+        document.getElementById("portfolioRiskIndicators");
+
+    if (!indicatorsElement) return;
+
+    if (portfolioAssets.length === 0) {
+        indicatorsElement.textContent =
+            "No portfolio data is available for analysis.";
+        return;
+    }
+
+    const totals = calculatePortfolioTotals(portfolioAssets);
+
+    const largestAsset = portfolioAssets.reduce(function (largest, asset) {
+        return asset.value > largest.value ? asset : largest;
+    }, portfolioAssets[0]);
+
+    const highestRentAsset = portfolioAssets.reduce(function (highest, asset) {
+        return asset.annualRent > highest.annualRent ? asset : highest;
+    }, portfolioAssets[0]);
+
+    const typeValueTotals = {};
+
+    portfolioAssets.forEach(function (asset) {
+        typeValueTotals[asset.type] =
+            (typeValueTotals[asset.type] || 0) + asset.value;
+    });
+
+    const types = Object.keys(typeValueTotals);
+
+    const dominantType = types.reduce(function (largest, type) {
+        return typeValueTotals[type] > typeValueTotals[largest]
+            ? type
+            : largest;
+    }, types[0]);
+
+    const largestAssetValueShare = calculatePercentage(
+        largestAsset.value,
+        totals.totalValue
+    );
+
+    const highestRentShare = calculatePercentage(
+        highestRentAsset.annualRent,
+        totals.totalRent
+    );
+
+    const dominantTypeValueShare = calculatePercentage(
+        typeValueTotals[dominantType],
+        totals.totalValue
+    );
+
+    const yields = portfolioAssets.map(getGrossYield);
+    const highestYield = Math.max.apply(null, yields);
+    const lowestYield = Math.min.apply(null, yields);
+    const yieldSpread = highestYield - lowestYield;
+
+    const indicators = [
+        {
+            label: "Dominant property type",
+            value: dominantType,
+            description:
+                dominantType + " represents " +
+                formatPercentage(dominantTypeValueShare) +
+                " of total portfolio value. A concentrated property mix may increase exposure to conditions affecting that sector."
+        },
+        {
+            label: "Largest asset exposure",
+            value: formatPercentage(largestAssetValueShare),
+            description:
+                largestAsset.name + " accounts for this share of portfolio value, making its individual performance important to the overall portfolio."
+        },
+        {
+            label: "Largest rental income source",
+            value: formatPercentage(highestRentShare),
+            description:
+                highestRentAsset.name + " contributes the largest share of annual rental income. Any interruption to that income could affect total receipts."
+        },
+        {
+            label: "Gross yield spread",
+            value: formatPercentage(yieldSpread),
+            description:
+                "The difference between the highest and lowest asset gross yields is " +
+                formatPercentage(yieldSpread) +
+                ". Yield differences alone do not establish which property is the better investment."
+        }
+    ];
+
+    indicatorsElement.innerHTML = indicators.map(function (indicator, index) {
+        return `
+            <article class="risk-indicator">
+                <span class="risk-indicator-number">
+                    ${String(index + 1).padStart(2, "0")}
+                </span>
+
+                <p class="risk-indicator-label">${indicator.label}</p>
+
+                <h5 class="risk-indicator-value">${indicator.value}</h5>
+
+                <p class="risk-indicator-description">
+                    ${indicator.description}
+                </p>
+            </article>
+        `;
+    }).join("");
+}
+
+
+/* =========================================
+   16. UPDATE THE DASHBOARD
+   ========================================= */
+
+function updatePortfolioDashboard() {
+    const dashboard = document.getElementById("portfolio-dashboard");
+
+    if (!dashboard) return;
+
+    const displayedAssets = getFilteredAndSortedAssets();
+    const totals = calculatePortfolioTotals(displayedAssets);
+
+    // Phase 2 / Phase 3.1: summary and table follow the active filters.
+    renderPortfolioSummary(totals);
+    renderPortfolioTable(displayedAssets);
+    updatePortfolioAssetCount(displayedAssets.length);
+
+    // Phase 3.2: these insights always use the full portfolio.
+    renderAssetAllocation();
+    renderHighestYieldAsset();
+    renderPortfolioObservations();
+
+    // Phase 3.3: risk analysis also uses the full portfolio.
+    renderRentalIncomeConcentration();
+    renderYieldPerformanceComparison();
+    renderPortfolioRiskIndicators();
+}
+
+
+/* =========================================
+   17. RESET FILTERS AND SORTING
+   ========================================= */
+
+function resetPortfolioFilters() {
+    const typeFilter = document.getElementById("portfolioTypeFilter");
+    const sortSelect = document.getElementById("portfolioSortBy");
+
+    if (typeFilter) {
+        typeFilter.value = "all";
+    }
+
+    if (sortSelect) {
+        sortSelect.value = "default";
+    }
+
+    updatePortfolioDashboard();
+}
+
+
+/* =========================================
+   18. INITIALISE THE WEBSITE
+   ========================================= */
+
+document.addEventListener("DOMContentLoaded", function () {
+    // Render the dashboard and all available insights.
+    updatePortfolioDashboard();
+
+    const typeFilter = document.getElementById("portfolioTypeFilter");
+    const sortSelect = document.getElementById("portfolioSortBy");
+    const resetButton = document.getElementById("resetPortfolioFilters");
+
+    if (typeFilter) {
+        typeFilter.addEventListener("change", updatePortfolioDashboard);
+    }
+
+    if (sortSelect) {
+        sortSelect.addEventListener("change", updatePortfolioDashboard);
+    }
+
+    if (resetButton) {
+        resetButton.addEventListener("click", resetPortfolioFilters);
+    }
+});
