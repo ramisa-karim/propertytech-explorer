@@ -1,2 +1,2 @@
 # propertytech-explorer
-A beginner web project exploring the potential intersection of real estate, blockchain and Web3.
+A Web2 frontend prototype for fractional real estate tokenisation. Built with HTML/JS. Looking for a Solana developer at the London Hacker House to integrate Token Extensions and Transfer Hooks..
