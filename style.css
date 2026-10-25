@@ -926,4 +926,893 @@ h2 span, h1 span {
     width: min(1180px, calc(100% - 48px));
     margin: 35px auto 0;
     padding-top: 20px;
-    border-top: 1px solid rgba(92, 194, 255
+    border-top: 1px solid rgba(92, 194, 255, 0.16);
+}
+
+
+/* =========================================================
+   18. PORTFOLIO DASHBOARD
+========================================================= */
+
+.portfolio-section {
+    margin: 0 auto 140px;
+    width: min(1180px, calc(100% - 48px));
+    padding: 42px;
+    background: linear-gradient(145deg, rgba(13, 31, 47, 0.94), rgba(12, 24, 42, 0.94));
+    border: 1px solid rgba(0, 245, 212, 0.28);
+    border-radius: 18px;
+    box-shadow: var(--shadow);
+    min-width: 0;
+}
+
+.portfolio-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 24px;
+    margin-bottom: 18px;
+}
+
+.portfolio-header h2 {
+    margin: 8px 0 0;
+}
+
+.portfolio-status,
+.portfolio-table-indicator,
+.observations-status {
+    flex: 0 0 auto;
+    display: inline-flex;
+    align-items: center;
+    padding: 8px 12px;
+    color: var(--cyan-bright);
+    border: 1px solid rgba(0, 245, 212, 0.30);
+    background: rgba(0, 245, 212, 0.055);
+    font-size: 0.62rem;
+    font-weight: 800;
+    letter-spacing: 0.10em;
+}
+
+.portfolio-intro {
+    max-width: 780px;
+    margin-bottom: 32px;
+    color: var(--muted);
+}
+
+.portfolio-metrics {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 16px;
+    margin: 28px 0 56px;
+}
+
+.portfolio-metric {
+    min-width: 0;
+    padding: 24px;
+    background: linear-gradient(145deg, rgba(19, 43, 61, 0.88), rgba(10, 26, 41, 0.90));
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.16);
+}
+
+.metric-label,
+.insight-label {
+    margin-bottom: 12px;
+    color: var(--cyan);
+    font-size: 0.65rem;
+    font-weight: 800;
+    letter-spacing: 0.11em;
+}
+
+.portfolio-metric h3 {
+    margin: 0 0 10px;
+    color: var(--cyan-bright);
+    font-size: clamp(1.45rem, 2.5vw, 2rem);
+    overflow-wrap: anywhere;
+}
+
+.metric-description {
+    margin: 0;
+    color: var(--muted);
+    font-size: 0.82rem;
+}
+
+.portfolio-insights,
+.portfolio-risk-section {
+    margin: 54px 0;
+}
+
+.portfolio-insights-heading {
+    max-width: 800px;
+    margin-bottom: 26px;
+}
+
+.portfolio-insights-heading h3 {
+    margin: 8px 0 14px;
+    font-size: clamp(1.7rem, 3vw, 2.5rem);
+}
+
+.portfolio-insights-heading > p:last-child {
+    color: var(--muted);
+}
+
+.insights-grid,
+.risk-analysis-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 18px;
+    margin-bottom: 18px;
+}
+
+.insight-card {
+    min-width: 0;
+    padding: 25px;
+    background: linear-gradient(145deg, rgba(18, 38, 57, 0.92), rgba(10, 25, 41, 0.92));
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.16);
+}
+
+.insight-card h4 {
+    margin: 0 0 12px;
+    color: var(--white);
+    font-size: 1.25rem;
+}
+
+.insight-description {
+    color: var(--muted);
+    font-size: 0.86rem;
+}
+
+.insight-loading {
+    margin: 0;
+    padding: 12px 0;
+    color: var(--muted);
+    font-size: 0.85rem;
+}
+
+.asset-allocation-chart,
+.asset-allocation-legend,
+.highest-yield-result,
+.portfolio-observations,
+.risk-chart,
+.risk-indicators-grid {
+    min-width: 0;
+}
+
+.allocation-row {
+    margin: 20px 0;
+}
+
+.allocation-row-heading {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    margin-bottom: 8px;
+    color: var(--text);
+    font-size: 0.84rem;
+}
+
+.allocation-row-heading strong {
+    color: var(--white);
+    font-variant-numeric: tabular-nums;
+}
+
+.allocation-track {
+    height: 9px;
+    overflow: hidden;
+    background: rgba(145, 168, 189, 0.13);
+    border: 1px solid rgba(145, 168, 189, 0.12);
+    border-radius: 999px;
+}
+
+.allocation-bar {
+    height: 100%;
+    min-width: 0;
+    border-radius: inherit;
+    transition: width 0.35s ease;
+}
+
+.allocation-office {
+    background: linear-gradient(90deg, var(--cyan), var(--electric-blue));
+}
+
+.allocation-retail {
+    background: linear-gradient(90deg, var(--violet), var(--magenta));
+}
+
+.allocation-industrial {
+    background: linear-gradient(90deg, var(--blue), var(--purple));
+}
+
+.allocation-value {
+    margin: 7px 0 0;
+    color: var(--muted);
+    font-size: 0.78rem;
+}
+
+.asset-allocation-legend {
+    display: grid;
+    gap: 10px;
+    margin-top: 24px;
+    padding-top: 18px;
+    border-top: 1px solid rgba(92, 194, 255, 0.16);
+}
+
+.allocation-legend-item {
+    display: grid;
+    grid-template-columns: 28px 1fr auto;
+    align-items: center;
+    gap: 10px;
+    color: var(--text);
+    font-size: 0.82rem;
+}
+
+.allocation-legend-item strong {
+    color: var(--white);
+}
+
+.allocation-legend-icon {
+    display: grid;
+    place-items: center;
+    width: 27px;
+    height: 27px;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+}
+
+.highest-yield-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    margin: 5px 0 16px;
+    padding: 7px 10px;
+    color: var(--cyan-bright);
+    background: rgba(0, 245, 212, 0.07);
+    border: 1px solid rgba(0, 245, 212, 0.28);
+    font-size: 0.62rem;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+}
+
+.highest-yield-result h5 {
+    margin: 0 0 5px;
+    font-size: 1.2rem;
+    color: var(--white);
+}
+
+.highest-yield-percentage {
+    color: var(--cyan-bright);
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 850;
+    line-height: 1.2;
+    font-variant-numeric: tabular-nums;
+}
+
+.highest-yield-type {
+    margin: 8px 0 20px;
+    color: var(--muted);
+    font-size: 0.84rem;
+}
+
+.highest-yield-details {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+    margin-top: 18px;
+}
+
+.highest-yield-details > div {
+    min-width: 0;
+    padding: 13px;
+    background: rgba(4, 16, 27, 0.48);
+    border: 1px solid rgba(92, 194, 255, 0.15);
+    border-radius: 8px;
+}
+
+.highest-yield-details span,
+.highest-yield-details strong {
+    display: block;
+    overflow-wrap: anywhere;
+}
+
+.highest-yield-details span {
+    margin-bottom: 5px;
+    color: var(--muted);
+    font-size: 0.72rem;
+}
+
+.highest-yield-details strong {
+    color: var(--white);
+    font-size: 0.95rem;
+}
+
+.portfolio-observations-card,
+.portfolio-risk-indicators {
+    margin-top: 18px;
+}
+
+.observations-heading {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 18px;
+}
+
+.observations-heading h4 {
+    margin-bottom: 10px;
+}
+
+.observation-item,
+.risk-indicator {
+    padding: 16px;
+    background: rgba(5, 18, 31, 0.48);
+    border: 1px solid rgba(92, 194, 255, 0.16);
+    border-radius: 9px;
+}
+
+.observation-item + .observation-item {
+    margin-top: 10px;
+}
+
+.observation-item strong,
+.risk-indicator strong {
+    display: block;
+    margin-bottom: 5px;
+    color: var(--cyan-bright);
+}
+
+.observation-item p,
+.risk-indicator p {
+    margin: 0;
+    color: var(--muted);
+    font-size: 0.84rem;
+}
+
+.risk-chart {
+    display: grid;
+    gap: 16px;
+}
+
+.risk-chart-row {
+    min-width: 0;
+}
+
+.risk-chart-row-header {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    margin-bottom: 7px;
+    color: var(--text);
+    font-size: 0.8rem;
+}
+
+.risk-chart-row-header span:first-child {
+    overflow-wrap: anywhere;
+}
+
+.risk-chart-row-header strong {
+    flex: 0 0 auto;
+    color: var(--white);
+    font-variant-numeric: tabular-nums;
+}
+
+.risk-chart-track {
+    height: 8px;
+    overflow: hidden;
+    background: rgba(145, 168, 189, 0.13);
+    border-radius: 999px;
+}
+
+.risk-chart-bar {
+    height: 100%;
+    background: linear-gradient(90deg, var(--cyan), var(--electric-blue), var(--violet));
+    border-radius: inherit;
+}
+
+.yield-benchmark {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 20px;
+    padding-top: 16px;
+    border-top: 1px solid rgba(92, 194, 255, 0.16);
+    color: var(--muted);
+    font-size: 0.82rem;
+}
+
+.yield-benchmark strong {
+    color: var(--cyan-bright);
+}
+
+.benchmark-indicator {
+    width: 10px;
+    height: 10px;
+    flex: 0 0 10px;
+    border-radius: 50%;
+    background: var(--cyan);
+    box-shadow: 0 0 10px rgba(0, 245, 212, 0.35);
+}
+
+.risk-indicators-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 12px;
+}
+
+.risk-indicator-label {
+    margin-bottom: 8px;
+    color: var(--muted);
+    font-size: 0.73rem;
+}
+
+.risk-indicator-value {
+    margin-bottom: 7px;
+    color: var(--cyan-bright);
+    font-size: 1.35rem;
+    font-weight: 800;
+}
+
+.insight-disclaimer {
+    margin: 18px 0 0;
+    color: var(--muted);
+    font-size: 0.75rem;
+    line-height: 1.6;
+}
+
+.portfolio-controls {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) auto;
+    align-items: end;
+    gap: 14px;
+    margin: 52px 0 22px;
+    padding: 22px;
+    background: rgba(5, 18, 31, 0.52);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+}
+
+.portfolio-filter {
+    min-width: 0;
+}
+
+.portfolio-filter label {
+    display: block;
+    margin-bottom: 8px;
+    color: var(--muted);
+    font-size: 0.78rem;
+}
+
+.portfolio-filter select {
+    width: 100%;
+    min-height: 45px;
+    padding: 10px 12px;
+    color: var(--white);
+    background: #0A1B2A;
+    border: 1px solid rgba(92, 194, 255, 0.30);
+    border-radius: 7px;
+    font: inherit;
+    font-size: 0.82rem;
+}
+
+.portfolio-filter select:focus {
+    outline: 2px solid rgba(0, 245, 212, 0.55);
+    outline-offset: 2px;
+}
+
+.portfolio-filter select option {
+    color: var(--white);
+    background: #0A1B2A;
+}
+
+.portfolio-reset-button {
+    min-height: 45px;
+    padding: 10px 15px;
+    color: var(--cyan-bright);
+    background: rgba(0, 245, 212, 0.06);
+    border: 1px solid rgba(0, 245, 212, 0.35);
+    border-radius: 7px;
+    font: inherit;
+    font-size: 0.82rem;
+    font-weight: 750;
+    cursor: pointer;
+    transition: 0.2s ease;
+}
+
+.portfolio-reset-button:hover {
+    background: rgba(0, 245, 212, 0.13);
+    border-color: var(--cyan-bright);
+}
+
+.portfolio-table-wrap {
+    min-width: 0;
+    overflow: hidden;
+    background: rgba(7, 20, 33, 0.62);
+    border: 1px solid rgba(92, 194, 255, 0.25);
+    border-radius: 12px;
+}
+
+.portfolio-table-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 20px;
+    padding: 25px;
+    border-bottom: 1px solid rgba(92, 194, 255, 0.18);
+}
+
+.portfolio-table-header h3 {
+    margin: 6px 0 7px;
+    font-size: 1.5rem;
+}
+
+.portfolio-table-header p:last-child {
+    margin: 0;
+    color: var(--muted);
+    font-size: 0.84rem;
+}
+
+.portfolio-table-scroll {
+    width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+}
+
+.portfolio-table {
+    width: 100%;
+    min-width: 690px;
+    border-collapse: collapse;
+    text-align: left;
+}
+
+.portfolio-table thead {
+    background: rgba(19, 42, 60, 0.92);
+}
+
+.portfolio-table th {
+    padding: 16px 18px;
+    color: var(--cyan-bright);
+    border-bottom: 1px solid rgba(0, 245, 212, 0.24);
+    font-size: 0.68rem;
+    font-weight: 800;
+    letter-spacing: 0.07em;
+    text-transform: uppercase;
+    white-space: nowrap;
+}
+
+.portfolio-table td {
+    padding: 18px;
+    color: var(--text);
+    border-bottom: 1px solid rgba(92, 194, 255, 0.12);
+    font-size: 0.86rem;
+    vertical-align: middle;
+}
+
+.portfolio-table tbody tr {
+    background: rgba(10, 26, 41, 0.34);
+    transition: background 0.2s ease;
+}
+
+.portfolio-table tbody tr:nth-child(even) {
+    background: rgba(20, 42, 60, 0.35);
+}
+
+.portfolio-table tbody tr:hover {
+    background: rgba(0, 245, 212, 0.055);
+}
+
+.portfolio-table tbody tr:last-child td {
+    border-bottom: 0;
+}
+
+.portfolio-table td:first-child {
+    color: var(--white);
+    font-weight: 750;
+}
+
+.asset-type {
+    display: inline-flex;
+    align-items: center;
+    padding: 5px 9px;
+    color: var(--cyan-bright);
+    background: rgba(0, 245, 212, 0.06);
+    border: 1px solid rgba(0, 245, 212, 0.22);
+    border-radius: 5px;
+    font-size: 0.72rem;
+    white-space: nowrap;
+}
+
+.yield-value {
+    display: inline-block;
+    padding: 5px 9px;
+    color: #C6B4FF;
+    background: rgba(139, 92, 246, 0.10);
+    border: 1px solid rgba(139, 92, 246, 0.25);
+    border-radius: 5px;
+    font-weight: 800;
+    font-variant-numeric: tabular-nums;
+    white-space: nowrap;
+}
+
+.portfolio-note {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    margin-top: 18px;
+    padding: 17px 19px;
+    color: var(--muted);
+    background: rgba(0, 245, 212, 0.035);
+    border: 1px solid rgba(0, 245, 212, 0.17);
+    border-left: 3px solid var(--cyan);
+    border-radius: 8px;
+}
+
+.portfolio-note > span {
+    flex: 0 0 auto;
+    color: var(--cyan-bright);
+    font-size: 1.1rem;
+}
+
+.portfolio-note p {
+    margin: 0;
+    color: var(--muted);
+    font-size: 0.8rem;
+}
+
+.portfolio-note strong {
+    color: var(--white);
+}
+
+
+/* =========================================================
+   19. RESPONSIVE LAYOUT
+========================================================= */
+
+@media (max-width: 1000px) {
+    .hero {
+        grid-template-columns: 1fr 0.9fr;
+        gap: 35px;
+    }
+
+    .technology-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .tech-card:last-child {
+        grid-column: 1 / -1;
+    }
+
+    .portfolio-section {
+        padding: 30px;
+    }
+
+    .portfolio-controls {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .portfolio-reset-button {
+        grid-column: 1 / -1;
+        justify-self: start;
+    }
+
+    .risk-indicators-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 760px) {
+    .navbar,
+    .container,
+    .footer-inner,
+    .footer-note {
+        width: min(100% - 32px, 1180px);
+    }
+
+    .navbar {
+        min-height: 68px;
+    }
+
+    .nav-status {
+        font-size: 0.55rem;
+        letter-spacing: 0.06em;
+    }
+
+    .hero {
+        min-height: auto;
+        grid-template-columns: 1fr;
+        gap: 32px;
+        padding: 58px 0 65px;
+    }
+
+    .hero h1 {
+        font-size: clamp(3.3rem, 13vw, 5.4rem);
+    }
+
+    .hero-visual {
+        min-height: 390px;
+    }
+
+    .intro-grid,
+    .section-heading,
+    .learning-section {
+        grid-template-columns: 1fr;
+        gap: 28px;
+    }
+
+    .intro-grid {
+        margin-bottom: 85px;
+    }
+
+    .content-panel {
+        padding: 28px;
+    }
+
+    .section-heading {
+        margin-bottom: 28px;
+    }
+
+    .technology-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .tech-card:last-child {
+        grid-column: auto;
+    }
+
+    .simulator-section {
+        padding: 28px 20px;
+    }
+
+    .simulator-header {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 16px;
+    }
+
+    .simulator-layout {
+        grid-template-columns: 1fr;
+        gap: 30px;
+    }
+
+    .property-visual {
+        position: relative;
+        top: auto;
+    }
+
+    .investment-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .calculator {
+        padding: 22px;
+    }
+
+    .calculator-controls {
+        grid-template-columns: 1fr;
+    }
+
+    .learning-section {
+        margin-bottom: 90px;
+    }
+
+    .question-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .footer-inner {
+        flex-direction: column;
+        gap: 25px;
+    }
+
+    .footer-meta {
+        align-items: flex-start;
+    }
+
+    .portfolio-section {
+        width: calc(100% - 32px);
+        padding: 24px 18px;
+        margin-bottom: 90px;
+    }
+
+    .portfolio-header {
+        flex-direction: column;
+        gap: 14px;
+    }
+
+    .portfolio-metrics {
+        grid-template-columns: 1fr;
+        margin-bottom: 42px;
+    }
+
+    .insights-grid,
+    .risk-analysis-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .portfolio-controls {
+        grid-template-columns: 1fr;
+        padding: 17px;
+    }
+
+    .portfolio-reset-button {
+        grid-column: auto;
+        justify-self: stretch;
+    }
+
+    .portfolio-table-header {
+        flex-direction: column;
+        padding: 20px;
+    }
+
+    .observations-heading {
+        flex-direction: column;
+    }
+
+    .risk-indicators-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .highest-yield-details {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 420px) {
+    .navbar,
+    .container,
+    .footer-inner,
+    .footer-note {
+        width: calc(100% - 24px);
+    }
+
+    .brand-name {
+        font-size: 0.78rem;
+    }
+
+    .brand-subtitle {
+        font-size: 0.5rem;
+    }
+
+    .hero-actions {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 16px;
+    }
+
+    .hero-visual {
+        min-height: 330px;
+    }
+
+    .data-card {
+        padding: 10px 12px;
+    }
+
+    .data-card-top {
+        top: 72px;
+        right: 10px;
+    }
+
+    .data-card-bottom {
+        bottom: 20px;
+        left: 10px;
+    }
+
+    .visual-code {
+        right: 10px;
+        bottom: 10px;
+        font-size: 0.45rem;
+    }
+
+    .portfolio-section {
+        width: calc(100% - 24px);
+        padding: 20px 13px;
+    }
+
+    .portfolio-metric,
+    .insight-card {
+        padding: 19px;
+    }
+
+    .portfolio-table-header {
+        padding: 17px;
+    }
+}
